@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84052A5B1E95E3B000EE7AF1 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84052A5A1E95E3B000EE7AF1 /* AddItemViewController.swift */; };
 		843C1D091E93146F00DA8A08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C1D081E93146F00DA8A08 /* AppDelegate.swift */; };
 		843C1D0B1E93146F00DA8A08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C1D0A1E93146F00DA8A08 /* ViewController.swift */; };
 		843C1D0E1E93147000DA8A08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C1D0C1E93147000DA8A08 /* Main.storyboard */; };
@@ -15,6 +16,9 @@
 		843C1D161E93147000DA8A08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C1D141E93147000DA8A08 /* LaunchScreen.storyboard */; };
 		843C1D211E93147100DA8A08 /* ItemGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C1D201E93147100DA8A08 /* ItemGeneratorTests.swift */; };
 		843C1D2C1E93147100DA8A08 /* ItemGeneratorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C1D2B1E93147100DA8A08 /* ItemGeneratorUITests.swift */; };
+		843C1D3F1E9356F500DA8A08 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C1D3D1E9356F500DA8A08 /* Item+CoreDataClass.swift */; };
+		843C1D401E9356F500DA8A08 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C1D3E1E9356F500DA8A08 /* Item+CoreDataProperties.swift */; };
+		843C1D421E94BE3000DA8A08 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C1D411E94BE3000DA8A08 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		84052A5A1E95E3B000EE7AF1 /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		843C1D051E93146F00DA8A08 /* ItemGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ItemGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		843C1D081E93146F00DA8A08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		843C1D0A1E93146F00DA8A08 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +54,9 @@
 		843C1D271E93147100DA8A08 /* ItemGeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ItemGeneratorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		843C1D2B1E93147100DA8A08 /* ItemGeneratorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGeneratorUITests.swift; sourceTree = "<group>"; };
 		843C1D2D1E93147100DA8A08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		843C1D3D1E9356F500DA8A08 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataClass.swift"; path = "../Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+		843C1D3E1E9356F500DA8A08 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataProperties.swift"; path = "../Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		843C1D411E94BE3000DA8A08 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +109,15 @@
 			children = (
 				843C1D081E93146F00DA8A08 /* AppDelegate.swift */,
 				843C1D0A1E93146F00DA8A08 /* ViewController.swift */,
+				84052A5A1E95E3B000EE7AF1 /* AddItemViewController.swift */,
+				843C1D3D1E9356F500DA8A08 /* Item+CoreDataClass.swift */,
+				843C1D3E1E9356F500DA8A08 /* Item+CoreDataProperties.swift */,
 				843C1D0C1E93147000DA8A08 /* Main.storyboard */,
 				843C1D121E93147000DA8A08 /* Assets.xcassets */,
 				843C1D141E93147000DA8A08 /* LaunchScreen.storyboard */,
 				843C1D171E93147000DA8A08 /* Info.plist */,
 				843C1D0F1E93147000DA8A08 /* ItemGenerator.xcdatamodeld */,
+				843C1D411E94BE3000DA8A08 /* CoreDataManager.swift */,
 			);
 			path = ItemGenerator;
 			sourceTree = "<group>";
@@ -196,6 +208,7 @@
 				TargetAttributes = {
 					843C1D041E93146F00DA8A08 = {
 						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = 253Q6WGJC2;
 						ProvisioningStyle = Automatic;
 					};
 					843C1D1B1E93147000DA8A08 = {
@@ -262,9 +275,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				843C1D421E94BE3000DA8A08 /* CoreDataManager.swift in Sources */,
 				843C1D111E93147000DA8A08 /* ItemGenerator.xcdatamodeld in Sources */,
 				843C1D0B1E93146F00DA8A08 /* ViewController.swift in Sources */,
+				843C1D3F1E9356F500DA8A08 /* Item+CoreDataClass.swift in Sources */,
+				84052A5B1E95E3B000EE7AF1 /* AddItemViewController.swift in Sources */,
 				843C1D091E93146F00DA8A08 /* AppDelegate.swift in Sources */,
+				843C1D401E9356F500DA8A08 /* Item+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +433,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 253Q6WGJC2;
 				INFOPLIST_FILE = ItemGenerator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Reverse.ItemGenerator;
@@ -428,6 +446,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 253Q6WGJC2;
 				INFOPLIST_FILE = ItemGenerator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Reverse.ItemGenerator;
@@ -509,6 +528,7 @@
 				843C1D321E93147100DA8A08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		843C1D331E93147100DA8A08 /* Build configuration list for PBXNativeTarget "ItemGeneratorTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +537,7 @@
 				843C1D351E93147100DA8A08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		843C1D361E93147100DA8A08 /* Build configuration list for PBXNativeTarget "ItemGeneratorUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +546,7 @@
 				843C1D381E93147100DA8A08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
