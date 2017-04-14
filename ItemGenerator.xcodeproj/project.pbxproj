@@ -19,6 +19,8 @@
 		843C1D3F1E9356F500DA8A08 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C1D3D1E9356F500DA8A08 /* Item+CoreDataClass.swift */; };
 		843C1D401E9356F500DA8A08 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C1D3E1E9356F500DA8A08 /* Item+CoreDataProperties.swift */; };
 		843C1D421E94BE3000DA8A08 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C1D411E94BE3000DA8A08 /* CoreDataManager.swift */; };
+		84F7B1B11E9C784900ED4F8C /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F7B1B01E9C784900ED4F8C /* ItemTableViewCell.swift */; };
+		84F7B1B31E9ED2BE00ED4F8C /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F7B1B21E9ED2BE00ED4F8C /* ItemDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		843C1D3D1E9356F500DA8A08 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataClass.swift"; path = "../Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		843C1D3E1E9356F500DA8A08 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataProperties.swift"; path = "../Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		843C1D411E94BE3000DA8A08 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		84F7B1B01E9C784900ED4F8C /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		84F7B1B21E9ED2BE00ED4F8C /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +113,9 @@
 			children = (
 				843C1D081E93146F00DA8A08 /* AppDelegate.swift */,
 				843C1D0A1E93146F00DA8A08 /* ViewController.swift */,
+				84F7B1B21E9ED2BE00ED4F8C /* ItemDetailViewController.swift */,
 				84052A5A1E95E3B000EE7AF1 /* AddItemViewController.swift */,
+				84F7B1B01E9C784900ED4F8C /* ItemTableViewCell.swift */,
 				843C1D3D1E9356F500DA8A08 /* Item+CoreDataClass.swift */,
 				843C1D3E1E9356F500DA8A08 /* Item+CoreDataProperties.swift */,
 				843C1D0C1E93147000DA8A08 /* Main.storyboard */,
@@ -279,6 +285,8 @@
 				843C1D111E93147000DA8A08 /* ItemGenerator.xcdatamodeld in Sources */,
 				843C1D0B1E93146F00DA8A08 /* ViewController.swift in Sources */,
 				843C1D3F1E9356F500DA8A08 /* Item+CoreDataClass.swift in Sources */,
+				84F7B1B11E9C784900ED4F8C /* ItemTableViewCell.swift in Sources */,
+				84F7B1B31E9ED2BE00ED4F8C /* ItemDetailViewController.swift in Sources */,
 				84052A5B1E95E3B000EE7AF1 /* AddItemViewController.swift in Sources */,
 				843C1D091E93146F00DA8A08 /* AppDelegate.swift in Sources */,
 				843C1D401E9356F500DA8A08 /* Item+CoreDataProperties.swift in Sources */,
