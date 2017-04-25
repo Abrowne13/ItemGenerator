@@ -35,6 +35,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
+        
         tableItemList.reloadData()
     }
     
@@ -100,15 +101,41 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let more = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
-            //Add delete action here
-            print("more button tapped")
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
+
+            guard let appDelegate =
+                UIApplication.shared.delegate as? AppDelegate else {
+                    return
+            }
+            
+            let managedContext =
+                appDelegate.persistentContainer.viewContext
+            
+            let item = self.itemList[indexPath.row]
+            
+            managedContext.delete(item)
+            
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Error While Deleting Item: \(error.userInfo)")
+            }
+            
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Item")
+            
+            do {
+                self.itemList = try managedContext.fetch(fetchRequest) as! [Item]
+            } catch let error as NSError {
+                print("Error While Fetching Data From DB: \(error.userInfo)")
+            }
+            
+            self.tableItemList.reloadData()
+            
         }
-        more.backgroundColor = UIColor.red
+        deleteAction.backgroundColor = UIColor.red
         
-        return [more]
+        return [deleteAction]
     }
-
-
+    
 }
 

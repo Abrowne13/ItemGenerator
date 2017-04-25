@@ -28,6 +28,8 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var lblRNG: UILabel!
     @IBOutlet weak var lblMOV: UILabel!
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         self.setLablesWithItem()
         
@@ -57,6 +59,15 @@ class ItemDetailViewController: UIViewController {
         lblMOV.text = String(item.mov)
     }
 
+    @IBAction func pushedEditButton(_ sender: Any) {
+        
+        let addItem : AddItemViewController = self.storyboard!.instantiateViewController(withIdentifier:"addItem") as! AddItemViewController
+        //The item list and the selected table cell row will likely desync
+        addItem.editMode = true
+        addItem.editItem = item
+        self.navigationController!.pushViewController(addItem, animated: true)
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -11,6 +11,10 @@ import CoreData
 
 class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    var editMode: Bool = false
+    var editItem: Item!
+    var index: Int = -1
+    
     var itemList: [NSManagedObject] = []
     var itemTypes: [String]!
     
@@ -52,11 +56,21 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
+        
+        if (editMode){
+            self.title = "Edit Item"
+            index = itemList.index(of: editItem)!
+            
+            self.setFields()
+        }
+        else{
+            self.title = "Add Item"
+        }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         self.title = "Add Item"
         
@@ -83,29 +97,11 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         
         self.view.endEditing(true)
         
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return
-        }
-        
-        // 1
-        let managedContext =
-            appDelegate.persistentContainer.viewContext
-        
-        // 2
-        let entity =
-            NSEntityDescription.entity(forEntityName: "Item",
-                                       in: managedContext)!
-        
-        let item = NSManagedObject(entity: entity,
-                                     insertInto: managedContext)
-        
+        //All the fun error handling and ect here...
         var errorMsg : String = "Check the following fields:\n"
         var hasError : Bool = false
         
-        // 3 //All the fun error handling and ect here...
         if (name == "") {
-            print("Boo...")
             errorMsg.append("Name ")
             hasError = true
         }
@@ -140,36 +136,64 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
             self.present(alertError, animated: false, completion: {
                 return
             })
-            
         }
-        
-        
-        //Hi, you have set the values of item
-        item.setValue(name, forKey: "itemName")
-        item.setValue(itemNo, forKey: "itemNo")
-        item.setValue(flavorText, forKey: "flavorText")
-        item.setValue(type, forKey: "type")
-        item.setValue(hp, forKey: "hp")
-        item.setValue(ap, forKey: "ap")
-        item.setValue(apr, forKey: "apr")
-        item.setValue(atk, forKey: "atk")
-        item.setValue(intl, forKey: "intl")
-        item.setValue(hit, forKey: "hit")
-        item.setValue(def, forKey: "def")
-        item.setValue(res, forKey: "res")
-        item.setValue(eva, forKey: "eva")
-        item.setValue(mov, forKey: "mov")
-        item.setValue(rng, forKey: "rng")
-        
-        
-        // 4
-        do {
-            try managedContext.save()
-            itemList.append(item)
-            let navController = self.navigationController!
-            navController.popViewController(animated: true)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+        else{
+            guard let appDelegate =
+                UIApplication.shared.delegate as? AppDelegate else {
+                    return
+            }
+            
+            // 1
+            let managedContext =
+                appDelegate.persistentContainer.viewContext
+            
+            // 2
+            let entity =
+                NSEntityDescription.entity(forEntityName: "Item",
+                                           in: managedContext)!
+            
+            var item: NSManagedObject
+            
+            
+            //Not that simple to edit
+            if(editMode){
+                item = editItem;
+            }
+            else{
+                item = NSManagedObject(entity: entity,
+                                       insertInto: managedContext)
+            }
+            
+            //Hi, you have set the values of item
+            item.setValue(name, forKey: "itemName")
+            item.setValue(itemNo, forKey: "itemNo")
+            item.setValue(flavorText, forKey: "flavorText")
+            item.setValue(type, forKey: "type")
+            item.setValue(hp, forKey: "hp")
+            item.setValue(ap, forKey: "ap")
+            item.setValue(apr, forKey: "apr")
+            item.setValue(atk, forKey: "atk")
+            item.setValue(intl, forKey: "intl")
+            item.setValue(hit, forKey: "hit")
+            item.setValue(def, forKey: "def")
+            item.setValue(res, forKey: "res")
+            item.setValue(eva, forKey: "eva")
+            item.setValue(mov, forKey: "mov")
+            item.setValue(rng, forKey: "rng")
+            
+            
+            // 4
+            do {
+                //Edit mode needs to be checked here
+                try managedContext.save()
+                if !editMode {
+                    itemList.append(item)
+                }
+                let navController = self.navigationController!
+                navController.popViewController(animated: true)
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
         }
     }
     
@@ -182,7 +206,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-       return itemTypes[row]
+        return itemTypes[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -194,96 +218,96 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
     func textFieldDidEndEditing(_ textField: UITextField) {
         print("Textfield: ", textField.tag)
         
-        //Textfield tags 4-14 are the stats
+        //Textfield tags 5-15 are the stats
         
         switch textField.tag {
-        case 0:
+        case 1:
             name = textField.text!
             break
-        case 1:
+        case 2:
             guard let tempStr: String = textField.text, textField.text != "" else{
                 itemNo = -1
                 break
             }
             itemNo = Int(tempStr)!
             break
-        case 2:
+        case 3:
             type = textField.text!
             break
-        case 3:
+        case 4:
             flavorText = textField.text!
             break
-        case 4:
+        case 5:
             guard let tempStr: String = textField.text, textField.text != "" else{
                 hp = 0
                 break
             }
             hp = Int(tempStr)!
             break
-        case 5:
+        case 6:
             guard let tempStr: String = textField.text, textField.text != "" else{
                 ap = 0
                 break
             }
             ap = Int(tempStr)!
             break
-        case 6:
+        case 7:
             guard let tempStr: String = textField.text, textField.text != "" else{
                 apr = 0
                 break
             }
             apr = Int(tempStr)!
             break
-        case 7:
+        case 8:
             guard let tempStr: String = textField.text, textField.text != "" else{
                 atk = 0
                 break
             }
             atk = Int(tempStr)!
             break
-        case 8:
+        case 9:
             guard let tempStr: String = textField.text, textField.text != "" else{
                 intl = 0
                 break
             }
             intl = Int(tempStr)!
             break
-        case 9:
+        case 10:
             guard let tempStr: String = textField.text, textField.text != "" else{
                 hit = 0
                 break
             }
             hit = Int(tempStr)!
             break
-        case 10:
+        case 11:
             guard let tempStr: String = textField.text, textField.text != "" else{
                 def = 0
                 break
             }
             def = Int(tempStr)!
             break
-        case 11:
+        case 12:
             guard let tempStr: String = textField.text, textField.text != "" else{
                 res = 0
                 break
             }
             res = Int(tempStr)!
             break
-        case 12:
+        case 13:
             guard let tempStr: String = textField.text, textField.text != "" else{
                 eva = 0
                 break
             }
             eva = Int(tempStr)!
             break
-        case 13:
+        case 14:
             guard let tempStr: String = textField.text, textField.text != "" else{
                 rng = 1
                 break
             }
             mov = Int(tempStr)!
             break
-        case 14:
+        case 15:
             guard let tempStr: String = textField.text, textField.text != "" else{
                 mov = 0
                 break
@@ -299,21 +323,150 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         //Should require a name, itemNo and type.
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    //Set the fields from editItem
+    func setFields(){
+        for i in 1 ..< 16{
+            switch i {
+            case 1:
+                let textField:UITextField = self.view.viewWithTag(i) as! UITextField!
+                
+                name = editItem.itemName!
+                textField.text = editItem.itemName
+                
+                break
+                
+            case 2:
+                let textField:UITextField = self.view.viewWithTag(i) as! UITextField!
+                
+                itemNo = Int(editItem.itemNo)
+                textField.text = String(editItem.itemNo)
+                
+                break
+                
+            case 3:
+                let textField:UITextField = self.view.viewWithTag(i) as! UITextField!
+                
+                type = editItem.type!
+                textField.text = editItem.type
+                
+                break
+                
+            case 4:
+                let textField:UITextField = self.view.viewWithTag(i) as! UITextField!
+                
+                flavorText = editItem.flavorText!
+                textField.text = editItem.flavorText
+                
+                break
+                
+            case 5:
+                let textField:UITextField = self.view.viewWithTag(i) as! UITextField!
+                
+                hp = Int(editItem.hp)
+                textField.text = String(editItem.hp)
+                
+                break
+                
+            case 6:
+                let textField:UITextField = self.view.viewWithTag(i) as! UITextField!
+                
+                ap = Int(editItem.ap)
+                textField.text = String(editItem.ap)
+                
+                break
+            case 7:
+                let textField:UITextField = self.view.viewWithTag(i) as! UITextField!
+                
+                apr = Int(editItem.apr)
+                textField.text = String(editItem.apr)
+                
+                break
+                
+            case 8:
+                let textField:UITextField = self.view.viewWithTag(i) as! UITextField!
+                
+                atk = Int(editItem.atk)
+                textField.text = String(editItem.atk)
+                
+                break
+            case 9:
+                let textField:UITextField = self.view.viewWithTag(i) as! UITextField!
+                
+                intl = Int(editItem.intl)
+                textField.text = String(editItem.intl)
+                
+                break
+                
+            case 10:
+                let textField:UITextField = self.view.viewWithTag(i) as! UITextField!
+                
+                hit = Int(editItem.hit)
+                textField.text = String(editItem.hit)
+                
+                break
+                
+            case 11:
+                let textField:UITextField = self.view.viewWithTag(i) as! UITextField!
+                
+                def = Int(editItem.def)
+                textField.text = String(editItem.def)
+                
+                break
+                
+            case 12:
+                let textField:UITextField = self.view.viewWithTag(i) as! UITextField!
+                
+                res = Int(editItem.res)
+                textField.text = String(editItem.res)
+                
+                break
+            case 13:
+                let textField:UITextField = self.view.viewWithTag(i) as! UITextField!
+                
+                eva = Int(editItem.eva)
+                textField.text = String(editItem.eva)
+                
+                break
+                
+            case 14:
+                let textField:UITextField = self.view.viewWithTag(i) as! UITextField!
+                
+                rng = Int(editItem.rng)
+                textField.text = String(editItem.rng)
+                
+                break
+                
+            case 15:
+                let textField:UITextField = self.view.viewWithTag(i) as! UITextField!
+                
+                mov = Int(editItem.mov)
+                textField.text = String(editItem.mov)
+                
+                break
+                
+            default:
+                
+                break
+            }
+        }
     }
-    */
-
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
