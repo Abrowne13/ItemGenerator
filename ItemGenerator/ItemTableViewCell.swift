@@ -15,6 +15,7 @@ class ItemTableViewCell: UITableViewCell {
     @IBOutlet weak var lblItemType: UILabel!
     @IBOutlet weak var lblItemNumber: UILabel!
     
+    @IBOutlet weak var viewItemColor: UIView!
     var item : Item!
     
     override func awakeFromNib() {
