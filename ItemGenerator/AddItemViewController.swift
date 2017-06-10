@@ -92,6 +92,9 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
     }
     
     
+    @IBAction func navSaveBtnPushed(_ sender: Any) {
+        self.btnSavePushed(self);
+    }
     
     @IBAction func btnSavePushed(_ sender: Any) {
         
