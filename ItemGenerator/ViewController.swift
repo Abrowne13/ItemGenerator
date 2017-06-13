@@ -20,6 +20,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
                 return
@@ -32,23 +34,51 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         let fetchRequest =
             NSFetchRequest<NSManagedObject>(entityName: "Item")
         
+        let fetchRequest2 = NSFetchRequest<NSDictionary>(entityName: "Item")
+        
         let sortDescript : NSSortDescriptor = NSSortDescriptor.init(key: "itemNo", ascending: true)
         
         let sortDescripts = [sortDescript]
         
         fetchRequest.sortDescriptors = sortDescripts
+        fetchRequest2.sortDescriptors = sortDescripts
+        fetchRequest2.resultType = NSFetchRequestResultType.dictionaryResultType
+        
+        var itemDicts: [NSDictionary] = []
         
         //3
         do {
             itemList = try managedContext.fetch(fetchRequest)
-            
-            
+            //Put this fetch in sync button
+            itemDicts = try managedContext.fetch(fetchRequest2)
             
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
         
         tableItemList.reloadData()
+        
+        //IsValidJSONObject seems to be always false
+        do{
+            let data = try! JSONSerialization.data(withJSONObject: itemDicts, options: [])
+
+            //Lots of time spent looking for this line! Prints raw json
+            //let rawJSON = String(data: data, encoding: String.Encoding.utf8)
+            //print(rawJSON as Any)
+            
+            //Prints object description
+            let decoded = try JSONSerialization.jsonObject(with: data, options: [])
+            //print(decoded)
+            
+            //Explicit casting as an array of dictionaries
+            if let dictFromJSON = decoded as? [NSDictionary]{
+                print(dictFromJSON)
+            }
+            
+        }
+        catch{
+            print(error.localizedDescription)
+        }
     }
     
     override func viewDidLoad() {
@@ -98,7 +128,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             predicate = NSPredicate(format:"itemName contains[c] %@ or flavorText contains[c] %@",searchText,searchText)
         }
             
-        //A bit more complicated than this... ["Weapon,Accsry,Consume,"]
+            //A bit more complicated than this... ["Weapon,Accsry,Consume,"]
         else{
             if(scope == "Accsry"){
                 itemType = "Accessory"
