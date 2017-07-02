@@ -76,7 +76,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         //Pull from userDefaults
         let defaults = UserDefaults.standard
         
-        if defaults.string(forKey: "baseUrl") != nil{
+        if (defaults.string(forKey: "baseUrl")?.isEmpty)!{
             baseUrlString = defaults.string(forKey: "baseUrl")!
         }
         else{
@@ -84,7 +84,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             return
         }
         
-        if defaults.string(forKey: "getItemUrl") != nil{
+        if (defaults.string(forKey: "getItemUrl")?.isEmpty)!{
             getItemUrlString = defaults.string(forKey: "getItemUrl")!
         }
         else{
@@ -113,7 +113,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     @IBAction func onPushButtonAction(_ sender: Any) {
         var postItemUrlString: String = ""
         let defaults = UserDefaults.standard
-        if defaults.string(forKey: "postItemUrl") != nil{
+        if (defaults.string(forKey: "postItemUrl")?.isEmpty)!{
             postItemUrlString = defaults.string(forKey: "postItemUrl")!
         }
         else{
@@ -328,7 +328,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         urlAlert = UIAlertController(title: "Missing Base Url", message: "Enter Base Url", preferredStyle: UIAlertControllerStyle.alert)
         
-        if (urlString == "baseUrl"){
+        if (urlString == "baseUrl" || (defaults.string(forKey: "baseUrl")?.isEmpty)!){
             urlAlert.addTextField { (textField : UITextField!) -> Void in
                 textField.placeholder = "Base Url"
             }
@@ -346,7 +346,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
             
-            if (urlString == "baseUrl"){
+            if (urlString == "baseUrl" || (defaults.string(forKey: "baseUrl")?.isEmpty)!){
                 let baseUrlTextField = urlAlert.textFields![0] as UITextField
                 if (baseUrlTextField.text != nil){
                     defaults.set(baseUrlTextField.text, forKey: "baseUrl")
