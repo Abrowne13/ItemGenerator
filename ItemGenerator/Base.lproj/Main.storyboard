@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -100,13 +101,27 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="kl8-r3-C13">
+                        <leftBarButtonItems>
+                            <barButtonItem title="Pull" id="ugN-Uu-DEr">
+                                <connections>
+                                    <action selector="onPullButtonAction:" destination="BYZ-38-t0r" id="elh-MU-vCd"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Push" id="R68-ye-pVP">
+                                <connections>
+                                    <action selector="onPushButtonAction:" destination="BYZ-38-t0r" id="vK8-YU-iWe"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="w8H-UF-3nV">
                             <connections>
                                 <segue destination="QfH-Be-bLr" kind="show" id="jsW-yf-d3M"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableItemList" destination="xfi-yN-K0A" id="LNB-KR-Qfl"/>
                     </connections>
@@ -128,7 +143,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rdc-PV-ShP">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jcW-ba-0Gk" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>

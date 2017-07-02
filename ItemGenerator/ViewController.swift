@@ -34,51 +34,21 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         let fetchRequest =
             NSFetchRequest<NSManagedObject>(entityName: "Item")
         
-        let fetchRequest2 = NSFetchRequest<NSDictionary>(entityName: "Item")
-        
         let sortDescript : NSSortDescriptor = NSSortDescriptor.init(key: "itemNo", ascending: true)
         
         let sortDescripts = [sortDescript]
         
         fetchRequest.sortDescriptors = sortDescripts
-        fetchRequest2.sortDescriptors = sortDescripts
-        fetchRequest2.resultType = NSFetchRequestResultType.dictionaryResultType
-        
-        var itemDicts: [NSDictionary] = []
         
         //3
         do {
             itemList = try managedContext.fetch(fetchRequest)
-            //Put this fetch in sync button
-            itemDicts = try managedContext.fetch(fetchRequest2)
             
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
         
         tableItemList.reloadData()
-        
-        //IsValidJSONObject seems to be always false
-        do{
-            let data = try! JSONSerialization.data(withJSONObject: itemDicts, options: [])
-
-            //Lots of time spent looking for this line! Prints raw json
-            //let rawJSON = String(data: data, encoding: String.Encoding.utf8)
-            //print(rawJSON as Any)
-            
-            //Prints object description
-            let decoded = try JSONSerialization.jsonObject(with: data, options: [])
-            //print(decoded)
-            
-            //Explicit casting as an array of dictionaries
-            if let dictFromJSON = decoded as? [NSDictionary]{
-                print(dictFromJSON)
-            }
-            
-        }
-        catch{
-            print(error.localizedDescription)
-        }
     }
     
     override func viewDidLoad() {
@@ -96,6 +66,107 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         definesPresentationContext = true
         tableItemList.tableHeaderView = searchController.searchBar
+        
+    }
+    
+    @IBAction func onPullButtonAction(_ sender: Any) {
+        var baseUrlString: String = ""
+        var getItemUrlString: String = ""
+        
+        //Pull from userDefaults
+        let defaults = UserDefaults.standard
+        
+        if defaults.string(forKey: "baseUrl") != nil{
+            baseUrlString = defaults.string(forKey: "baseUrl")!
+        }
+        else{
+            self.promptUrlFillInForString(urlString: "baseUrl")
+            return
+        }
+        
+        if defaults.string(forKey: "getItemUrl") != nil{
+            getItemUrlString = defaults.string(forKey: "getItemUrl")!
+        }
+        else{
+            self.promptUrlFillInForString(urlString: "getItemUrl")
+            return
+        }
+        
+        
+        let url = URL(string: baseUrlString + getItemUrlString)
+        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if error != nil {
+                print(error!)
+            } else {
+                if let usableData = data {
+                    let itemJSON = try! JSONSerialization.jsonObject(with: usableData, options: [])
+                    if let dictFromJSON = itemJSON as? [NSDictionary]{
+                        //Write save function here
+                        print(dictFromJSON)
+                    }
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    @IBAction func onPushButtonAction(_ sender: Any) {
+        var postItemUrlString: String = ""
+        let defaults = UserDefaults.standard
+        if defaults.string(forKey: "postItemUrl") != nil{
+            postItemUrlString = defaults.string(forKey: "postItemUrl")!
+        }
+        else{
+            self.promptUrlFillInForString(urlString: "postItemUrl")
+            return
+        }
+        
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        let sortDescript : NSSortDescriptor = NSSortDescriptor.init(key: "itemNo", ascending: true)
+        let sortDescripts = [sortDescript]
+        let fetchRequest2 = NSFetchRequest<NSDictionary>(entityName: "Item")
+        fetchRequest2.sortDescriptors = sortDescripts
+        fetchRequest2.resultType = NSFetchRequestResultType.dictionaryResultType
+        
+        var itemDicts: [NSDictionary] = []
+        
+        //3
+        do {
+            itemDicts = try managedContext.fetch(fetchRequest2)
+            
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        //IsValidJSONObject seems to be always false, so we don't check that way.
+        do{
+            let data = try! JSONSerialization.data(withJSONObject: itemDicts, options: [])
+            
+            //Lots of time spent looking for this line! Prints raw json, unescaped....
+            //let rawJSON = String(data: data, encoding: String.Encoding.utf8)
+            //print(rawJSON as Any)
+            
+            //get rid of the remaining lines in do and write Post function here.
+            
+            //Prints object description
+            let decoded = try JSONSerialization.jsonObject(with: data, options: [])
+            //print(decoded)
+            
+            //Explicit casting as an array of dictionaries
+            if let dictFromJSON = decoded as? [NSDictionary]{
+                print(dictFromJSON)
+            }
+        }
+        catch{
+            print(error.localizedDescription)
+        }
         
     }
     
@@ -249,6 +320,66 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         deleteAction.backgroundColor = UIColor.red
         
         return [deleteAction]
+    }
+    
+    func promptUrlFillInForString(urlString:String){
+        var urlAlert:UIAlertController
+        let defaults = UserDefaults.standard
+        
+        urlAlert = UIAlertController(title: "Missing Base Url", message: "Enter Base Url", preferredStyle: UIAlertControllerStyle.alert)
+        
+        if (urlString == "baseUrl"){
+            urlAlert.addTextField { (textField : UITextField!) -> Void in
+                textField.placeholder = "Base Url"
+            }
+        }
+        if (urlString == "baseUrl" || urlString == "getItemUrl"){
+            urlAlert.addTextField { (textField : UITextField!) -> Void in
+                textField.placeholder = "getItem Url Extenstion"
+            }
+        }
+        if (urlString == "baseUrl" || urlString == "postItemUrl"){
+            urlAlert.addTextField { (textField : UITextField!) -> Void in
+                textField.placeholder = "postItem Url Extenstion"
+            }
+        }
+        
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+            
+            if (urlString == "baseUrl"){
+                let baseUrlTextField = urlAlert.textFields![0] as UITextField
+                if (baseUrlTextField.text != nil){
+                    defaults.set(baseUrlTextField.text, forKey: "baseUrl")
+                }
+            }
+            
+            if (urlString == "baseUrl" || urlString == "getItemUrl"){
+                let getItemTextField = urlAlert.textFields![1] as UITextField
+                if (getItemTextField.text != nil){
+                    defaults.set(getItemTextField.text, forKey: "getItemUrl")
+                }
+            }
+            
+            if (urlString == "baseUrl" || urlString == "postItemUrl"){
+                let postItemTextField = urlAlert.textFields![1] as UITextField
+                if (postItemTextField.text != nil){
+                    defaults.set(postItemTextField.text, forKey: "postItemUrl")
+                }
+            }
+            
+            defaults.synchronize()
+            
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive, handler: { (UIAlertAction) in
+            
+        })
+        
+        urlAlert.addAction(saveAction)
+        urlAlert.addAction(cancelAction)
+        
+        self.present(urlAlert, animated: false, completion: {
+            return
+        })
     }
     
     func getItemColor(item:Item)-> UIColor{

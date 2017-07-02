@@ -23,8 +23,8 @@ class CoreDataManager: NSObject {
         let managedContext = appDelegate.persistentContainer.viewContext
         
         // 2
-        let entity = NSEntityDescription.entity(forEntityName: "Item",
-                                       in: managedContext)!
+        //let entity = NSEntityDescription.entity(forEntityName: "Item",
+                                       //in: managedContext)!
         
         //let person = NSManagedObject(entity: entity,
                                      //insertInto: managedContext)
