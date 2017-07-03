@@ -76,7 +76,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         //Pull from userDefaults
         let defaults = UserDefaults.standard
         
-        if (defaults.string(forKey: "baseUrl")?.isEmpty)!{
+        if (defaults.string(forKey: "baseUrl") != nil){
             baseUrlString = defaults.string(forKey: "baseUrl")!
         }
         else{
@@ -84,7 +84,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             return
         }
         
-        if (defaults.string(forKey: "getItemUrl")?.isEmpty)!{
+        if (defaults.string(forKey: "getItemUrl") != nil){
             getItemUrlString = defaults.string(forKey: "getItemUrl")!
         }
         else{
@@ -112,13 +112,34 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     @IBAction func onPushButtonAction(_ sender: Any) {
         var postItemUrlString: String = ""
+        var baseUrlString: String = ""
+        var username: String = ""
+        var password: String = ""
         let defaults = UserDefaults.standard
-        if (defaults.string(forKey: "postItemUrl")?.isEmpty)!{
-            postItemUrlString = defaults.string(forKey: "postItemUrl")!
-        }
-        else{
+        if (defaults.string(forKey: "postItemUrl") == nil){
             self.promptUrlFillInForString(urlString: "postItemUrl")
             return
+        }
+        else{
+            postItemUrlString = defaults.string(forKey: "postItemUrl")!
+        }
+        
+        if (defaults.string(forKey: "baseUrl") == nil){
+            self.promptUrlFillInForString(urlString: "baseUrl")
+            return
+        }
+        else{
+            baseUrlString = defaults.string(forKey: "baseUrl")!
+        }
+        
+        if ((defaults.string(forKey: "username") == nil) || (defaults.string(forKey: "password") == nil)){
+            self.promptAuth()
+            return
+        }
+        else{
+            username = defaults.string(forKey: "username")!
+            password = defaults.string(forKey: "password")!
+            
         }
         
         guard let appDelegate =
@@ -145,28 +166,33 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             print("Could not fetch. \(error), \(error.userInfo)")
         }
         
-        //IsValidJSONObject seems to be always false, so we don't check that way.
-        do{
-            let data = try! JSONSerialization.data(withJSONObject: itemDicts, options: [])
-            
-            //Lots of time spent looking for this line! Prints raw json, unescaped....
-            //let rawJSON = String(data: data, encoding: String.Encoding.utf8)
-            //print(rawJSON as Any)
-            
-            //get rid of the remaining lines in do and write Post function here.
-            
-            //Prints object description
-            let decoded = try JSONSerialization.jsonObject(with: data, options: [])
-            //print(decoded)
-            
-            //Explicit casting as an array of dictionaries
-            if let dictFromJSON = decoded as? [NSDictionary]{
-                print(dictFromJSON)
+        
+        let data = try! JSONSerialization.data(withJSONObject: itemDicts, options: [])
+        
+        //Lots of time spent looking for this line! Prints raw json, unescaped....
+        //let rawJSON = String(data: data, encoding: String.Encoding.utf8)
+        //print(rawJSON as Any)
+        
+        let url = NSURL(string: baseUrlString + postItemUrlString)
+        let request = NSMutableURLRequest(url: url as! URL)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = data;
+        
+        let loginString = String(format: "%@:%@", username, password)
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest){ data,response,error in
+            if error != nil{
+                print(error as Any)
+                return
             }
+            print(response as Any)
         }
-        catch{
-            print(error.localizedDescription)
-        }
+        
+        task.resume()
         
     }
     
@@ -354,14 +380,23 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             }
             
             if (urlString == "baseUrl" || urlString == "getItemUrl"){
-                let getItemTextField = urlAlert.textFields![1] as UITextField
+                var index: Int = 0
+                if(urlString == "baseUrl"){
+                    index = 1
+                }
+                let getItemTextField = urlAlert.textFields![index] as UITextField
                 if (getItemTextField.text != nil){
                     defaults.set(getItemTextField.text, forKey: "getItemUrl")
                 }
             }
             
             if (urlString == "baseUrl" || urlString == "postItemUrl"){
-                let postItemTextField = urlAlert.textFields![1] as UITextField
+                var index: Int = 0
+                if(urlString == "baseUrl"){
+                    index = 2
+                }
+                
+                let postItemTextField = urlAlert.textFields![index] as UITextField
                 if (postItemTextField.text != nil){
                     defaults.set(postItemTextField.text, forKey: "postItemUrl")
                 }
@@ -374,12 +409,48 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             
         })
         
-        urlAlert.addAction(saveAction)
         urlAlert.addAction(cancelAction)
+        urlAlert.addAction(saveAction)
         
         self.present(urlAlert, animated: false, completion: {
             return
         })
+    }
+    
+    func promptAuth(){
+        let defaults = UserDefaults.standard
+        let authAlert = UIAlertController(title: "Enter Credentials", message: "Enter username and password", preferredStyle: UIAlertControllerStyle.alert)
+        
+        authAlert.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "username"
+        }
+        
+        authAlert.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "password"
+        }
+        
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+            let userNameTextField = authAlert.textFields![0] as UITextField
+            if (userNameTextField.text != nil){
+                defaults.set(userNameTextField.text, forKey: "username")
+            }
+            
+            let passwordTextField = authAlert.textFields![1] as UITextField
+            if (passwordTextField.text != nil){
+                defaults.set(passwordTextField.text, forKey: "password")
+            }
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive, handler: { (UIAlertAction) in
+            
+        })
+        
+        authAlert.addAction(cancelAction)
+        authAlert.addAction(saveAction)
+        
+        self.present(authAlert, animated: false) {
+            return
+        }
     }
     
     func getItemColor(item:Item)-> UIColor{
