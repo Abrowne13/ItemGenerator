@@ -167,7 +167,6 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
                                        insertInto: managedContext)
             }
             
-            //Hi, you have set the values of item
             item.setValue(name, forKey: "itemName")
             item.setValue(itemNo, forKey: "itemNo")
             item.setValue(flavorText, forKey: "flavorText")

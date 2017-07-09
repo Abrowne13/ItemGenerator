@@ -12,6 +12,10 @@ import CoreData
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UISearchResultsUpdating{
     
     
+    @IBOutlet weak var pullBtn: UIBarButtonItem!
+    
+    @IBOutlet weak var pushBtn: UIBarButtonItem!
+    
     @IBOutlet weak var tableItemList: UITableView!
     
     var itemList: [NSManagedObject] = []
@@ -22,33 +26,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return
-        }
-        
-        let managedContext =
-            appDelegate.persistentContainer.viewContext
-        
-        //2
-        let fetchRequest =
-            NSFetchRequest<NSManagedObject>(entityName: "Item")
-        
-        let sortDescript : NSSortDescriptor = NSSortDescriptor.init(key: "itemNo", ascending: true)
-        
-        let sortDescripts = [sortDescript]
-        
-        fetchRequest.sortDescriptors = sortDescripts
-        
-        //3
-        do {
-            itemList = try managedContext.fetch(fetchRequest)
-            
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-        
-        tableItemList.reloadData()
+        self.refreshData()
     }
     
     override func viewDidLoad() {
@@ -69,7 +47,11 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
     }
     
+    
     @IBAction func onPullButtonAction(_ sender: Any) {
+        
+        self.pullBtn.isEnabled = false
+        self.pushBtn.isEnabled = false
         var baseUrlString: String = ""
         var getItemUrlString: String = ""
         
@@ -95,6 +77,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         let url = URL(string: baseUrlString + getItemUrlString)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            print(response!)
             if error != nil {
                 print(error!)
             } else {
@@ -102,15 +85,24 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                     let itemJSON = try! JSONSerialization.jsonObject(with: usableData, options: [])
                     if let dictFromJSON = itemJSON as? [NSDictionary]{
                         //Write save function here
-                        print(dictFromJSON)
+                        let cdManager = CoreDataManager()
+                        cdManager.updateEntity(entityName: "Item", dictArray: dictFromJSON)
+                        self.refreshData()
+                        print("Pulled")
                     }
                 }
             }
+            self.pullBtn.isEnabled = true
+            self.pushBtn.isEnabled = true
         }
         task.resume()
     }
     
     @IBAction func onPushButtonAction(_ sender: Any) {
+        
+        self.pushBtn.isEnabled = false
+        self.pullBtn.isEnabled = false
+        
         var postItemUrlString: String = ""
         var baseUrlString: String = ""
         var username: String = ""
@@ -124,22 +116,22 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             postItemUrlString = defaults.string(forKey: "postItemUrl")!
         }
         
-        if (defaults.string(forKey: "baseUrl") == nil){
+        if (defaults.string(forKey: "baseUrl") != nil){
+            baseUrlString = defaults.string(forKey: "baseUrl")!
+            
+        }
+        else{
             self.promptUrlFillInForString(urlString: "baseUrl")
             return
         }
-        else{
-            baseUrlString = defaults.string(forKey: "baseUrl")!
-        }
         
-        if ((defaults.string(forKey: "username") == nil) || (defaults.string(forKey: "password") == nil)){
-            self.promptAuth()
-            return
-        }
-        else{
+        if ((defaults.string(forKey: "username") != nil) || (defaults.string(forKey: "password") == nil)){
             username = defaults.string(forKey: "username")!
             password = defaults.string(forKey: "password")!
-            
+        }
+        else{
+            self.promptAuth()
+            return
         }
         
         guard let appDelegate =
@@ -190,10 +182,43 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                 return
             }
             print(response as Any)
+            
+            self.pushBtn.isEnabled = true
+            self.pullBtn.isEnabled = true
         }
         
         task.resume()
         
+    }
+    
+    func refreshData(){
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        //2
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "Item")
+        
+        let sortDescript : NSSortDescriptor = NSSortDescriptor.init(key: "itemNo", ascending: true)
+        
+        let sortDescripts = [sortDescript]
+        
+        fetchRequest.sortDescriptors = sortDescripts
+        
+        //3
+        do {
+            itemList = try managedContext.fetch(fetchRequest)
+            
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        tableItemList.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -325,7 +350,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             let item = self.itemList[indexPath.row]
             
             managedContext.delete(item)
-            
             do {
                 try managedContext.save()
             } catch let error as NSError {
@@ -372,7 +396,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
             
-            if (urlString == "baseUrl" || (defaults.string(forKey: "baseUrl")?.isEmpty)!){
+            if (urlString == "baseUrl"){
                 let baseUrlTextField = urlAlert.textFields![0] as UITextField
                 if (baseUrlTextField.text != nil){
                     defaults.set(baseUrlTextField.text, forKey: "baseUrl")

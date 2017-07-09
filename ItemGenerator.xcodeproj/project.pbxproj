@@ -118,12 +118,12 @@
 				84F7B1B01E9C784900ED4F8C /* ItemTableViewCell.swift */,
 				843C1D3D1E9356F500DA8A08 /* Item+CoreDataClass.swift */,
 				843C1D3E1E9356F500DA8A08 /* Item+CoreDataProperties.swift */,
+				843C1D411E94BE3000DA8A08 /* CoreDataManager.swift */,
 				843C1D0C1E93147000DA8A08 /* Main.storyboard */,
 				843C1D121E93147000DA8A08 /* Assets.xcassets */,
 				843C1D141E93147000DA8A08 /* LaunchScreen.storyboard */,
 				843C1D171E93147000DA8A08 /* Info.plist */,
 				843C1D0F1E93147000DA8A08 /* ItemGenerator.xcdatamodeld */,
-				843C1D411E94BE3000DA8A08 /* CoreDataManager.swift */,
 			);
 			path = ItemGenerator;
 			sourceTree = "<group>";

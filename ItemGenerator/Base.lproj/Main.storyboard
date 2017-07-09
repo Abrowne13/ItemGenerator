@@ -123,6 +123,8 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="pullBtn" destination="ugN-Uu-DEr" id="PNO-Ak-HhA"/>
+                        <outlet property="pushBtn" destination="R68-ye-pVP" id="Ury-Rv-2Uz"/>
                         <outlet property="tableItemList" destination="xfi-yN-K0A" id="LNB-KR-Qfl"/>
                     </connections>
                 </viewController>
