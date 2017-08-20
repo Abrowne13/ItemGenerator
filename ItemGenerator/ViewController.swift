@@ -78,8 +78,14 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         let url = URL(string: baseUrlString + getItemUrlString)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             print(response!)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+                
+            })
             if error != nil {
                 print(error!)
+                let alert = UIAlertController(title: "Pull failed", message: error as! String?, preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(okAction)
+                self.present(alert,animated:false,completion:nil)
             } else {
                 if let usableData = data {
                     let itemJSON = try! JSONSerialization.jsonObject(with: usableData, options: [])
@@ -91,6 +97,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                         print("Pulled")
                     }
                 }
+                let alert = UIAlertController(title: "Pull succeded", message: error as! String?, preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(okAction)
+                self.present(alert,animated:false,completion:nil)
             }
             self.pullBtn.isEnabled = true
             self.pushBtn.isEnabled = true
@@ -177,14 +186,25 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
         
         let task = URLSession.shared.dataTask(with: request as URLRequest){ data,response,error in
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+                
+            })
             if error != nil{
                 print(error as Any)
+                let alert = UIAlertController(title: "Push failed", message: error as! String?, preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(okAction)
+                self.present(alert,animated:false,completion:nil)
                 return
             }
+            let alert = UIAlertController(title: "Push succeded", message: error as! String?, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(okAction)
+            self.present(alert,animated:false,completion:nil)
+            
             print(response as Any)
             
             self.pushBtn.isEnabled = true
             self.pullBtn.isEnabled = true
+            
         }
         
         task.resume()

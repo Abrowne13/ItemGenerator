@@ -215,7 +215,7 @@
 					843C1D041E93146F00DA8A08 = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = 253Q6WGJC2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					843C1D1B1E93147000DA8A08 = {
 						CreatedOnToolsVersion = 8.2;
@@ -446,6 +446,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Reverse.ItemGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "83b39be9-2ae9-4cd3-ae81-974c6e11d2c5";
+				PROVISIONING_PROFILE_SPECIFIER = ItemGenerator;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -454,7 +456,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 253Q6WGJC2;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ItemGenerator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Reverse.ItemGenerator;
