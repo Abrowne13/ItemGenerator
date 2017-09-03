@@ -44,7 +44,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         definesPresentationContext = true
         tableItemList.tableHeaderView = searchController.searchBar
-        
     }
     
     
@@ -498,8 +497,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     func getItemColor(item:Item)-> UIColor{
-        //Not including ap,apr,mov, and rng since they have different scaling
-        let stats = ["hp","atk","intl","hit","def","res","eva"]
+        //Not including apr, mov, and rng since they have different scaling.
+        //Ap is added but will largely be ignored outside of consumable items.
+        let stats = ["hp","ap","atk","intl","hit","def","res","eva"]
         var highestStatValue:Int = 0
         var highestStat: String = ""
         for stat in stats {
@@ -513,6 +513,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         switch highestStat {
         case "hp":
             return UIColor.green
+        case "ap":
+            return UIColor.blue
         case "atk":
             return UIColor.red
         case "intl":
@@ -520,7 +522,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         case "hit":
             return UIColor.gray
         case "def":
-            return UIColor.blue
+            return UIColor.lightGray
         case "res":
             return UIColor.purple
         case "eva":

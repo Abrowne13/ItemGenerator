@@ -13,7 +13,7 @@ class CoreDataManager: NSObject {
     static let sharedInstance = CoreDataManager()
     
     
-    func save(itemDict: NSDictionary, entityName: String) {
+    func save(dict: NSDictionary, entityName: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
             else {
                 return
@@ -30,23 +30,50 @@ class CoreDataManager: NSObject {
                                        insertInto: privateMOC)
             
             // 3
-            item.setValue(itemDict.object(forKey: "itemName"), forKeyPath: "itemName")
-            item.setValue(itemDict.object(forKey: "itemNo"), forKey: "itemNo")
-            item.setValue(itemDict.object(forKey: "flavorText"), forKey: "flavorText")
-            item.setValue(itemDict.object(forKey: "type"), forKey: "type")
-            item.setValue(itemDict.object(forKey: "hp"), forKey: "hp")
-            item.setValue(itemDict.object(forKey: "ap"), forKey: "ap")
-            item.setValue(itemDict.object(forKey: "apr"), forKey: "apr")
-            item.setValue(itemDict.object(forKey: "atk"), forKey: "atk")
-            item.setValue(itemDict.object(forKey: "intl"), forKey: "intl")
-            item.setValue(itemDict.object(forKey: "hit"), forKey: "hit")
-            item.setValue(itemDict.object(forKey: "def"), forKey: "def")
-            item.setValue(itemDict.object(forKey: "res"), forKey: "res")
-            item.setValue(itemDict.object(forKey: "eva"), forKey: "eva")
-            item.setValue(itemDict.object(forKey: "mov"), forKey: "mov")
-            item.setValue(itemDict.object(forKey: "rng"), forKey: "rng")
+            item.setValue(dict.object(forKey: "itemName"), forKeyPath: "itemName")
+            item.setValue(dict.object(forKey: "itemNo"), forKey: "itemNo")
+            item.setValue(dict.object(forKey: "flavorText"), forKey: "flavorText")
+            item.setValue(dict.object(forKey: "type"), forKey: "type")
+            item.setValue(dict.object(forKey: "hp"), forKey: "hp")
+            item.setValue(dict.object(forKey: "ap"), forKey: "ap")
+            item.setValue(dict.object(forKey: "apr"), forKey: "apr")
+            item.setValue(dict.object(forKey: "atk"), forKey: "atk")
+            item.setValue(dict.object(forKey: "intl"), forKey: "intl")
+            item.setValue(dict.object(forKey: "hit"), forKey: "hit")
+            item.setValue(dict.object(forKey: "def"), forKey: "def")
+            item.setValue(dict.object(forKey: "res"), forKey: "res")
+            item.setValue(dict.object(forKey: "eva"), forKey: "eva")
+            item.setValue(dict.object(forKey: "mov"), forKey: "mov")
+            item.setValue(dict.object(forKey: "rng"), forKey: "rng")
             
             // 4
+            do {
+                try privateMOC.save()
+            }
+            catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+        }
+        else if (entityName == "Ability"){
+            let ability = NSManagedObject(entity: entity, insertInto: privateMOC)
+            
+            ability.setValue(dict.object(forKey: "name"), forKey: "name")
+            ability.setValue(dict.object(forKey: "abliltyID"), forKey: "abliltyID")
+            ability.setValue(dict.object(forKey: "abliltyDescription"), forKey: "abliltyDescription")
+            ability.setValue(dict.object(forKey: "range"), forKey: "range")
+            ability.setValue(dict.object(forKey: "effectPattern"), forKey: "effectPatern")
+            ability.setValue(dict.object(forKey: "radius"), forKey: "radius")
+            ability.setValue(dict.object(forKey: "apCost"), forKey: "apCost")
+            ability.setValue(dict.object(forKey: "modifierType"), forKey: "modifierType")
+            ability.setValue(dict.object(forKey: "targetType"), forKey: "targetType")
+            ability.setValue(dict.object(forKey: "attackEffects"), forKey: "attackEffects")
+            ability.setValue(dict.object(forKey: "levelUnlock"), forKey: "levelUnlock")
+            ability.setValue(dict.object(forKey: "baseEffect"), forKey: "baseEffect")
+            ability.setValue(dict.object(forKey: "ratioEffect"), forKey: "rationEffect")
+            ability.setValue(dict.object(forKey: "animationTime"), forKey: "animationTime")
+            ability.setValue(dict.object(forKey: "damageAtTimeForPercentage"), forKey: "damageAtTimeForPercentage")
+            ability.setValue(dict.object(forKey: "animationDict"), forKey: "animationDict")
+            
             do {
                 try privateMOC.save()
             }
@@ -116,7 +143,7 @@ class CoreDataManager: NSObject {
         
         //Add new entries
         for dict in dictArray{
-            self.save(itemDict: dict, entityName: entityName)
+            self.save(dict: dict, entityName: entityName)
         }
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
