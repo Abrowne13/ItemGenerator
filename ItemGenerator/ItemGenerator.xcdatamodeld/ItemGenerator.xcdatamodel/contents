@@ -3,7 +3,6 @@
     <entity name="Ability" representedClassName="Ability" syncable="YES">
         <attribute name="abilityDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="abilityID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="animationDict" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="animationTime" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="apCost" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="attackEffects" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -37,7 +36,7 @@
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Ability" positionX="-54" positionY="108" width="128" height="270"/>
         <element name="Item" positionX="-54" positionY="-9" width="128" height="285"/>
-        <element name="Ability" positionX="-54" positionY="108" width="128" height="285"/>
     </elements>
 </model>

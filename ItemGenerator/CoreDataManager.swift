@@ -58,8 +58,8 @@ class CoreDataManager: NSObject {
             let ability = NSManagedObject(entity: entity, insertInto: privateMOC)
             
             ability.setValue(dict.object(forKey: "name"), forKey: "name")
-            ability.setValue(dict.object(forKey: "abliltyID"), forKey: "abliltyID")
-            ability.setValue(dict.object(forKey: "abliltyDescription"), forKey: "abliltyDescription")
+            ability.setValue(dict.object(forKey: "abilityID"), forKey: "abilityID")
+            ability.setValue(dict.object(forKey: "abilityDescription"), forKey: "abilityDescription")
             ability.setValue(dict.object(forKey: "range"), forKey: "range")
             ability.setValue(dict.object(forKey: "effectPattern"), forKey: "effectPatern")
             ability.setValue(dict.object(forKey: "radius"), forKey: "radius")
@@ -69,11 +69,9 @@ class CoreDataManager: NSObject {
             ability.setValue(dict.object(forKey: "attackEffects"), forKey: "attackEffects")
             ability.setValue(dict.object(forKey: "levelUnlock"), forKey: "levelUnlock")
             ability.setValue(dict.object(forKey: "baseEffect"), forKey: "baseEffect")
-            ability.setValue(dict.object(forKey: "ratioEffect"), forKey: "rationEffect")
+            ability.setValue(dict.object(forKey: "ratioEffect"), forKey: "ratioEffect")
             ability.setValue(dict.object(forKey: "animationTime"), forKey: "animationTime")
             ability.setValue(dict.object(forKey: "damageAtTimeForPercentage"), forKey: "damageAtTimeForPercentage")
-            ability.setValue(dict.object(forKey: "animationDict"), forKey: "animationDict")
-            
             do {
                 try privateMOC.save()
             }
@@ -127,7 +125,7 @@ class CoreDataManager: NSObject {
                 privateMOC.delete(managedObjectData)
             }
         } catch let error as NSError {
-            print("Detele all data in \(entityName) error : \(error) \(error.userInfo)")
+            print("Delele all data in \(entityName) error : \(error) \(error.userInfo)")
         }
         
         do {
@@ -148,10 +146,8 @@ class CoreDataManager: NSObject {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
-        let privateMOC = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        privateMOC.parent = managedContext
         do {
-            try privateMOC.save()
+            try managedContext.save()
         } catch let error as NSError {
             print("Error While Saving All Entries for \(entityName): \(error.userInfo)")
         }

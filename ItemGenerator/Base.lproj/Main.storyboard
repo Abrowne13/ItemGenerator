@@ -31,7 +31,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VKQ-5v-EcP" id="rC3-Ln-ImY">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ad-uc-qod">
@@ -755,7 +755,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PnS-ah-joI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="1QD-zr-AA3"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="BFC-LB-il7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BFC-LB-il7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -774,7 +774,7 @@
             <objects>
                 <navigationController id="vGD-5f-P8Y" userLabel="Ability" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Ability List" id="wVq-Lr-Jgt"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="CKA-8Z-rWp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CKA-8Z-rWp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -822,11 +822,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemCell" rowHeight="124" id="u9Q-V7-V33" userLabel="abilityCell" customClass="AbilityTableViewCell" customModule="ItemGenerator" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="abilityCell" rowHeight="124" id="u9Q-V7-V33" userLabel="abilityCell" customClass="AbilityTableViewCell" customModule="ItemGenerator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u9Q-V7-V33" id="zOB-uf-Ctr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="123"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="APCost:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ye-m7-ZD4">
@@ -958,6 +958,7 @@
                                             <outlet property="lblAbilityRange" destination="WBw-Ir-dqW" id="9Dx-fD-oAE"/>
                                             <outlet property="lblAbilityRatioEffect" destination="MfY-5X-Rl3" id="elp-xS-Tdr"/>
                                             <outlet property="lblAbilityTargetType" destination="kqe-FC-Gnn" id="KbP-Ji-J3X"/>
+                                            <outlet property="viewAbilityColor" destination="vvn-JE-fUD" id="qe1-Oo-uxe"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -974,14 +975,24 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Ability List" id="sj7-Fj-rt7">
                         <leftBarButtonItems>
-                            <barButtonItem title="Pull" id="1F2-uD-dcj"/>
-                            <barButtonItem title="Push" id="48b-Z7-COw"/>
+                            <barButtonItem title="Pull" id="1F2-uD-dcj">
+                                <connections>
+                                    <action selector="onPullAction:" destination="b7C-oL-hKR" id="Qcp-jo-VbC"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Push" id="48b-Z7-COw">
+                                <connections>
+                                    <action selector="onPushAction:" destination="b7C-oL-hKR" id="0s8-Ki-NzU"/>
+                                </connections>
+                            </barButtonItem>
                         </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="NT1-bv-iUV"/>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
-                        <outlet property="abilityTableList" destination="zxf-Wu-wuH" id="a4t-Iw-I8u"/>
+                        <outlet property="pullBtn" destination="1F2-uD-dcj" id="Bpk-XO-htZ"/>
+                        <outlet property="pushBtn" destination="48b-Z7-COw" id="Yeu-kf-5pU"/>
+                        <outlet property="tableAbilityList" destination="zxf-Wu-wuH" id="USJ-th-JzW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cma-nv-YiN" sceneMemberID="firstResponder"/>

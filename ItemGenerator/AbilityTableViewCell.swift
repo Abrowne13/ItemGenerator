@@ -21,6 +21,7 @@ class AbilityTableViewCell: UITableViewCell {
     @IBOutlet weak var lblAbilityTargetType: UILabel!
     @IBOutlet weak var lblAbilityRange: UILabel!
     @IBOutlet weak var lblAbilityRadius: UILabel!
+    @IBOutlet weak var viewAbilityColor: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,14 +36,20 @@ class AbilityTableViewCell: UITableViewCell {
     
     func setLabelsWithAbility(){
         lblAbilityName.text = ability.name
-        lblAbilityID.text = ability.value(forKey: "abilityID") as! String?
+        let abilityNo : Int = ability.value(forKey: "abilityID") as! Int
+        lblAbilityID.text = String(abilityNo)
         lblAbilityDescription.text = ability.abilityDescription
-        lblAbilityApCost.text = ability.value(forKey: "apCost") as! String?
-        lblAbilityBaseEffect.text = ability.value(forKey: "baseEffect") as! String?
-        lblAbilityRatioEffect.text = ability.value(forKey: "ratioEffect") as! String?
+        let apCost : Int = ability.value(forKey: "apCost") as! Int
+        lblAbilityApCost.text = String(apCost)
+        let baseEffect : Int = ability.value(forKey: "baseEffect") as! Int
+        lblAbilityBaseEffect.text = String(baseEffect)
+        let ratioEffect : Float = ability.value(forKey: "ratioEffect") as! Float
+        lblAbilityRatioEffect.text = String(ratioEffect)
         lblAbilityTargetType.text = ability.targetType
-        lblAbilityRange.text = ability.value(forKey: "range") as! String?
-        lblAbilityRadius.text = ability.value(forKey: "radius") as! String?
+        let range : Int = ability.value(forKey: "range") as! Int
+        lblAbilityRange.text = String(range)
+        let radius : Int = ability.value(forKey: "radius") as! Int
+        lblAbilityRadius.text = String(radius)
     }
 
 }

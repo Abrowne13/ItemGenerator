@@ -31,6 +31,5 @@ extension Ability {
     @NSManaged public var ratioEffect: Float
     @NSManaged public var animationTime: Float
     @NSManaged public var damageAtTimeForPercentage: NSObject?
-    @NSManaged public var animationDict: NSObject?
 
 }
