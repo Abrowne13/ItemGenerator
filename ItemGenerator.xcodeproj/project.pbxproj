@@ -19,10 +19,12 @@
 		843C1D3F1E9356F500DA8A08 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C1D3D1E9356F500DA8A08 /* Item+CoreDataClass.swift */; };
 		843C1D401E9356F500DA8A08 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C1D3E1E9356F500DA8A08 /* Item+CoreDataProperties.swift */; };
 		843C1D421E94BE3000DA8A08 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C1D411E94BE3000DA8A08 /* CoreDataManager.swift */; };
+		8440022F1F65F351006A0ABC /* AddAbilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440022E1F65F351006A0ABC /* AddAbilityViewController.swift */; };
 		8457FF1B1F5B4EBD00FE04B0 /* AbilityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457FF1A1F5B4EBD00FE04B0 /* AbilityListViewController.swift */; };
 		8457FF291F5B7D1700FE04B0 /* Ability+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457FF271F5B7D1700FE04B0 /* Ability+CoreDataClass.swift */; };
 		8457FF2A1F5B7D1700FE04B0 /* Ability+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457FF281F5B7D1700FE04B0 /* Ability+CoreDataProperties.swift */; };
 		8457FF2C1F5CAE1A00FE04B0 /* AbilityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457FF2B1F5CAE1A00FE04B0 /* AbilityTableViewCell.swift */; };
+		84F557FD1F646F94002AC96D /* AbilityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F557FC1F646F94002AC96D /* AbilityDetailViewController.swift */; };
 		84F7B1B11E9C784900ED4F8C /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F7B1B01E9C784900ED4F8C /* ItemTableViewCell.swift */; };
 		84F7B1B31E9ED2BE00ED4F8C /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F7B1B21E9ED2BE00ED4F8C /* ItemDetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -63,10 +65,12 @@
 		843C1D3D1E9356F500DA8A08 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataClass.swift"; path = "../Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		843C1D3E1E9356F500DA8A08 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataProperties.swift"; path = "../Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		843C1D411E94BE3000DA8A08 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		8440022E1F65F351006A0ABC /* AddAbilityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAbilityViewController.swift; sourceTree = "<group>"; };
 		8457FF1A1F5B4EBD00FE04B0 /* AbilityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityListViewController.swift; sourceTree = "<group>"; };
 		8457FF271F5B7D1700FE04B0 /* Ability+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ability+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8457FF281F5B7D1700FE04B0 /* Ability+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ability+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8457FF2B1F5CAE1A00FE04B0 /* AbilityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityTableViewCell.swift; sourceTree = "<group>"; };
+		84F557FC1F646F94002AC96D /* AbilityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityDetailViewController.swift; sourceTree = "<group>"; };
 		84F7B1B01E9C784900ED4F8C /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		84F7B1B21E9ED2BE00ED4F8C /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -177,6 +181,8 @@
 			isa = PBXGroup;
 			children = (
 				8457FF1A1F5B4EBD00FE04B0 /* AbilityListViewController.swift */,
+				84F557FC1F646F94002AC96D /* AbilityDetailViewController.swift */,
+				8440022E1F65F351006A0ABC /* AddAbilityViewController.swift */,
 				8457FF2B1F5CAE1A00FE04B0 /* AbilityTableViewCell.swift */,
 			);
 			name = "Ability ViewControllers";
@@ -321,8 +327,10 @@
 				843C1D421E94BE3000DA8A08 /* CoreDataManager.swift in Sources */,
 				843C1D111E93147000DA8A08 /* ItemGenerator.xcdatamodeld in Sources */,
 				8457FF2C1F5CAE1A00FE04B0 /* AbilityTableViewCell.swift in Sources */,
+				84F557FD1F646F94002AC96D /* AbilityDetailViewController.swift in Sources */,
 				8457FF291F5B7D1700FE04B0 /* Ability+CoreDataClass.swift in Sources */,
 				843C1D0B1E93146F00DA8A08 /* ViewController.swift in Sources */,
+				8440022F1F65F351006A0ABC /* AddAbilityViewController.swift in Sources */,
 				843C1D3F1E9356F500DA8A08 /* Item+CoreDataClass.swift in Sources */,
 				84F7B1B11E9C784900ED4F8C /* ItemTableViewCell.swift in Sources */,
 				8457FF1B1F5B4EBD00FE04B0 /* AbilityListViewController.swift in Sources */,

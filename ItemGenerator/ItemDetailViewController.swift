@@ -31,7 +31,7 @@ class ItemDetailViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        self.setLablesWithItem()
+        self.setLabelsWithItem()
         
     }
     
@@ -41,7 +41,7 @@ class ItemDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func setLablesWithItem(){
+    func setLabelsWithItem(){
         lblTitle.text = item.itemName
         lblItemNo.text = String(item.itemNo)
         lblFlavorText.text = item.flavorText

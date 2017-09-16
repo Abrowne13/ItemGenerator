@@ -85,6 +85,7 @@ class AbilityListViewController: UIViewController,UITableViewDataSource,UITableV
                 self.present(alert,animated:false,completion:nil)
             } else {
                 if let usableData = data {
+                    print(usableData)
                     let abilityJSON = try! JSONSerialization.jsonObject(with: usableData, options: [])
                     
                     if let dictFromJSON = abilityJSON as? [NSDictionary]{
@@ -306,12 +307,11 @@ class AbilityListViewController: UIViewController,UITableViewDataSource,UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /*
+        
         let abilityDetail : AbilityDetailViewController = self.storyboard!.instantiateViewController(withIdentifier:"abilityDetail") as! AbilityDetailViewController
         //The ability list and the selected table cell row will likely desync
         abilityDetail.ability = abilityList[indexPath.row] as? Ability
         self.navigationController!.pushViewController(abilityDetail, animated: true)
- */
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
