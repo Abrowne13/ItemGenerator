@@ -61,7 +61,7 @@ class CoreDataManager: NSObject {
             ability.setValue(dict.object(forKey: "abilityID"), forKey: "abilityID")
             ability.setValue(dict.object(forKey: "abilityDescription"), forKey: "abilityDescription")
             ability.setValue(dict.object(forKey: "range"), forKey: "range")
-            ability.setValue(dict.object(forKey: "effectPattern"), forKey: "effectPatern")
+            ability.setValue(dict.object(forKey: "effectPattern"), forKey: "effectPattern")
             ability.setValue(dict.object(forKey: "radius"), forKey: "radius")
             ability.setValue(dict.object(forKey: "apCost"), forKey: "apCost")
             ability.setValue(dict.object(forKey: "modifierType"), forKey: "modifierType")

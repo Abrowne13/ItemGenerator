@@ -8,7 +8,7 @@
         <attribute name="attackEffects" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="baseEffect" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="damageAtTimeForPercentage" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="effectPatern" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="effectPattern" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="levelUnlock" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="modifierType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>

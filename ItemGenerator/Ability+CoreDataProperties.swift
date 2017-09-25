@@ -20,7 +20,7 @@ extension Ability {
     @NSManaged public var abilityDescription: String?
     @NSManaged public var abilityID: Int16
     @NSManaged public var range: Int16
-    @NSManaged public var effectPatern: NSObject?
+    @NSManaged public var effectPattern: NSObject?
     @NSManaged public var radius: Int16
     @NSManaged public var apCost: Int16
     @NSManaged public var modifierType: String?

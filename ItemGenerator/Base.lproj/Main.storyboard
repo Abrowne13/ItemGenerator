@@ -1240,6 +1240,48 @@
             </objects>
             <point key="canvasLocation" x="3696.8000000000002" y="806.44677661169419"/>
         </scene>
+        <!--Ability Detail Table View Controller-->
+        <scene sceneID="0oj-fh-ivh">
+            <objects>
+                <viewController storyboardIdentifier="abilityDetailTableView" id="hW0-IH-2NB" customClass="AbilityDetailTableViewController" customModule="ItemGenerator" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RUf-hV-y58"/>
+                        <viewControllerLayoutGuide type="bottom" id="IxR-dF-xhf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="S6B-lE-4cY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sfQ-RT-OeA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="615"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="abilityDetailCell" id="gN5-pO-4xO">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gN5-pO-4xO" id="XjQ-qX-2tI">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="hW0-IH-2NB" id="Wxz-b8-1JK"/>
+                                    <outlet property="delegate" destination="hW0-IH-2NB" id="ifv-PP-Oen"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="abilityDetailTableView" destination="sfQ-RT-OeA" id="H0r-n6-OQk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ccm-HF-UYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4413.6000000000004" y="805.54722638680664"/>
+        </scene>
         <!--Add Ability View Controller-->
         <scene sceneID="MXW-TB-aAm">
             <objects>

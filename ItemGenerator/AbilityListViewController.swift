@@ -308,10 +308,16 @@ class AbilityListViewController: UIViewController,UITableViewDataSource,UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        /*
         let abilityDetail : AbilityDetailViewController = self.storyboard!.instantiateViewController(withIdentifier:"abilityDetail") as! AbilityDetailViewController
-        //The ability list and the selected table cell row will likely desync
         abilityDetail.ability = abilityList[indexPath.row] as? Ability
         self.navigationController!.pushViewController(abilityDetail, animated: true)
+        */
+        
+        let abilityDetail : AbilityDetailTableViewController = self.storyboard!.instantiateViewController(withIdentifier:"abilityDetailTableView") as! AbilityDetailTableViewController
+        abilityDetail.ability = abilityList[indexPath.row] as? Ability
+        self.navigationController!.pushViewController(abilityDetail, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
