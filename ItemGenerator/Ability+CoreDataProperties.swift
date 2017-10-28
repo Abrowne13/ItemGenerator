@@ -40,8 +40,9 @@ extension Ability {
         static var Invincibility = "Invinciblity"; //Duration
         static var Vulnerabilities = "Vulnerabilities"; // Damage type, duration
         static var ActionReset = "ActionReset";
+        static var ChainAction = "ChainAction";
         static var StatusEffect = "StatusEffect";
-        static var AbilityEffectsArray = [DefensePiercing,ResistPiercing,PerfectAim,KillingBlow,Uncounterable,PercentDamage,Critical,GlancingBlow,APDamage,LifeGain,LifeLoss,Purge,Cleanse,StealItem,StealMoney,StealStat,APGain,Knockback,Barrier,Interrupt,Protection,Invincibility,Vulnerabilities,ActionReset];
+        static var AbilityEffectsArray = [DefensePiercing,ResistPiercing,PerfectAim,KillingBlow,Uncounterable,PercentDamage,Critical,GlancingBlow,APDamage,LifeGain,LifeLoss,Purge,Cleanse,StealItem,StealMoney,StealStat,APGain,Knockback,Barrier,Interrupt,Protection,Invincibility,Vulnerabilities,ActionReset,ChainAction];
     }
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Ability> {
