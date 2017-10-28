@@ -157,7 +157,6 @@ class AddAbilityViewController: UIViewController, UITextFieldDelegate, UIPickerV
             
             var ability: NSManagedObject
             
-            
             //Not that simple to edit
             if(editMode){
                 ability = editAbility;
@@ -179,11 +178,6 @@ class AddAbilityViewController: UIViewController, UITextFieldDelegate, UIPickerV
             ability.setValue(range, forKey: "range")
             ability.setValue(radius, forKey: "radius")
             ability.setValue(aniTime, forKey: "animationTime")
-            /*
-            item.setValue(eva, forKey: "eva")
-            item.setValue(mov, forKey: "mov")
-            item.setValue(rng, forKey: "rng")
-            */
             
             // 4
             do {

@@ -36,7 +36,7 @@
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Ability" positionX="-54" positionY="108" width="128" height="270"/>
-        <element name="Item" positionX="-54" positionY="-9" width="128" height="285"/>
+        <element name="Ability" positionX="-54" positionY="108" width="128" height="268"/>
+        <element name="Item" positionX="-252" positionY="117" width="128" height="285"/>
     </elements>
 </model>

@@ -82,7 +82,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         pickerType.dataSource = self
         pickerType.delegate = self
         
-        itemTypes = ["Accessory","Consumable","Fist","Knife","Lance","Shield","Staff","Sword","Tome","Wand"]
+        itemTypes = ["Accessory","Consumable","Fist","Gun","Knife","Shield","Staff","Sword","Tome","Wand"]
         textFldType.inputView = pickerType
     }
     
@@ -307,7 +307,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
                 rng = 1
                 break
             }
-            mov = Int(tempStr)!
+            rng = Int(tempStr)!
             break
         case 15:
             guard let tempStr: String = textField.text, textField.text != "" else{

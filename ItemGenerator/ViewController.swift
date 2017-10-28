@@ -64,7 +64,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             self.promptUrlFillInForString(urlString: "baseUrl")
             return
         }
-        
         if (defaults.string(forKey: "getItemUrl") != nil){
             getItemUrlString = defaults.string(forKey: "getItemUrl")!
         }
@@ -87,6 +86,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                 self.present(alert,animated:false,completion:nil)
             } else {
                 if let usableData = data {
+                    let rawData = String(data: data!, encoding: String.Encoding.utf8)
+                    print(rawData as Any)
                     let itemJSON = try! JSONSerialization.jsonObject(with: usableData, options: [])
                     if let dictFromJSON = itemJSON as? [NSDictionary]{
                         //Write save function here
@@ -116,6 +117,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         var username: String = ""
         var password: String = ""
         let defaults = UserDefaults.standard
+        
         if (defaults.string(forKey: "postItemUrl") == nil){
             self.promptUrlFillInForString(urlString: "postItemUrl")
             return
@@ -123,7 +125,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         else{
             postItemUrlString = defaults.string(forKey: "postItemUrl")!
         }
-        
+        //defaults.set(getItemTextField.text, forKey: "getItemUrl")
         if (defaults.string(forKey: "baseUrl") != nil){
             baseUrlString = defaults.string(forKey: "baseUrl")!
             

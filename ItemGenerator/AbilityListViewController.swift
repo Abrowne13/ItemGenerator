@@ -63,7 +63,6 @@ class AbilityListViewController: UIViewController,UITableViewDataSource,UITableV
             self.promptUrlFillInForString(urlString: "baseUrl")
             return
         }
-        
         if (defaults.string(forKey: "getAbilityUrl") != nil){
             getAbilityUrlString = defaults.string(forKey: "getAbilityUrl")!
         }
