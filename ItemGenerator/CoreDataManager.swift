@@ -12,6 +12,24 @@ import CoreData
 class CoreDataManager: NSObject {
     static let sharedInstance = CoreDataManager()
     
+    func saveEntity(entityName: String){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            else {
+                return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let privateMOC = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        privateMOC.parent = managedContext
+        
+        // 4
+        do {
+            try privateMOC.save()
+        }
+        catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
     
     func save(dict: NSDictionary, entityName: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate

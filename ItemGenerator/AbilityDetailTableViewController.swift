@@ -15,13 +15,12 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     var attackEffects: NSArray!
     var effectPattern: NSArray!
     var damageAnimations: NSArray!
-    var isAttackEffectExpanded = false;
-    var isEffectPatternExpanded = false;
+    var isAttackEffectExpanded = false
+    var isEffectPatternExpanded = false
     var isDTPExpanded = false;
     let stringKeys = ["name","modifierType","abilityDescription","targetType"]
     let intKeys = ["abilityID","levelUnlock","apCost","baseEffect","range","radius"]
     let floatKeys = ["ratioEffect","animationTime"]
-    
     @IBOutlet weak var abilityDetailTableView: UITableView!
     
 
@@ -50,9 +49,18 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableCell : AbilityDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "abilityDetailCell") as! AbilityDetailTableViewCell
+        let cellDict = abilityCellArray.object(at: indexPath.row) as? NSDictionary
+        let abilityKey = cellDict?.object(forKey: "abilityKey") as! String
         
         tableCell.abilityDetailTextField.delegate = self
-        let cellDict = abilityCellArray.object(at: indexPath.row) as? NSDictionary
+        tableCell.abilityDetailTextField.tag = indexPath.row
+        if(intKeys.contains(abilityKey)){
+            tableCell.abilityDetailTextField.keyboardType = .numberPad
+        }
+        else if(floatKeys.contains(abilityKey)){
+            tableCell.abilityDetailTextField.keyboardType = .decimalPad
+        }
+        
         var str1 = cellDict?.object(forKey: "titleName") as! String?
         var str2 = cellDict?.object(forKey: "titleValue") as! String?
         if (str1 == nil) {
@@ -62,12 +70,14 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
             str2 = ""
         }
         tableCell.abilityDetailLabel?.text = str1! + str2!
+        
         return tableCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellDict = abilityCellArray[indexPath.row]
         let expandbleString = (cellDict as! NSDictionary).object(forKey:"expandable") as! String?
+        let subArray = (cellDict as! NSDictionary).object(forKey:"subArray") as! String?
         if (expandbleString == "attackEffect") {
             isAttackEffectExpanded = !isAttackEffectExpanded
             self.updateAbilityCellArray()
@@ -83,12 +93,16 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
             self.updateAbilityCellArray()
             tableView.reloadData()
         }
+        else if(subArray != nil){
+            
+        }
         else{
             let cell = tableView.cellForRow(at: indexPath) as! AbilityDetailTableViewCell
             if (cell.abilityDetailTextField.isHidden){
                 cell.abilityDetailLabel.isHidden = true
                 cell.abilityDetailTextField.placeholder = cell.abilityDetailLabel.text
                 cell.abilityDetailTextField.isHidden = false
+                cell.abilityDetailTextField.becomeFirstResponder()
             }
             else{
                 cell.abilityDetailLabel.isHidden = false
@@ -99,17 +113,12 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
                 else{
                     
                     let dict = self.abilityCellArray.object(at: indexPath.row) as! NSDictionary
-                    /*
-                    let mutableDict = NSMutableDictionary.init(dictionary: dict)
-                    mutableDict.setValue(cell.abilityDetailTextField.text, forKey: "titleValue")
-                    dict = mutableDict
-                    self.abilityCellArray[indexPath.row] = dict
-                     */
-                    self .setTextForKey(text: cell.abilityDetailTextField.text!, key: dict.object(forKey: "abilityKey") as! String)
+                    self.setTextForKey(text: cell.abilityDetailTextField.text!, key: dict.object(forKey: "abilityKey") as! String)
                     self.updateAbilityCellArray()
                     self.abilityDetailTableView.reloadData()
                     cell.abilityDetailTextField.text = ""
                 }
+                cell.abilityDetailTextField.resignFirstResponder()
             }
         }
     }
@@ -159,9 +168,9 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         abilityCellArray.add(["titleName":"Attack Effects: ","titleValue":attackEffectCountString,"expandable":"attackEffect","abilityKey":"attackEffects"])
         if (isAttackEffectExpanded){
             for dict in attackEffects{
-                abilityCellArray.add(["titleName":(dict as! NSDictionary).object(forKey:"name")!])
+                abilityCellArray.add(["titleName":(dict as! NSDictionary).object(forKey:"name")!,"subArray":"attackEffect"])
             }
-            abilityCellArray.add(["titleName":"Add Attack Effect"])
+            abilityCellArray.add(["titleName":"Add Attack Effect","subArray":"attackEffect"])
         }
         abilityCellArray.add(["titleName":"Range: ","titleValue":String(ability.range),"abilityKey":"range"])
         abilityCellArray.add(["titleName":"Radius: ","titleValue":String(ability.radius),"abilityKey":"radius"])
@@ -175,9 +184,9 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         abilityCellArray.add(["titleName":"EffectPatterns: ","titleValue":effectPatternCountString,"expandable":"effectPattern","abilityKey":"effectPattern"])
         if (isEffectPatternExpanded){
             for dict in effectPattern{
-                abilityCellArray.add(["titleName":(dict as! NSDictionary).object(forKey:"coordinate")!])
+                abilityCellArray.add(["titleName":(dict as! NSDictionary).object(forKey:"coordinate")!,"subArray":"effectPattern"])
             }
-            abilityCellArray.add(["titleName":"Add Effect Pattern Postion"])
+            abilityCellArray.add(["titleName":"Add Effect Pattern Postion","subArray":"effectPattern"])
         }
         abilityCellArray.add(["titleName":"Animation Time: ","titleValue":String(ability.animationTime),"abilityKey":"animationTime"])
         var dtpCountString = "0"
@@ -190,14 +199,32 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         abilityCellArray.add(["titleName":"Damage at Time for Percentage: ","titleValue":dtpCountString,"expandable":"damageAnimation","abilityKey":"damageAnimation"])
         if (isDTPExpanded){
             for dict in damageAnimations{
-                abilityCellArray.add(["titleName":"Frame","titleValue":(dict as! NSDictionary).object(forKey:"stringValue")!])
+                abilityCellArray.add(["titleName":"Frame","titleValue":(dict as! NSDictionary).object(forKey:"stringValue")!,"subArray":"damageAnimation"])
             }
-            abilityCellArray.add(["titleName":"Add Percent Damage at Time"])
+            abilityCellArray.add(["titleName":"Add Percent Damage at Time","subArray":"damageAnimation"])
         }
         abilityDetailTableView.reloadData()
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField){
+        abilityDetailTableView.scrollToRow(at: [0,textField.tag], at: UITableViewScrollPosition.top, animated: true)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let cell = abilityDetailTableView.cellForRow(at: [0,textField.tag]) as! AbilityDetailTableViewCell
+        cell.abilityDetailLabel.isHidden = false
+        cell.abilityDetailTextField.isHidden = true
+        if (cell.abilityDetailTextField.text == "") {
+            cell.abilityDetailLabel.text = cell.abilityDetailTextField.placeholder
+        }
+        else{
+            
+            let dict = self.abilityCellArray.object(at: textField.tag) as! NSDictionary
+            self.setTextForKey(text: cell.abilityDetailTextField.text!, key: dict.object(forKey: "abilityKey") as! String)
+            self.updateAbilityCellArray()
+            self.abilityDetailTableView.reloadData()
+            cell.abilityDetailTextField.text = ""
+        }
         textField.resignFirstResponder()
         return true
     }
@@ -214,9 +241,16 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         }
         else{
             print("Unknown type found in setTextForKey")
+            return
+        }
+        let context = ability.managedObjectContext;
+        do {
+            try context?.save()
+        }
+        catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
-    
     /*
     // MARK: - Navigation
 

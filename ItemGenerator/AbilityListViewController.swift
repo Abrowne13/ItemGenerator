@@ -383,7 +383,7 @@ class AbilityListViewController: UIViewController,UITableViewDataSource,UITableV
         let defaults = UserDefaults.standard
         
         urlAlert = UIAlertController(title: "Missing Base Url", message: "Enter Base Url", preferredStyle: UIAlertControllerStyle.alert)
-        
+        print(urlString)
         if (urlString == "baseUrl" || (defaults.string(forKey: "baseUrl")?.isEmpty)!){
             urlAlert.addTextField { (textField : UITextField!) -> Void in
                 textField.placeholder = "Base Url"
