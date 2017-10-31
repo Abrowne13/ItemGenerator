@@ -22,12 +22,20 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     let intKeys = ["abilityID","levelUnlock","apCost","baseEffect","range","radius"]
     let floatKeys = ["ratioEffect","animationTime"]
     @IBOutlet weak var abilityDetailTableView: UITableView!
+    @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.title = "Edit Ability"
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,17 +58,18 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableCell : AbilityDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "abilityDetailCell") as! AbilityDetailTableViewCell
         let cellDict = abilityCellArray.object(at: indexPath.row) as? NSDictionary
-        let abilityKey = cellDict?.object(forKey: "abilityKey") as! String
+        let abilityKey = cellDict?.object(forKey: "abilityKey") as! String?
         
         tableCell.abilityDetailTextField.delegate = self
         tableCell.abilityDetailTextField.tag = indexPath.row
-        if(intKeys.contains(abilityKey)){
-            tableCell.abilityDetailTextField.keyboardType = .numberPad
+        if(abilityKey != nil){
+            if(intKeys.contains(abilityKey!)){
+                tableCell.abilityDetailTextField.keyboardType = .numberPad
+            }
+            else if(floatKeys.contains(abilityKey!)){
+                tableCell.abilityDetailTextField.keyboardType = .decimalPad
+            }
         }
-        else if(floatKeys.contains(abilityKey)){
-            tableCell.abilityDetailTextField.keyboardType = .decimalPad
-        }
-        
         var str1 = cellDict?.object(forKey: "titleName") as! String?
         var str2 = cellDict?.object(forKey: "titleValue") as! String?
         if (str1 == nil) {
@@ -228,6 +237,20 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         textField.resignFirstResponder()
         return true
     }
+    
+    func keyboardWillShow(sender: NSNotification) {
+        print(abilityDetailTableView.contentInset)
+        let contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 150, right: 0)
+        abilityDetailTableView.contentInset = contentInset
+        abilityDetailTableView.scrollIndicatorInsets = contentInset
+    }
+    
+    func keyboardWillHide(sender: NSNotification) {
+        let contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+        abilityDetailTableView.contentInset = contentInset
+        abilityDetailTableView.scrollIndicatorInsets = contentInset
+    }
+
     
     func setTextForKey(text: String, key: String){
         if(stringKeys.contains(key)){

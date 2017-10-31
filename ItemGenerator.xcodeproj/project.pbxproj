@@ -11,6 +11,54 @@
 		84340F8D1F76D0B70074C4F0 /* AbilityDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84340F8C1F76D0B70074C4F0 /* AbilityDetailTableViewController.swift */; };
 		84340FA01F81B9020074C4F0 /* AbilityEffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84340F9F1F81B9020074C4F0 /* AbilityEffectViewController.swift */; };
 		84340FA21F9BCFA70074C4F0 /* AbilityDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84340FA11F9BCFA70074C4F0 /* AbilityDetailTableViewCell.swift */; };
+		843499981FA66BD900887203 /* Cleanse+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499681FA66BD900887203 /* Cleanse+CoreDataClass.swift */; };
+		843499991FA66BD900887203 /* Cleanse+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499691FA66BD900887203 /* Cleanse+CoreDataProperties.swift */; };
+		8434999A1FA66BD900887203 /* ResistPiercing+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434996A1FA66BD900887203 /* ResistPiercing+CoreDataClass.swift */; };
+		8434999B1FA66BD900887203 /* ResistPiercing+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434996B1FA66BD900887203 /* ResistPiercing+CoreDataProperties.swift */; };
+		8434999C1FA66BD900887203 /* Invinciblity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434996C1FA66BD900887203 /* Invinciblity+CoreDataClass.swift */; };
+		8434999D1FA66BD900887203 /* Invinciblity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434996D1FA66BD900887203 /* Invinciblity+CoreDataProperties.swift */; };
+		8434999E1FA66BD900887203 /* APDamage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434996E1FA66BD900887203 /* APDamage+CoreDataClass.swift */; };
+		8434999F1FA66BD900887203 /* APDamage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434996F1FA66BD900887203 /* APDamage+CoreDataProperties.swift */; };
+		843499A01FA66BD900887203 /* KillingBlow+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499701FA66BD900887203 /* KillingBlow+CoreDataClass.swift */; };
+		843499A11FA66BD900887203 /* KillingBlow+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499711FA66BD900887203 /* KillingBlow+CoreDataProperties.swift */; };
+		843499A21FA66BD900887203 /* PerfectAim+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499721FA66BD900887203 /* PerfectAim+CoreDataClass.swift */; };
+		843499A31FA66BD900887203 /* PerfectAim+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499731FA66BD900887203 /* PerfectAim+CoreDataProperties.swift */; };
+		843499A41FA66BD900887203 /* Purge+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499741FA66BD900887203 /* Purge+CoreDataClass.swift */; };
+		843499A51FA66BD900887203 /* Purge+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499751FA66BD900887203 /* Purge+CoreDataProperties.swift */; };
+		843499A61FA66BD900887203 /* StealMoney+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499761FA66BD900887203 /* StealMoney+CoreDataClass.swift */; };
+		843499A71FA66BD900887203 /* StealMoney+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499771FA66BD900887203 /* StealMoney+CoreDataProperties.swift */; };
+		843499A81FA66BD900887203 /* StealStat+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499781FA66BD900887203 /* StealStat+CoreDataClass.swift */; };
+		843499A91FA66BD900887203 /* StealStat+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499791FA66BD900887203 /* StealStat+CoreDataProperties.swift */; };
+		843499AA1FA66BD900887203 /* GlancingBlow+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434997A1FA66BD900887203 /* GlancingBlow+CoreDataClass.swift */; };
+		843499AB1FA66BD900887203 /* GlancingBlow+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434997B1FA66BD900887203 /* GlancingBlow+CoreDataProperties.swift */; };
+		843499AC1FA66BD900887203 /* Uncounterable+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434997C1FA66BD900887203 /* Uncounterable+CoreDataClass.swift */; };
+		843499AD1FA66BD900887203 /* Uncounterable+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434997D1FA66BD900887203 /* Uncounterable+CoreDataProperties.swift */; };
+		843499AE1FA66BD900887203 /* Critical+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434997E1FA66BD900887203 /* Critical+CoreDataClass.swift */; };
+		843499AF1FA66BD900887203 /* Critical+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434997F1FA66BD900887203 /* Critical+CoreDataProperties.swift */; };
+		843499B01FA66BD900887203 /* StealItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499801FA66BD900887203 /* StealItem+CoreDataClass.swift */; };
+		843499B11FA66BD900887203 /* StealItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499811FA66BD900887203 /* StealItem+CoreDataProperties.swift */; };
+		843499B21FA66BD900887203 /* Protection+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499821FA66BD900887203 /* Protection+CoreDataClass.swift */; };
+		843499B31FA66BD900887203 /* Protection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499831FA66BD900887203 /* Protection+CoreDataProperties.swift */; };
+		843499B41FA66BD900887203 /* Barrier+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499841FA66BD900887203 /* Barrier+CoreDataClass.swift */; };
+		843499B51FA66BD900887203 /* Barrier+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499851FA66BD900887203 /* Barrier+CoreDataProperties.swift */; };
+		843499B61FA66BD900887203 /* LifeLoss+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499861FA66BD900887203 /* LifeLoss+CoreDataClass.swift */; };
+		843499B71FA66BD900887203 /* LifeLoss+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499871FA66BD900887203 /* LifeLoss+CoreDataProperties.swift */; };
+		843499B81FA66BD900887203 /* PercentDamage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499881FA66BD900887203 /* PercentDamage+CoreDataClass.swift */; };
+		843499B91FA66BD900887203 /* PercentDamage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499891FA66BD900887203 /* PercentDamage+CoreDataProperties.swift */; };
+		843499BA1FA66BD900887203 /* Interrupt+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434998A1FA66BD900887203 /* Interrupt+CoreDataClass.swift */; };
+		843499BB1FA66BD900887203 /* Interrupt+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434998B1FA66BD900887203 /* Interrupt+CoreDataProperties.swift */; };
+		843499BC1FA66BD900887203 /* Knockback+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434998C1FA66BD900887203 /* Knockback+CoreDataClass.swift */; };
+		843499BD1FA66BD900887203 /* Knockback+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434998D1FA66BD900887203 /* Knockback+CoreDataProperties.swift */; };
+		843499BE1FA66BD900887203 /* ChainAbility+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434998E1FA66BD900887203 /* ChainAbility+CoreDataClass.swift */; };
+		843499BF1FA66BD900887203 /* ChainAbility+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434998F1FA66BD900887203 /* ChainAbility+CoreDataProperties.swift */; };
+		843499C01FA66BD900887203 /* LifeGain+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499901FA66BD900887203 /* LifeGain+CoreDataClass.swift */; };
+		843499C11FA66BD900887203 /* LifeGain+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499911FA66BD900887203 /* LifeGain+CoreDataProperties.swift */; };
+		843499C21FA66BD900887203 /* DefensePiercing+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499921FA66BD900887203 /* DefensePiercing+CoreDataClass.swift */; };
+		843499C31FA66BD900887203 /* DefensePiercing+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499931FA66BD900887203 /* DefensePiercing+CoreDataProperties.swift */; };
+		843499C41FA66BD900887203 /* ActionReset+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499941FA66BD900887203 /* ActionReset+CoreDataClass.swift */; };
+		843499C51FA66BD900887203 /* ActionReset+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499951FA66BD900887203 /* ActionReset+CoreDataProperties.swift */; };
+		843499C61FA66BD900887203 /* APGain+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499961FA66BD900887203 /* APGain+CoreDataClass.swift */; };
+		843499C71FA66BD900887203 /* APGain+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499971FA66BD900887203 /* APGain+CoreDataProperties.swift */; };
 		843C1D091E93146F00DA8A08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C1D081E93146F00DA8A08 /* AppDelegate.swift */; };
 		843C1D0B1E93146F00DA8A08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C1D0A1E93146F00DA8A08 /* ViewController.swift */; };
 		843C1D0E1E93147000DA8A08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843C1D0C1E93147000DA8A08 /* Main.storyboard */; };
@@ -54,6 +102,54 @@
 		84340F8C1F76D0B70074C4F0 /* AbilityDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityDetailTableViewController.swift; sourceTree = "<group>"; };
 		84340F9F1F81B9020074C4F0 /* AbilityEffectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityEffectViewController.swift; sourceTree = "<group>"; };
 		84340FA11F9BCFA70074C4F0 /* AbilityDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityDetailTableViewCell.swift; sourceTree = "<group>"; };
+		843499681FA66BD900887203 /* Cleanse+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Cleanse+CoreDataClass.swift"; path = "AbilityEffectsCoreData/Cleanse+CoreDataClass.swift"; sourceTree = "<group>"; };
+		843499691FA66BD900887203 /* Cleanse+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Cleanse+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/Cleanse+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8434996A1FA66BD900887203 /* ResistPiercing+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ResistPiercing+CoreDataClass.swift"; path = "AbilityEffectsCoreData/ResistPiercing+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8434996B1FA66BD900887203 /* ResistPiercing+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ResistPiercing+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/ResistPiercing+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8434996C1FA66BD900887203 /* Invinciblity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Invinciblity+CoreDataClass.swift"; path = "AbilityEffectsCoreData/Invinciblity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8434996D1FA66BD900887203 /* Invinciblity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Invinciblity+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/Invinciblity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8434996E1FA66BD900887203 /* APDamage+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "APDamage+CoreDataClass.swift"; path = "AbilityEffectsCoreData/APDamage+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8434996F1FA66BD900887203 /* APDamage+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "APDamage+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/APDamage+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		843499701FA66BD900887203 /* KillingBlow+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "KillingBlow+CoreDataClass.swift"; path = "AbilityEffectsCoreData/KillingBlow+CoreDataClass.swift"; sourceTree = "<group>"; };
+		843499711FA66BD900887203 /* KillingBlow+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "KillingBlow+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/KillingBlow+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		843499721FA66BD900887203 /* PerfectAim+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PerfectAim+CoreDataClass.swift"; path = "AbilityEffectsCoreData/PerfectAim+CoreDataClass.swift"; sourceTree = "<group>"; };
+		843499731FA66BD900887203 /* PerfectAim+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PerfectAim+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/PerfectAim+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		843499741FA66BD900887203 /* Purge+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Purge+CoreDataClass.swift"; path = "AbilityEffectsCoreData/Purge+CoreDataClass.swift"; sourceTree = "<group>"; };
+		843499751FA66BD900887203 /* Purge+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Purge+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/Purge+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		843499761FA66BD900887203 /* StealMoney+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StealMoney+CoreDataClass.swift"; path = "AbilityEffectsCoreData/StealMoney+CoreDataClass.swift"; sourceTree = "<group>"; };
+		843499771FA66BD900887203 /* StealMoney+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StealMoney+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/StealMoney+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		843499781FA66BD900887203 /* StealStat+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StealStat+CoreDataClass.swift"; path = "AbilityEffectsCoreData/StealStat+CoreDataClass.swift"; sourceTree = "<group>"; };
+		843499791FA66BD900887203 /* StealStat+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StealStat+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/StealStat+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8434997A1FA66BD900887203 /* GlancingBlow+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "GlancingBlow+CoreDataClass.swift"; path = "AbilityEffectsCoreData/GlancingBlow+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8434997B1FA66BD900887203 /* GlancingBlow+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "GlancingBlow+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/GlancingBlow+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8434997C1FA66BD900887203 /* Uncounterable+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Uncounterable+CoreDataClass.swift"; path = "AbilityEffectsCoreData/Uncounterable+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8434997D1FA66BD900887203 /* Uncounterable+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Uncounterable+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/Uncounterable+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8434997E1FA66BD900887203 /* Critical+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Critical+CoreDataClass.swift"; path = "AbilityEffectsCoreData/Critical+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8434997F1FA66BD900887203 /* Critical+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Critical+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/Critical+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		843499801FA66BD900887203 /* StealItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StealItem+CoreDataClass.swift"; path = "AbilityEffectsCoreData/StealItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		843499811FA66BD900887203 /* StealItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StealItem+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/StealItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		843499821FA66BD900887203 /* Protection+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Protection+CoreDataClass.swift"; path = "AbilityEffectsCoreData/Protection+CoreDataClass.swift"; sourceTree = "<group>"; };
+		843499831FA66BD900887203 /* Protection+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Protection+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/Protection+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		843499841FA66BD900887203 /* Barrier+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Barrier+CoreDataClass.swift"; path = "AbilityEffectsCoreData/Barrier+CoreDataClass.swift"; sourceTree = "<group>"; };
+		843499851FA66BD900887203 /* Barrier+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Barrier+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/Barrier+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		843499861FA66BD900887203 /* LifeLoss+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LifeLoss+CoreDataClass.swift"; path = "AbilityEffectsCoreData/LifeLoss+CoreDataClass.swift"; sourceTree = "<group>"; };
+		843499871FA66BD900887203 /* LifeLoss+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LifeLoss+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/LifeLoss+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		843499881FA66BD900887203 /* PercentDamage+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PercentDamage+CoreDataClass.swift"; path = "AbilityEffectsCoreData/PercentDamage+CoreDataClass.swift"; sourceTree = "<group>"; };
+		843499891FA66BD900887203 /* PercentDamage+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PercentDamage+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/PercentDamage+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8434998A1FA66BD900887203 /* Interrupt+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Interrupt+CoreDataClass.swift"; path = "AbilityEffectsCoreData/Interrupt+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8434998B1FA66BD900887203 /* Interrupt+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Interrupt+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/Interrupt+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8434998C1FA66BD900887203 /* Knockback+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Knockback+CoreDataClass.swift"; path = "AbilityEffectsCoreData/Knockback+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8434998D1FA66BD900887203 /* Knockback+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Knockback+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/Knockback+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8434998E1FA66BD900887203 /* ChainAbility+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChainAbility+CoreDataClass.swift"; path = "AbilityEffectsCoreData/ChainAbility+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8434998F1FA66BD900887203 /* ChainAbility+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChainAbility+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/ChainAbility+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		843499901FA66BD900887203 /* LifeGain+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LifeGain+CoreDataClass.swift"; path = "AbilityEffectsCoreData/LifeGain+CoreDataClass.swift"; sourceTree = "<group>"; };
+		843499911FA66BD900887203 /* LifeGain+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LifeGain+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/LifeGain+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		843499921FA66BD900887203 /* DefensePiercing+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DefensePiercing+CoreDataClass.swift"; path = "AbilityEffectsCoreData/DefensePiercing+CoreDataClass.swift"; sourceTree = "<group>"; };
+		843499931FA66BD900887203 /* DefensePiercing+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DefensePiercing+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/DefensePiercing+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		843499941FA66BD900887203 /* ActionReset+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ActionReset+CoreDataClass.swift"; path = "AbilityEffectsCoreData/ActionReset+CoreDataClass.swift"; sourceTree = "<group>"; };
+		843499951FA66BD900887203 /* ActionReset+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ActionReset+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/ActionReset+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		843499961FA66BD900887203 /* APGain+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "APGain+CoreDataClass.swift"; path = "AbilityEffectsCoreData/APGain+CoreDataClass.swift"; sourceTree = "<group>"; };
+		843499971FA66BD900887203 /* APGain+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "APGain+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/APGain+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		843C1D051E93146F00DA8A08 /* ItemGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ItemGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		843C1D081E93146F00DA8A08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		843C1D0A1E93146F00DA8A08 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +208,61 @@
 				84340F9F1F81B9020074C4F0 /* AbilityEffectViewController.swift */,
 			);
 			name = "Ability Effect ViewControllers";
+			sourceTree = "<group>";
+		};
+		843499671FA66AA200887203 /* AbilityEffectCoreData */ = {
+			isa = PBXGroup;
+			children = (
+				843499681FA66BD900887203 /* Cleanse+CoreDataClass.swift */,
+				843499691FA66BD900887203 /* Cleanse+CoreDataProperties.swift */,
+				8434996A1FA66BD900887203 /* ResistPiercing+CoreDataClass.swift */,
+				8434996B1FA66BD900887203 /* ResistPiercing+CoreDataProperties.swift */,
+				8434996C1FA66BD900887203 /* Invinciblity+CoreDataClass.swift */,
+				8434996D1FA66BD900887203 /* Invinciblity+CoreDataProperties.swift */,
+				8434996E1FA66BD900887203 /* APDamage+CoreDataClass.swift */,
+				8434996F1FA66BD900887203 /* APDamage+CoreDataProperties.swift */,
+				843499701FA66BD900887203 /* KillingBlow+CoreDataClass.swift */,
+				843499711FA66BD900887203 /* KillingBlow+CoreDataProperties.swift */,
+				843499721FA66BD900887203 /* PerfectAim+CoreDataClass.swift */,
+				843499731FA66BD900887203 /* PerfectAim+CoreDataProperties.swift */,
+				843499741FA66BD900887203 /* Purge+CoreDataClass.swift */,
+				843499751FA66BD900887203 /* Purge+CoreDataProperties.swift */,
+				843499761FA66BD900887203 /* StealMoney+CoreDataClass.swift */,
+				843499771FA66BD900887203 /* StealMoney+CoreDataProperties.swift */,
+				843499781FA66BD900887203 /* StealStat+CoreDataClass.swift */,
+				843499791FA66BD900887203 /* StealStat+CoreDataProperties.swift */,
+				8434997A1FA66BD900887203 /* GlancingBlow+CoreDataClass.swift */,
+				8434997B1FA66BD900887203 /* GlancingBlow+CoreDataProperties.swift */,
+				8434997C1FA66BD900887203 /* Uncounterable+CoreDataClass.swift */,
+				8434997D1FA66BD900887203 /* Uncounterable+CoreDataProperties.swift */,
+				8434997E1FA66BD900887203 /* Critical+CoreDataClass.swift */,
+				8434997F1FA66BD900887203 /* Critical+CoreDataProperties.swift */,
+				843499801FA66BD900887203 /* StealItem+CoreDataClass.swift */,
+				843499811FA66BD900887203 /* StealItem+CoreDataProperties.swift */,
+				843499821FA66BD900887203 /* Protection+CoreDataClass.swift */,
+				843499831FA66BD900887203 /* Protection+CoreDataProperties.swift */,
+				843499841FA66BD900887203 /* Barrier+CoreDataClass.swift */,
+				843499851FA66BD900887203 /* Barrier+CoreDataProperties.swift */,
+				843499861FA66BD900887203 /* LifeLoss+CoreDataClass.swift */,
+				843499871FA66BD900887203 /* LifeLoss+CoreDataProperties.swift */,
+				843499881FA66BD900887203 /* PercentDamage+CoreDataClass.swift */,
+				843499891FA66BD900887203 /* PercentDamage+CoreDataProperties.swift */,
+				8434998A1FA66BD900887203 /* Interrupt+CoreDataClass.swift */,
+				8434998B1FA66BD900887203 /* Interrupt+CoreDataProperties.swift */,
+				8434998C1FA66BD900887203 /* Knockback+CoreDataClass.swift */,
+				8434998D1FA66BD900887203 /* Knockback+CoreDataProperties.swift */,
+				8434998E1FA66BD900887203 /* ChainAbility+CoreDataClass.swift */,
+				8434998F1FA66BD900887203 /* ChainAbility+CoreDataProperties.swift */,
+				843499901FA66BD900887203 /* LifeGain+CoreDataClass.swift */,
+				843499911FA66BD900887203 /* LifeGain+CoreDataProperties.swift */,
+				843499921FA66BD900887203 /* DefensePiercing+CoreDataClass.swift */,
+				843499931FA66BD900887203 /* DefensePiercing+CoreDataProperties.swift */,
+				843499941FA66BD900887203 /* ActionReset+CoreDataClass.swift */,
+				843499951FA66BD900887203 /* ActionReset+CoreDataProperties.swift */,
+				843499961FA66BD900887203 /* APGain+CoreDataClass.swift */,
+				843499971FA66BD900887203 /* APGain+CoreDataProperties.swift */,
+			);
+			name = AbilityEffectCoreData;
 			sourceTree = "<group>";
 		};
 		843C1CFC1E93146F00DA8A08 = {
@@ -182,6 +333,7 @@
 		8457FF1D1F5B4EE100FE04B0 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				843499671FA66AA200887203 /* AbilityEffectCoreData */,
 				843C1D0F1E93147000DA8A08 /* ItemGenerator.xcdatamodeld */,
 				843C1D411E94BE3000DA8A08 /* CoreDataManager.swift */,
 				8457FF271F5B7D1700FE04B0 /* Ability+CoreDataClass.swift */,
@@ -341,23 +493,71 @@
 			buildActionMask = 2147483647;
 			files = (
 				8457FF2A1F5B7D1700FE04B0 /* Ability+CoreDataProperties.swift in Sources */,
+				843499B01FA66BD900887203 /* StealItem+CoreDataClass.swift in Sources */,
 				843C1D421E94BE3000DA8A08 /* CoreDataManager.swift in Sources */,
+				843499C71FA66BD900887203 /* APGain+CoreDataProperties.swift in Sources */,
 				843C1D111E93147000DA8A08 /* ItemGenerator.xcdatamodeld in Sources */,
+				843499A01FA66BD900887203 /* KillingBlow+CoreDataClass.swift in Sources */,
 				8457FF2C1F5CAE1A00FE04B0 /* AbilityTableViewCell.swift in Sources */,
+				843499C11FA66BD900887203 /* LifeGain+CoreDataProperties.swift in Sources */,
+				843499B21FA66BD900887203 /* Protection+CoreDataClass.swift in Sources */,
 				84340FA01F81B9020074C4F0 /* AbilityEffectViewController.swift in Sources */,
 				84F557FD1F646F94002AC96D /* AbilityDetailViewController.swift in Sources */,
+				843499B11FA66BD900887203 /* StealItem+CoreDataProperties.swift in Sources */,
+				843499B61FA66BD900887203 /* LifeLoss+CoreDataClass.swift in Sources */,
+				843499AA1FA66BD900887203 /* GlancingBlow+CoreDataClass.swift in Sources */,
+				843499C01FA66BD900887203 /* LifeGain+CoreDataClass.swift in Sources */,
+				843499991FA66BD900887203 /* Cleanse+CoreDataProperties.swift in Sources */,
+				843499BB1FA66BD900887203 /* Interrupt+CoreDataProperties.swift in Sources */,
+				843499A71FA66BD900887203 /* StealMoney+CoreDataProperties.swift in Sources */,
 				84340FA21F9BCFA70074C4F0 /* AbilityDetailTableViewCell.swift in Sources */,
+				843499A41FA66BD900887203 /* Purge+CoreDataClass.swift in Sources */,
+				843499B91FA66BD900887203 /* PercentDamage+CoreDataProperties.swift in Sources */,
+				843499B71FA66BD900887203 /* LifeLoss+CoreDataProperties.swift in Sources */,
+				843499BD1FA66BD900887203 /* Knockback+CoreDataProperties.swift in Sources */,
 				8457FF291F5B7D1700FE04B0 /* Ability+CoreDataClass.swift in Sources */,
+				843499C61FA66BD900887203 /* APGain+CoreDataClass.swift in Sources */,
+				843499AC1FA66BD900887203 /* Uncounterable+CoreDataClass.swift in Sources */,
+				843499B81FA66BD900887203 /* PercentDamage+CoreDataClass.swift in Sources */,
+				843499A81FA66BD900887203 /* StealStat+CoreDataClass.swift in Sources */,
+				843499B41FA66BD900887203 /* Barrier+CoreDataClass.swift in Sources */,
+				843499C41FA66BD900887203 /* ActionReset+CoreDataClass.swift in Sources */,
+				8434999F1FA66BD900887203 /* APDamage+CoreDataProperties.swift in Sources */,
+				843499BC1FA66BD900887203 /* Knockback+CoreDataClass.swift in Sources */,
 				843C1D0B1E93146F00DA8A08 /* ViewController.swift in Sources */,
 				8440022F1F65F351006A0ABC /* AddAbilityViewController.swift in Sources */,
+				843499A61FA66BD900887203 /* StealMoney+CoreDataClass.swift in Sources */,
 				843C1D3F1E9356F500DA8A08 /* Item+CoreDataClass.swift in Sources */,
 				84340F8D1F76D0B70074C4F0 /* AbilityDetailTableViewController.swift in Sources */,
+				843499B31FA66BD900887203 /* Protection+CoreDataProperties.swift in Sources */,
+				843499B51FA66BD900887203 /* Barrier+CoreDataProperties.swift in Sources */,
 				84F7B1B11E9C784900ED4F8C /* ItemTableViewCell.swift in Sources */,
+				843499A11FA66BD900887203 /* KillingBlow+CoreDataProperties.swift in Sources */,
+				843499AB1FA66BD900887203 /* GlancingBlow+CoreDataProperties.swift in Sources */,
 				8457FF1B1F5B4EBD00FE04B0 /* AbilityListViewController.swift in Sources */,
+				8434999A1FA66BD900887203 /* ResistPiercing+CoreDataClass.swift in Sources */,
+				843499A31FA66BD900887203 /* PerfectAim+CoreDataProperties.swift in Sources */,
+				843499C51FA66BD900887203 /* ActionReset+CoreDataProperties.swift in Sources */,
+				8434999B1FA66BD900887203 /* ResistPiercing+CoreDataProperties.swift in Sources */,
+				843499C31FA66BD900887203 /* DefensePiercing+CoreDataProperties.swift in Sources */,
+				8434999C1FA66BD900887203 /* Invinciblity+CoreDataClass.swift in Sources */,
+				843499A51FA66BD900887203 /* Purge+CoreDataProperties.swift in Sources */,
+				843499AF1FA66BD900887203 /* Critical+CoreDataProperties.swift in Sources */,
 				84F7B1B31E9ED2BE00ED4F8C /* ItemDetailViewController.swift in Sources */,
 				84052A5B1E95E3B000EE7AF1 /* AddItemViewController.swift in Sources */,
+				843499A91FA66BD900887203 /* StealStat+CoreDataProperties.swift in Sources */,
+				843499BE1FA66BD900887203 /* ChainAbility+CoreDataClass.swift in Sources */,
 				843C1D091E93146F00DA8A08 /* AppDelegate.swift in Sources */,
+				843499BA1FA66BD900887203 /* Interrupt+CoreDataClass.swift in Sources */,
+				843499AE1FA66BD900887203 /* Critical+CoreDataClass.swift in Sources */,
+				8434999E1FA66BD900887203 /* APDamage+CoreDataClass.swift in Sources */,
+				843499AD1FA66BD900887203 /* Uncounterable+CoreDataProperties.swift in Sources */,
 				843C1D401E9356F500DA8A08 /* Item+CoreDataProperties.swift in Sources */,
+				843499C21FA66BD900887203 /* DefensePiercing+CoreDataClass.swift in Sources */,
+				843499981FA66BD900887203 /* Cleanse+CoreDataClass.swift in Sources */,
+				8434999D1FA66BD900887203 /* Invinciblity+CoreDataProperties.swift in Sources */,
+				843499BF1FA66BD900887203 /* ChainAbility+CoreDataProperties.swift in Sources */,
+				843499A21FA66BD900887203 /* PerfectAim+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
