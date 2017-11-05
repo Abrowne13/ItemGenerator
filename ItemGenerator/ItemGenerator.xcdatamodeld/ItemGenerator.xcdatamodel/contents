@@ -65,6 +65,12 @@
         <attribute name="percentModifier" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
+    <entity name="Guard" representedClassName="Guard" syncable="YES">
+        <attribute name="amountGuarded" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="percentGuarded" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <entity name="Interrupt" representedClassName="Interrupt" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -188,5 +194,6 @@
         <element name="StealMoney" positionX="-153" positionY="234" width="128" height="105"/>
         <element name="StealStat" positionX="-144" positionY="243" width="128" height="120"/>
         <element name="Uncounterable" positionX="-117" positionY="270" width="128" height="75"/>
+        <element name="Guard" positionX="-153" positionY="234" width="128" height="105"/>
     </elements>
 </model>

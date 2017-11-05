@@ -29,15 +29,19 @@ class AbilityEffectViewController: UIViewController,UITableViewDelegate,UITableV
         return Ability.AbilityEffects.AbilityEffectsArray.count
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableCell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "abilityEffectCell") as UITableViewCell!
         tableCell.textLabel?.text = Ability.AbilityEffects.AbilityEffectsArray[indexPath.row]
         return tableCell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "AbilityEffectDetail") as! AbilityEffectDetailViewController
+        detailVC.abilityEffectName = Ability.AbilityEffects.AbilityEffectsArray[indexPath.row]
+        self.navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
+    
 
 
     /*

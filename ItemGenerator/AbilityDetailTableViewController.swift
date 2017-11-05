@@ -239,7 +239,6 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     }
     
     func keyboardWillShow(sender: NSNotification) {
-        print(abilityDetailTableView.contentInset)
         let contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 150, right: 0)
         abilityDetailTableView.contentInset = contentInset
         abilityDetailTableView.scrollIndicatorInsets = contentInset

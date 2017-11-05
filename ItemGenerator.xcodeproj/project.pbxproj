@@ -71,6 +71,9 @@
 		843C1D401E9356F500DA8A08 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C1D3E1E9356F500DA8A08 /* Item+CoreDataProperties.swift */; };
 		843C1D421E94BE3000DA8A08 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C1D411E94BE3000DA8A08 /* CoreDataManager.swift */; };
 		8440022F1F65F351006A0ABC /* AddAbilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440022E1F65F351006A0ABC /* AddAbilityViewController.swift */; };
+		844F7E371FA9845800432AF3 /* AbilityEffectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F7E361FA9845800432AF3 /* AbilityEffectDetailViewController.swift */; };
+		844F7E3A1FA9889500432AF3 /* Guard+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F7E381FA9889500432AF3 /* Guard+CoreDataClass.swift */; };
+		844F7E3B1FA9889500432AF3 /* Guard+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F7E391FA9889500432AF3 /* Guard+CoreDataProperties.swift */; };
 		8457FF1B1F5B4EBD00FE04B0 /* AbilityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457FF1A1F5B4EBD00FE04B0 /* AbilityListViewController.swift */; };
 		8457FF291F5B7D1700FE04B0 /* Ability+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457FF271F5B7D1700FE04B0 /* Ability+CoreDataClass.swift */; };
 		8457FF2A1F5B7D1700FE04B0 /* Ability+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8457FF281F5B7D1700FE04B0 /* Ability+CoreDataProperties.swift */; };
@@ -168,6 +171,9 @@
 		843C1D3E1E9356F500DA8A08 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataProperties.swift"; path = "../Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		843C1D411E94BE3000DA8A08 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		8440022E1F65F351006A0ABC /* AddAbilityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAbilityViewController.swift; sourceTree = "<group>"; };
+		844F7E361FA9845800432AF3 /* AbilityEffectDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityEffectDetailViewController.swift; sourceTree = "<group>"; };
+		844F7E381FA9889500432AF3 /* Guard+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Guard+CoreDataClass.swift"; path = "AbilityEffectsCoreData/Guard+CoreDataClass.swift"; sourceTree = "<group>"; };
+		844F7E391FA9889500432AF3 /* Guard+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Guard+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/Guard+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8457FF1A1F5B4EBD00FE04B0 /* AbilityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityListViewController.swift; sourceTree = "<group>"; };
 		8457FF271F5B7D1700FE04B0 /* Ability+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ability+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8457FF281F5B7D1700FE04B0 /* Ability+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ability+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -206,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				84340F9F1F81B9020074C4F0 /* AbilityEffectViewController.swift */,
+				844F7E361FA9845800432AF3 /* AbilityEffectDetailViewController.swift */,
 			);
 			name = "Ability Effect ViewControllers";
 			sourceTree = "<group>";
@@ -213,6 +220,8 @@
 		843499671FA66AA200887203 /* AbilityEffectCoreData */ = {
 			isa = PBXGroup;
 			children = (
+				844F7E381FA9889500432AF3 /* Guard+CoreDataClass.swift */,
+				844F7E391FA9889500432AF3 /* Guard+CoreDataProperties.swift */,
 				843499681FA66BD900887203 /* Cleanse+CoreDataClass.swift */,
 				843499691FA66BD900887203 /* Cleanse+CoreDataProperties.swift */,
 				8434996A1FA66BD900887203 /* ResistPiercing+CoreDataClass.swift */,
@@ -499,6 +508,7 @@
 				843C1D111E93147000DA8A08 /* ItemGenerator.xcdatamodeld in Sources */,
 				843499A01FA66BD900887203 /* KillingBlow+CoreDataClass.swift in Sources */,
 				8457FF2C1F5CAE1A00FE04B0 /* AbilityTableViewCell.swift in Sources */,
+				844F7E371FA9845800432AF3 /* AbilityEffectDetailViewController.swift in Sources */,
 				843499C11FA66BD900887203 /* LifeGain+CoreDataProperties.swift in Sources */,
 				843499B21FA66BD900887203 /* Protection+CoreDataClass.swift in Sources */,
 				84340FA01F81B9020074C4F0 /* AbilityEffectViewController.swift in Sources */,
@@ -506,6 +516,7 @@
 				843499B11FA66BD900887203 /* StealItem+CoreDataProperties.swift in Sources */,
 				843499B61FA66BD900887203 /* LifeLoss+CoreDataClass.swift in Sources */,
 				843499AA1FA66BD900887203 /* GlancingBlow+CoreDataClass.swift in Sources */,
+				844F7E3A1FA9889500432AF3 /* Guard+CoreDataClass.swift in Sources */,
 				843499C01FA66BD900887203 /* LifeGain+CoreDataClass.swift in Sources */,
 				843499991FA66BD900887203 /* Cleanse+CoreDataProperties.swift in Sources */,
 				843499BB1FA66BD900887203 /* Interrupt+CoreDataProperties.swift in Sources */,
@@ -526,6 +537,7 @@
 				843499BC1FA66BD900887203 /* Knockback+CoreDataClass.swift in Sources */,
 				843C1D0B1E93146F00DA8A08 /* ViewController.swift in Sources */,
 				8440022F1F65F351006A0ABC /* AddAbilityViewController.swift in Sources */,
+				844F7E3B1FA9889500432AF3 /* Guard+CoreDataProperties.swift in Sources */,
 				843499A61FA66BD900887203 /* StealMoney+CoreDataClass.swift in Sources */,
 				843C1D3F1E9356F500DA8A08 /* Item+CoreDataClass.swift in Sources */,
 				84340F8D1F76D0B70074C4F0 /* AbilityDetailTableViewController.swift in Sources */,
