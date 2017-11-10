@@ -1,5 +1,5 @@
 //
-//  Invinciblity+CoreDataClass.swift
+//  Invincibility+CoreDataClass.swift
 //  ItemGenerator
 //
 //  Created by Admin on 10/29/17.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(Invinciblity)
-public class Invinciblity: NSManagedObject {
+@objc(Invincibility)
+public class Invincibility: NSManagedObject {
 
 }

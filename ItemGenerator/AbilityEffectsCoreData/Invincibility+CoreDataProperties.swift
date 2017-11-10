@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 
-extension Invinciblity {
+extension Invincibility {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Invinciblity> {
-        return NSFetchRequest<Invinciblity>(entityName: "Invinciblity");
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Invincibility> {
+        return NSFetchRequest<Invincibility>(entityName: "Invincibility");
     }
 
     @NSManaged public var procRate: Float

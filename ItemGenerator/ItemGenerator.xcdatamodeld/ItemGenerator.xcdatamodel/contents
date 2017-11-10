@@ -75,7 +75,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
-    <entity name="Invinciblity" representedClassName="Invinciblity" syncable="YES">
+    <entity name="Invincibility" representedClassName="Invincibility" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="turnDuration" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -178,8 +178,9 @@
         <element name="Critical" positionX="-99" positionY="288" width="128" height="90"/>
         <element name="DefensePiercing" positionX="-153" positionY="234" width="128" height="105"/>
         <element name="GlancingBlow" positionX="-153" positionY="234" width="128" height="90"/>
+        <element name="Guard" positionX="-153" positionY="234" width="128" height="105"/>
         <element name="Interrupt" positionX="-108" positionY="279" width="128" height="75"/>
-        <element name="Invinciblity" positionX="-153" positionY="234" width="128" height="90"/>
+        <element name="Invincibility" positionX="-153" positionY="234" width="128" height="90"/>
         <element name="Item" positionX="-252" positionY="117" width="128" height="285"/>
         <element name="KillingBlow" positionX="-126" positionY="261" width="128" height="75"/>
         <element name="Knockback" positionX="-126" positionY="261" width="128" height="90"/>
@@ -194,6 +195,5 @@
         <element name="StealMoney" positionX="-153" positionY="234" width="128" height="105"/>
         <element name="StealStat" positionX="-144" positionY="243" width="128" height="120"/>
         <element name="Uncounterable" positionX="-117" positionY="270" width="128" height="75"/>
-        <element name="Guard" positionX="-153" positionY="234" width="128" height="105"/>
     </elements>
 </model>

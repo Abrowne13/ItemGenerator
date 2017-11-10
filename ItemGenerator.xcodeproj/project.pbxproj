@@ -15,8 +15,8 @@
 		843499991FA66BD900887203 /* Cleanse+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499691FA66BD900887203 /* Cleanse+CoreDataProperties.swift */; };
 		8434999A1FA66BD900887203 /* ResistPiercing+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434996A1FA66BD900887203 /* ResistPiercing+CoreDataClass.swift */; };
 		8434999B1FA66BD900887203 /* ResistPiercing+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434996B1FA66BD900887203 /* ResistPiercing+CoreDataProperties.swift */; };
-		8434999C1FA66BD900887203 /* Invinciblity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434996C1FA66BD900887203 /* Invinciblity+CoreDataClass.swift */; };
-		8434999D1FA66BD900887203 /* Invinciblity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434996D1FA66BD900887203 /* Invinciblity+CoreDataProperties.swift */; };
+		8434999C1FA66BD900887203 /* Invincibility+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434996C1FA66BD900887203 /* Invincibility+CoreDataClass.swift */; };
+		8434999D1FA66BD900887203 /* Invincibility+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434996D1FA66BD900887203 /* Invincibility+CoreDataProperties.swift */; };
 		8434999E1FA66BD900887203 /* APDamage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434996E1FA66BD900887203 /* APDamage+CoreDataClass.swift */; };
 		8434999F1FA66BD900887203 /* APDamage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434996F1FA66BD900887203 /* APDamage+CoreDataProperties.swift */; };
 		843499A01FA66BD900887203 /* KillingBlow+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843499701FA66BD900887203 /* KillingBlow+CoreDataClass.swift */; };
@@ -109,8 +109,8 @@
 		843499691FA66BD900887203 /* Cleanse+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Cleanse+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/Cleanse+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8434996A1FA66BD900887203 /* ResistPiercing+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ResistPiercing+CoreDataClass.swift"; path = "AbilityEffectsCoreData/ResistPiercing+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8434996B1FA66BD900887203 /* ResistPiercing+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ResistPiercing+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/ResistPiercing+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		8434996C1FA66BD900887203 /* Invinciblity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Invinciblity+CoreDataClass.swift"; path = "AbilityEffectsCoreData/Invinciblity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		8434996D1FA66BD900887203 /* Invinciblity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Invinciblity+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/Invinciblity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8434996C1FA66BD900887203 /* Invincibility+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Invincibility+CoreDataClass.swift"; path = "AbilityEffectsCoreData/Invincibility+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8434996D1FA66BD900887203 /* Invincibility+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Invincibility+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/Invincibility+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8434996E1FA66BD900887203 /* APDamage+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "APDamage+CoreDataClass.swift"; path = "AbilityEffectsCoreData/APDamage+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8434996F1FA66BD900887203 /* APDamage+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "APDamage+CoreDataProperties.swift"; path = "AbilityEffectsCoreData/APDamage+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		843499701FA66BD900887203 /* KillingBlow+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "KillingBlow+CoreDataClass.swift"; path = "AbilityEffectsCoreData/KillingBlow+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -226,8 +226,8 @@
 				843499691FA66BD900887203 /* Cleanse+CoreDataProperties.swift */,
 				8434996A1FA66BD900887203 /* ResistPiercing+CoreDataClass.swift */,
 				8434996B1FA66BD900887203 /* ResistPiercing+CoreDataProperties.swift */,
-				8434996C1FA66BD900887203 /* Invinciblity+CoreDataClass.swift */,
-				8434996D1FA66BD900887203 /* Invinciblity+CoreDataProperties.swift */,
+				8434996C1FA66BD900887203 /* Invincibility+CoreDataClass.swift */,
+				8434996D1FA66BD900887203 /* Invincibility+CoreDataProperties.swift */,
 				8434996E1FA66BD900887203 /* APDamage+CoreDataClass.swift */,
 				8434996F1FA66BD900887203 /* APDamage+CoreDataProperties.swift */,
 				843499701FA66BD900887203 /* KillingBlow+CoreDataClass.swift */,
@@ -300,8 +300,8 @@
 				843C1D081E93146F00DA8A08 /* AppDelegate.swift */,
 				8457FF1C1F5B4EC700FE04B0 /* Item ViewControllers */,
 				8457FF1E1F5B4EFC00FE04B0 /* Ability ViewControllers */,
-				8457FF1D1F5B4EE100FE04B0 /* CoreData */,
 				84340F9E1F81B8C10074C4F0 /* Ability Effect ViewControllers */,
+				8457FF1D1F5B4EE100FE04B0 /* CoreData */,
 				843C1D0C1E93147000DA8A08 /* Main.storyboard */,
 				843C1D121E93147000DA8A08 /* Assets.xcassets */,
 				843C1D141E93147000DA8A08 /* LaunchScreen.storyboard */,
@@ -552,7 +552,7 @@
 				843499C51FA66BD900887203 /* ActionReset+CoreDataProperties.swift in Sources */,
 				8434999B1FA66BD900887203 /* ResistPiercing+CoreDataProperties.swift in Sources */,
 				843499C31FA66BD900887203 /* DefensePiercing+CoreDataProperties.swift in Sources */,
-				8434999C1FA66BD900887203 /* Invinciblity+CoreDataClass.swift in Sources */,
+				8434999C1FA66BD900887203 /* Invincibility+CoreDataClass.swift in Sources */,
 				843499A51FA66BD900887203 /* Purge+CoreDataProperties.swift in Sources */,
 				843499AF1FA66BD900887203 /* Critical+CoreDataProperties.swift in Sources */,
 				84F7B1B31E9ED2BE00ED4F8C /* ItemDetailViewController.swift in Sources */,
@@ -567,7 +567,7 @@
 				843C1D401E9356F500DA8A08 /* Item+CoreDataProperties.swift in Sources */,
 				843499C21FA66BD900887203 /* DefensePiercing+CoreDataClass.swift in Sources */,
 				843499981FA66BD900887203 /* Cleanse+CoreDataClass.swift in Sources */,
-				8434999D1FA66BD900887203 /* Invinciblity+CoreDataProperties.swift in Sources */,
+				8434999D1FA66BD900887203 /* Invincibility+CoreDataProperties.swift in Sources */,
 				843499BF1FA66BD900887203 /* ChainAbility+CoreDataProperties.swift in Sources */,
 				843499A21FA66BD900887203 /* PerfectAim+CoreDataClass.swift in Sources */,
 			);

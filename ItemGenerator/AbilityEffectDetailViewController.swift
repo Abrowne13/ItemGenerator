@@ -25,6 +25,9 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
     @IBOutlet weak var attribute6Label: UILabel!
     @IBOutlet weak var attribute6TextField: UITextField!
     
+    //If you ever want to play with the bottom contraint for the contentView
+    @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
+    
     
     var abilityEffectName: String!
     var abilityEffect: NSManagedObject!
@@ -55,47 +58,77 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
         let entity = NSEntityDescription.entity(forEntityName: abilityEffectName,
                                                 in: managedContext)!
         let attributes = entity.attributesByName
+        let values:NSMutableArray = []
         for attribute in attributes{
             keys.add(attribute.key)
+            values.add(attribute.value.attributeType)
+            print(attribute.value.attributeType)
         }
         
-        for case let title as String in keys{
+        for i in 0..<keys.count{
+            let title = keys[i] as! String
             if(title == "name"){
                 continue
             }
             else if(title == "procRate"){
                 procLabel.text = "procRate"
+                procTextField.keyboardType = .decimalPad
             }
             else{
+                let type = values[i] as! NSAttributeType
+                let keyBoardType:UIKeyboardType
+                if(type == NSAttributeType.integer16AttributeType){
+                    keyBoardType = .numberPad
+                }
+                else if(type == NSAttributeType.floatAttributeType){
+                    keyBoardType = .decimalPad
+                }
+                else{
+                    keyBoardType = .default
+                }
+                
                 if(attribute3Label.text == "Label"){
                     attribute3Label.text = title
                     attribute3Label.isHidden = false
                     attribute3TextField.isHidden = false
+                    attribute3TextField.keyboardType = keyBoardType
                     continue
                 }
                 if(attribute4Label.text == "Label"){
                     attribute4Label.text = title
                     attribute4Label.isHidden = false
                     attribute4TextField.isHidden = false
+                    attribute4TextField.keyboardType = keyBoardType
                     continue
                 }
                 if(attribute5Label.text == "Label"){
                     attribute5Label.text = title
                     attribute5Label.isHidden = false
                     attribute5TextField.isHidden = false
+                    attribute5TextField.keyboardType = keyBoardType
                     continue
                 }
                 if(attribute6Label.text == "Label"){
                     attribute6Label.text = title
                     attribute6Label.isHidden = false
                     attribute6TextField.isHidden = false
+                    attribute6TextField.keyboardType = keyBoardType
                     continue
                 }
             }
         }
+        self.loadPickerViewData()
         
-        
-        
+        self.abilityEffect = NSManagedObject(entity: entity,
+                                             insertInto: managedContext)
+    }
+    
+    func loadPickerViewData(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            else {
+                return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest =
             NSFetchRequest<NSManagedObject>(entityName: abilityEffectName)
         let sortDescript : NSSortDescriptor = NSSortDescriptor.init(key: "name", ascending: true)
@@ -107,12 +140,14 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
             
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
+            return
         }
-        
+        pickerRows.removeAllObjects()
         for entries in abilityEffects{
             self.pickerRows?.add(entries.value(forKey: "name") ?? "")
         }
         self.pickerRows.add("Add Entry")
+        abilityEffectDetailPicker.reloadAllComponents()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -130,6 +165,56 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch textField.tag {
+        case 1:
+            self.abilityEffect.setValue(textField.text, forKey: "name")
+        case 2:
+            self.abilityEffect.setValue(Float(textField.text!), forKey: "procRate")
+        case 3:
+            self.abilityEffect.setValue(self.valueFromTextField(textField: textField), forKey: keys[2] as! String)
+        case 4:
+            self.abilityEffect.setValue(self.valueFromTextField(textField: textField), forKey: keys[3] as! String)
+        case 5:
+            self.abilityEffect.setValue(self.valueFromTextField(textField: textField), forKey: keys[4] as! String)
+        case 6:
+            self.abilityEffect.setValue(self.valueFromTextField(textField: textField), forKey: keys[5] as! String)
+        default:
+            break
+        }
+    }
+    
+    func valueFromTextField(textField: UITextField)->Any{
+        if(textField.keyboardType == .numberPad) {
+            return Int(textField.text!) ?? 0
+        }
+        else if(textField.keyboardType == .decimalPad){
+            return Float(textField.text!) ?? 0
+        }
+        else{
+            return textField.text ?? ""
+        }
+    }
+    
+    @IBAction func onSaveAction(_ sender: Any) {
+        let name = abilityEffect.value(forKey: "name") as! String?
+        let procRate = abilityEffect.value(forKey: "procRate") as! Float?
+        if (name != nil && procRate != nil) {
+            let context = abilityEffect.managedObjectContext;
+            do {
+                try context?.save()
+            }
+            catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+            self.loadPickerViewData()
+        }
+        else{
+            print ("Missing proc or name")
+        }
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
