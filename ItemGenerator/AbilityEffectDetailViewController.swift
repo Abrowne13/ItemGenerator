@@ -34,7 +34,11 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
     var abilityEffects: [NSManagedObject] = []
     var keys: NSMutableArray = []
     var pickerRows: NSMutableArray! = []
+    var managedContext: NSManagedObjectContext = NSManagedObjectContext.init(concurrencyType: NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType)
+    var entity: NSEntityDescription = NSEntityDescription()
 
+    //MARK: Lifecycle functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -54,15 +58,14 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
             else {
                 return
         }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: abilityEffectName,
+        managedContext = appDelegate.persistentContainer.viewContext
+        entity = NSEntityDescription.entity(forEntityName: abilityEffectName,
                                                 in: managedContext)!
         let attributes = entity.attributesByName
         let values:NSMutableArray = []
         for attribute in attributes{
             keys.add(attribute.key)
             values.add(attribute.value.attributeType)
-            print(attribute.value.attributeType)
         }
         
         for i in 0..<keys.count{
@@ -118,19 +121,18 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
             }
         }
         self.loadPickerViewData()
-        
-        self.abilityEffect = NSManagedObject(entity: entity,
-                                             insertInto: managedContext)
+        self.setSelectedRow(row: 0)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        managedContext.reset()
+    }
+    
+    //MARK: PickerView Functions
+    
     func loadPickerViewData(){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
-            else {
-                return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest =
-            NSFetchRequest<NSManagedObject>(entityName: abilityEffectName)
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: abilityEffectName)
         let sortDescript : NSSortDescriptor = NSSortDescriptor.init(key: "name", ascending: true)
         let sortDescripts = [sortDescript]
         fetchRequest.sortDescriptors = sortDescripts
@@ -163,8 +165,22 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+        self.setSelectedRow(row: row)
     }
+    
+    func setSelectedRow(row:Int) {
+        if(row < abilityEffects.count){
+            abilityEffect = abilityEffects[row]
+        }
+        else{
+            abilityEffect = NSManagedObject(entity: entity,
+                                            insertInto: managedContext)
+        }
+        self.setTextFieldsFromAbilityEffect(setEffect: abilityEffect)
+    }
+    
+    
+    //MARK: TextField Functions
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField.tag {
@@ -197,6 +213,72 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
         }
     }
     
+    func setTextFieldsFromAbilityEffect(setEffect:NSManagedObject){
+        self.clearTextFields()
+        if (setEffect.value(forKey: "name") == nil) {
+            return
+        }
+        else{
+            for i in 0..<keys.count{
+                let key = keys[i] as! String
+                if (key == "name") {
+                    nameTextField.text = setEffect.value(forKey: key) as! String!
+                }
+                else if (key == "procRate"){
+                    let proc = setEffect.value(forKey: key) as! Float!
+                    procTextField.text = proc?.description
+                }
+                else{
+                    if (key == attribute3Label.text && !attribute3TextField.isHidden) {
+                        attribute3TextField.text = self.stringFromManagedObjectWithKeyAndTextField(managedObject: setEffect, key: key, textField: attribute3TextField)
+                    }
+                    else if (key == attribute4Label.text && !attribute4TextField.isHidden) {
+                        attribute4TextField.text = self.stringFromManagedObjectWithKeyAndTextField(managedObject: setEffect, key: key, textField: attribute4TextField)
+                    }
+                    else if (key == attribute5Label.text && !attribute5TextField.isHidden) {
+                        attribute5TextField.text = self.stringFromManagedObjectWithKeyAndTextField(managedObject: setEffect, key: key, textField: attribute5TextField)
+                    }
+                    else if (key == attribute6Label.text && !attribute6TextField.isHidden) {
+                        attribute6TextField.text = self.stringFromManagedObjectWithKeyAndTextField(managedObject: setEffect, key: key, textField: attribute6TextField)
+                    }
+                }
+            }
+        }
+    }
+    
+    func stringFromManagedObjectWithKeyAndTextField(managedObject: NSManagedObject, key:String, textField:UITextField) -> String{
+            if(textField.keyboardType == .numberPad){
+                let value = managedObject.value(forKey: key) as! Int!
+                return (value?.description)!
+            }
+            else if(attribute3TextField.keyboardType == .decimalPad){
+                let value = managedObject.value(forKey: key) as! Int!
+                return (value?.description)!
+            }
+            else{
+                return managedObject.value(forKey: key) as! String!
+            }
+    }
+    
+    func clearTextFields(){
+        nameTextField.text = ""
+        procTextField.text = ""
+        if (!attribute3TextField.isHidden) {
+            attribute3TextField.text = ""
+        }
+        if (!attribute4TextField.isHidden) {
+            attribute4TextField.text = ""
+        }
+        if (!attribute5TextField.isHidden) {
+            attribute5TextField.text = ""
+        }
+        if (!attribute6TextField.isHidden) {
+            attribute6TextField.text = ""
+        }
+    }
+    
+    //MARK: Save function and ect.
+    
     @IBAction func onSaveAction(_ sender: Any) {
         let name = abilityEffect.value(forKey: "name") as! String?
         let procRate = abilityEffect.value(forKey: "procRate") as! Float?
@@ -211,10 +293,27 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
             self.loadPickerViewData()
         }
         else{
-            print ("Missing proc or name")
+            let alert = UIAlertController(title: "Missing proc or name", message: "", preferredStyle: UIAlertControllerStyle.alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+                
+            })
+            alert.addAction(okAction)
+            self.present(alert,animated:false,completion:nil)
         }
     }
     
+    @IBAction func onDeleteAction(_ sender: Any) {
+        if (abilityEffectDetailPicker.selectedRow(inComponent: 0) < (pickerRows.count - 1)) {
+            managedContext.delete(abilityEffect)
+            do {
+                try managedContext.save()
+            }
+            catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+            loadPickerViewData()
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

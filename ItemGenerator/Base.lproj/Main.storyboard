@@ -967,6 +967,14 @@
                                                     <outlet property="dataSource" destination="yQM-NO-Ate" id="ZIG-rq-kd5"/>
                                                 </connections>
                                             </pickerView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAu-P1-6NH">
+                                                <rect key="frame" x="281" y="446" width="45" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Delete"/>
+                                                <connections>
+                                                    <action selector="onDeleteAction:" destination="yQM-NO-Ate" eventType="touchUpInside" id="qo2-cV-kkb"/>
+                                                </connections>
+                                            </button>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOz-dW-lAo">
                                                 <rect key="frame" x="255" y="340" width="97" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
