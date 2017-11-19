@@ -49,6 +49,8 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
         self.attribute4TextField.tag = 4
         self.attribute5TextField.tag = 5
         self.attribute6TextField.tag = 6
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,11 +73,13 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
         for i in 0..<keys.count{
             let title = keys[i] as! String
             if(title == "name"){
+                nameTextField.tag = i
                 continue
             }
             else if(title == "procRate"){
                 procLabel.text = "procRate"
                 procTextField.keyboardType = .decimalPad
+                procTextField.tag = i
             }
             else{
                 let type = values[i] as! NSAttributeType
@@ -95,6 +99,7 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
                     attribute3Label.isHidden = false
                     attribute3TextField.isHidden = false
                     attribute3TextField.keyboardType = keyBoardType
+                    attribute3TextField.tag = i
                     continue
                 }
                 if(attribute4Label.text == "Label"){
@@ -102,6 +107,7 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
                     attribute4Label.isHidden = false
                     attribute4TextField.isHidden = false
                     attribute4TextField.keyboardType = keyBoardType
+                    attribute4TextField.tag = i
                     continue
                 }
                 if(attribute5Label.text == "Label"){
@@ -109,6 +115,7 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
                     attribute5Label.isHidden = false
                     attribute5TextField.isHidden = false
                     attribute5TextField.keyboardType = keyBoardType
+                    attribute5TextField.tag = i
                     continue
                 }
                 if(attribute6Label.text == "Label"){
@@ -116,6 +123,7 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
                     attribute6Label.isHidden = false
                     attribute6TextField.isHidden = false
                     attribute6TextField.keyboardType = keyBoardType
+                    attribute6TextField.tag = i
                     continue
                 }
             }
@@ -183,21 +191,16 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
     //MARK: TextField Functions
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        switch textField.tag {
-        case 1:
+        let key = keys[textField.tag] as! String
+        
+        if(key == "name"){
             self.abilityEffect.setValue(textField.text, forKey: "name")
-        case 2:
+        }
+        else if(key == "procRate"){
             self.abilityEffect.setValue(Float(textField.text!), forKey: "procRate")
-        case 3:
-            self.abilityEffect.setValue(self.valueFromTextField(textField: textField), forKey: keys[2] as! String)
-        case 4:
-            self.abilityEffect.setValue(self.valueFromTextField(textField: textField), forKey: keys[3] as! String)
-        case 5:
-            self.abilityEffect.setValue(self.valueFromTextField(textField: textField), forKey: keys[4] as! String)
-        case 6:
-            self.abilityEffect.setValue(self.valueFromTextField(textField: textField), forKey: keys[5] as! String)
-        default:
-            break
+        }
+        else {
+            self.abilityEffect.setValue(self.valueFromTextField(textField: textField), forKey: key)
         }
     }
     
@@ -230,34 +233,35 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
                 }
                 else{
                     if (key == attribute3Label.text && !attribute3TextField.isHidden) {
-                        attribute3TextField.text = self.stringFromManagedObjectWithKeyAndTextField(managedObject: setEffect, key: key, textField: attribute3TextField)
+                        attribute3TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
                     }
                     else if (key == attribute4Label.text && !attribute4TextField.isHidden) {
-                        attribute4TextField.text = self.stringFromManagedObjectWithKeyAndTextField(managedObject: setEffect, key: key, textField: attribute4TextField)
+                        attribute4TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
                     }
                     else if (key == attribute5Label.text && !attribute5TextField.isHidden) {
-                        attribute5TextField.text = self.stringFromManagedObjectWithKeyAndTextField(managedObject: setEffect, key: key, textField: attribute5TextField)
+                        attribute5TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
                     }
                     else if (key == attribute6Label.text && !attribute6TextField.isHidden) {
-                        attribute6TextField.text = self.stringFromManagedObjectWithKeyAndTextField(managedObject: setEffect, key: key, textField: attribute6TextField)
+                        attribute6TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
                     }
                 }
             }
         }
     }
     
-    func stringFromManagedObjectWithKeyAndTextField(managedObject: NSManagedObject, key:String, textField:UITextField) -> String{
-            if(textField.keyboardType == .numberPad){
-                let value = managedObject.value(forKey: key) as! Int!
-                return (value?.description)!
-            }
-            else if(attribute3TextField.keyboardType == .decimalPad){
-                let value = managedObject.value(forKey: key) as! Int!
-                return (value?.description)!
-            }
+    func stringFromManagedObjectWithKey(managedObject: NSManagedObject, key:String) -> String{
+        let value = managedObject.value(forKey: key)
+        if((value as? Float) != nil){
+            if((value as! Float).truncatingRemainder(dividingBy: 1) == 0){
+                return ((value as! Int).description)
+                }
             else{
-                return managedObject.value(forKey: key) as! String!
+                return ((value as! Float).description)
             }
+        }
+        else{
+            return value as! String
+        }
     }
     
     func clearTextFields(){
@@ -280,6 +284,7 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
     //MARK: Save function and ect.
     
     @IBAction func onSaveAction(_ sender: Any) {
+        self.view.endEditing(true)
         let name = abilityEffect.value(forKey: "name") as! String?
         let procRate = abilityEffect.value(forKey: "procRate") as! Float?
         if (name != nil && procRate != nil) {
@@ -313,6 +318,18 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
             }
             loadPickerViewData()
         }
+        else{
+            let alert = UIAlertController(title: "Cannot delete nonexistant ability effect", message: "", preferredStyle: UIAlertControllerStyle.alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+                
+            })
+            alert.addAction(okAction)
+            self.present(alert,animated:false,completion:nil)
+        }
+    }
+    
+    func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
