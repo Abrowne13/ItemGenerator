@@ -20,5 +20,6 @@ extension Guard {
     @NSManaged public var procRate: Float
     @NSManaged public var percentGuarded: Float
     @NSManaged public var amountGuarded: Int16
+    @NSManaged public var effectType: String?
 
 }

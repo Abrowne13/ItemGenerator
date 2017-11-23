@@ -19,5 +19,6 @@ extension Knockback {
     @NSManaged public var procRate: Float
     @NSManaged public var numberOfSpace: Int16
     @NSManaged public var name: String
+    @NSManaged public var effectType: String?
 
 }

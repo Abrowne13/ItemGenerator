@@ -20,5 +20,6 @@ extension StealMoney {
     @NSManaged public var amountStolen: Int16
     @NSManaged public var amountPerDamage: Float
     @NSManaged public var name: String
+    @NSManaged public var effectType: String?
 
 }

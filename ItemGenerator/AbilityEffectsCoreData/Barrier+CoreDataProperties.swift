@@ -21,5 +21,6 @@ extension Barrier {
     @NSManaged public var statBarred: String?
     @NSManaged public var turnDuration: Int16
     @NSManaged public var name: String
+    @NSManaged public var effectType: String?
 
 }

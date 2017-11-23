@@ -20,5 +20,6 @@ extension APDamage {
     @NSManaged public var amountDamage: Int16
     @NSManaged public var percentDamage: Float
     @NSManaged public var name: String
+    @NSManaged public var effectType: String?
 
 }

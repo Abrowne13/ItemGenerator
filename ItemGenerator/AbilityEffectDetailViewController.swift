@@ -66,6 +66,9 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
         let attributes = entity.attributesByName
         let values:NSMutableArray = []
         for attribute in attributes{
+            if(attribute.key == "effectType"){
+                continue
+            }
             keys.add(attribute.key)
             values.add(attribute.value.attributeType)
         }
@@ -288,6 +291,9 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
         let name = abilityEffect.value(forKey: "name") as! String?
         let procRate = abilityEffect.value(forKey: "procRate") as! Float?
         if (name != nil && procRate != nil) {
+            if(abilityEffect.value(forKey: "effectType")==nil){
+                abilityEffect.setValue(abilityEffectName, forKey: "effectType")
+            }
             let context = abilityEffect.managedObjectContext;
             do {
                 try context?.save()

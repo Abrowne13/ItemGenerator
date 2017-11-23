@@ -21,5 +21,6 @@ extension APGain {
     @NSManaged public var percentGain: Float
     @NSManaged public var amountPerDamage: Float
     @NSManaged public var name: String
+    @NSManaged public var effectType: String?
 
 }

@@ -18,11 +18,13 @@
         <attribute name="targetType" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="ActionReset" representedClassName="ActionReset" syncable="YES">
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="APDamage" representedClassName="APDamage" syncable="YES">
         <attribute name="amountDamage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="percentDamage" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -30,52 +32,62 @@
     <entity name="APGain" representedClassName="APGain" syncable="YES">
         <attribute name="amountGain" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="amountPerDamage" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="percentGain" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Barrier" representedClassName="Barrier" syncable="YES">
         <attribute name="amountBarred" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="statBarred" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="turnDuration" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="ChainAbility" representedClassName="ChainAbility" syncable="YES">
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Cleanse" representedClassName="Cleanse" syncable="YES">
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Critical" representedClassName="Critical" syncable="YES">
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="percentModifier" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="DefensePiercing" representedClassName="DefensePiercing" syncable="YES">
         <attribute name="amountPierced" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="percentagePierced" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="GlancingBlow" representedClassName="GlancingBlow" syncable="YES">
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="percentModifier" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Guard" representedClassName="Guard" syncable="YES">
         <attribute name="amountGuarded" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="percentGuarded" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Interrupt" representedClassName="Interrupt" syncable="YES">
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Invincibility" representedClassName="Invincibility" syncable="YES">
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="turnDuration" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -99,10 +111,12 @@
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="KillingBlow" representedClassName="KillingBlow" syncable="YES">
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Knockback" representedClassName="Knockback" syncable="YES">
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numberOfSpace" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -110,6 +124,7 @@
     <entity name="LifeGain" representedClassName="LifeGain" syncable="YES">
         <attribute name="amountGain" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="amountPerDamage" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="percentGain" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -117,83 +132,93 @@
     <entity name="LifeLoss" representedClassName="LifeLoss" syncable="YES">
         <attribute name="amountLoss" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="amountPerDamage" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="percentLoss" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="PercentDamage" representedClassName="PercentDamage" syncable="YES">
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="percentModifier" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="PerfectAim" representedClassName="PerfectAim" syncable="YES">
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Protection" representedClassName="Protection" syncable="YES">
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="statProtected" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="turnDuration" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Purge" representedClassName="Purge" syncable="YES">
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="ResistPiercing" representedClassName="ResistPiercing" syncable="YES">
         <attribute name="amountPierced" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="percentagePierced" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="StealItem" representedClassName="StealItem" syncable="YES">
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="StealMoney" representedClassName="StealMoney" syncable="YES">
         <attribute name="amountPerDamage" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="amountStolen" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="StealStat" representedClassName="StealStat" syncable="YES">
         <attribute name="amountPerDamage" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="amountStolen" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="statStolen" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Uncounterable" representedClassName="Uncounterable" syncable="YES">
+        <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
         <element name="Ability" positionX="-54" positionY="108" width="128" height="268"/>
-        <element name="ActionReset" positionX="-135" positionY="252" width="128" height="75"/>
-        <element name="APDamage" positionX="-144" positionY="243" width="128" height="105"/>
-        <element name="APGain" positionX="-135" positionY="252" width="128" height="120"/>
-        <element name="Barrier" positionX="-117" positionY="270" width="128" height="120"/>
-        <element name="ChainAbility" positionX="-126" positionY="261" width="128" height="75"/>
-        <element name="Cleanse" positionX="-108" positionY="279" width="128" height="75"/>
-        <element name="Critical" positionX="-99" positionY="288" width="128" height="90"/>
-        <element name="DefensePiercing" positionX="-153" positionY="234" width="128" height="105"/>
-        <element name="GlancingBlow" positionX="-153" positionY="234" width="128" height="90"/>
-        <element name="Guard" positionX="-153" positionY="234" width="128" height="105"/>
-        <element name="Interrupt" positionX="-108" positionY="279" width="128" height="75"/>
-        <element name="Invincibility" positionX="-153" positionY="234" width="128" height="90"/>
+        <element name="ActionReset" positionX="-135" positionY="252" width="128" height="90"/>
+        <element name="APDamage" positionX="-144" positionY="243" width="128" height="120"/>
+        <element name="APGain" positionX="-135" positionY="252" width="128" height="135"/>
+        <element name="Barrier" positionX="-117" positionY="270" width="128" height="135"/>
+        <element name="ChainAbility" positionX="-126" positionY="261" width="128" height="90"/>
+        <element name="Cleanse" positionX="-108" positionY="279" width="128" height="90"/>
+        <element name="Critical" positionX="-99" positionY="288" width="128" height="105"/>
+        <element name="DefensePiercing" positionX="-153" positionY="234" width="128" height="120"/>
+        <element name="GlancingBlow" positionX="-153" positionY="234" width="128" height="105"/>
+        <element name="Guard" positionX="-153" positionY="234" width="128" height="120"/>
+        <element name="Interrupt" positionX="-108" positionY="279" width="128" height="90"/>
+        <element name="Invincibility" positionX="-153" positionY="234" width="128" height="105"/>
         <element name="Item" positionX="-252" positionY="117" width="128" height="285"/>
-        <element name="KillingBlow" positionX="-126" positionY="261" width="128" height="75"/>
-        <element name="Knockback" positionX="-126" positionY="261" width="128" height="90"/>
-        <element name="LifeGain" positionX="-135" positionY="252" width="128" height="120"/>
-        <element name="LifeLoss" positionX="-126" positionY="261" width="128" height="120"/>
-        <element name="PercentDamage" positionX="-108" positionY="279" width="128" height="90"/>
-        <element name="PerfectAim" positionX="-135" positionY="252" width="128" height="75"/>
-        <element name="Protection" positionX="-99" positionY="288" width="128" height="105"/>
-        <element name="Purge" positionX="-117" positionY="270" width="128" height="75"/>
-        <element name="ResistPiercing" positionX="-144" positionY="243" width="128" height="105"/>
-        <element name="StealItem" positionX="-99" positionY="288" width="128" height="75"/>
-        <element name="StealMoney" positionX="-153" positionY="234" width="128" height="105"/>
-        <element name="StealStat" positionX="-144" positionY="243" width="128" height="120"/>
-        <element name="Uncounterable" positionX="-117" positionY="270" width="128" height="75"/>
+        <element name="KillingBlow" positionX="-126" positionY="261" width="128" height="90"/>
+        <element name="Knockback" positionX="-126" positionY="261" width="128" height="105"/>
+        <element name="LifeGain" positionX="-135" positionY="252" width="128" height="135"/>
+        <element name="LifeLoss" positionX="-126" positionY="261" width="128" height="135"/>
+        <element name="PercentDamage" positionX="-108" positionY="279" width="128" height="105"/>
+        <element name="PerfectAim" positionX="-135" positionY="252" width="128" height="90"/>
+        <element name="Protection" positionX="-99" positionY="288" width="128" height="120"/>
+        <element name="Purge" positionX="-117" positionY="270" width="128" height="90"/>
+        <element name="ResistPiercing" positionX="-144" positionY="243" width="128" height="120"/>
+        <element name="StealItem" positionX="-99" positionY="288" width="128" height="90"/>
+        <element name="StealMoney" positionX="-153" positionY="234" width="128" height="120"/>
+        <element name="StealStat" positionX="-144" positionY="243" width="128" height="135"/>
+        <element name="Uncounterable" positionX="-117" positionY="270" width="128" height="90"/>
     </elements>
 </model>

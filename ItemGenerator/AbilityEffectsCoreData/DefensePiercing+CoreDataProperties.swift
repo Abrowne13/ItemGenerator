@@ -20,5 +20,6 @@ extension DefensePiercing {
     @NSManaged public var amountPierced: Int16
     @NSManaged public var percentagePierced: Float
     @NSManaged public var name: String
+    @NSManaged public var effectType: String?
 
 }

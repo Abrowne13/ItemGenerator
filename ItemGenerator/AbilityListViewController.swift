@@ -169,7 +169,7 @@ class AbilityListViewController: UIViewController,UITableViewDataSource,UITableV
         
         let data = try! JSONSerialization.data(withJSONObject: abilityDicts, options: [])
         
-        //Lots of time spent looking for this line! Prints raw json, unescaped....
+        //Lots of time spent looking for this line! Prints raw json, but escaped....
         //let rawJSON = String(data: data, encoding: String.Encoding.utf8)
         //print(rawJSON as Any)
         

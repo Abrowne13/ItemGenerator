@@ -21,5 +21,6 @@ extension LifeLoss {
     @NSManaged public var percentLoss: Float
     @NSManaged public var amountPerDamage: Float
     @NSManaged public var name: String
+    @NSManaged public var effectType: String?
 
 }

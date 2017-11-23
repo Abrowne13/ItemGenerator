@@ -840,7 +840,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="XY9-eo-NRU"/>
+                    <navigationItem key="navigationItem" id="XY9-eo-NRU">
+                        <leftBarButtonItems>
+                            <barButtonItem title="Pull" id="n3R-N8-Hcy">
+                                <connections>
+                                    <action selector="onPullAction:" destination="6mV-GK-0as" id="xGY-I8-ppt"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Push" id="6FZ-wf-TeS">
+                                <connections>
+                                    <action selector="onPushAction:" destination="6mV-GK-0as" id="wWa-ah-DdE"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                    </navigationItem>
                     <connections>
                         <outlet property="abilityEffectTableView" destination="Nse-zd-Hd3" id="tvx-4a-aru"/>
                     </connections>

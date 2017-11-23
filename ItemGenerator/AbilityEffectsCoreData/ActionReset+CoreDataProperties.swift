@@ -18,5 +18,6 @@ extension ActionReset {
 
     @NSManaged public var procRate: Float
     @NSManaged public var name: String
+    @NSManaged public var effectType: String?
 
 }

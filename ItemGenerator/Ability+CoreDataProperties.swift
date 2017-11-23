@@ -38,7 +38,7 @@ extension Ability {
         static var Interrupt = "Interrupt"; //
         static var Guard = "Guard"
         static var Protection = "Protection"; // Damage type, duration
-        static var Invincibility = "Invinciblity"; //Duration
+        static var Invincibility = "Invincibility"; //Duration
         //Should be a status effect//static var Vulnerabilities = "Vulnerabilities"; // Damage type, duration
         static var ActionReset = "ActionReset";
         static var ChainAbility = "ChainAbility";

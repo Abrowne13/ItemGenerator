@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AbilityEffectViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
@@ -42,6 +43,39 @@ class AbilityEffectViewController: UIViewController,UITableViewDelegate,UITableV
     }
     
     
+    @IBAction func onPullAction(_ sender: Any) {
+        
+    }
+    
+    
+    @IBAction func onPushAction(_ sender: Any) {
+        var allEntryArray = [NSDictionary]()
+        
+        for entityName in Ability.AbilityEffects.AbilityEffectsArray{
+            guard let appDelegate =
+                UIApplication.shared.delegate as? AppDelegate else {
+                    return
+            }
+            
+            let managedContext =
+                appDelegate.persistentContainer.viewContext
+            let fetchRequest2 = NSFetchRequest<NSDictionary>(entityName: entityName)
+            fetchRequest2.resultType = NSFetchRequestResultType.dictionaryResultType
+            
+            //3
+            do {
+                allEntryArray += try managedContext.fetch(fetchRequest2)
+                
+            } catch let error as NSError {
+                print("Could not fetch. \(error), \(error.userInfo)")
+            }
+        }
+        let data = try! JSONSerialization.data(withJSONObject: allEntryArray, options: [])
+        
+        //Lots of time spent looking for this line! Prints raw json, but escaped....
+        let rawJSON = String(data: data, encoding: String.Encoding.utf8)
+        print(rawJSON as Any)
+    }
 
 
     /*

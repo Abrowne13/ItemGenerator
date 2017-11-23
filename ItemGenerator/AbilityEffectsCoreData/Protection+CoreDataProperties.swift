@@ -20,5 +20,6 @@ extension Protection {
     @NSManaged public var turnDuration: Int16
     @NSManaged public var statProtected: String?
     @NSManaged public var name: String
+    @NSManaged public var effectType: String?
 
 }

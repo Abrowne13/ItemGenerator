@@ -1,5 +1,5 @@
 //
-//  Invinciblity+CoreDataProperties.swift
+//  Invincibility+CoreDataProperties.swift
 //  ItemGenerator
 //
 //  Created by Admin on 10/29/17.
@@ -19,5 +19,6 @@ extension Invincibility {
     @NSManaged public var procRate: Float
     @NSManaged public var turnDuration: Float
     @NSManaged public var name: String
+    @NSManaged public var effectType: String?
 
 }
