@@ -30,7 +30,7 @@ class CoreDataManager: NSObject {
         }
     }
     
-    
+    //Need to write this for abilityEffects!!!
     func save(dict: NSDictionary, entityName: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
             else {
@@ -97,6 +97,16 @@ class CoreDataManager: NSObject {
                 print("Could not save. \(error), \(error.userInfo)")
             }
         }
+        else{
+            let managedObject = NSManagedObject(entity: entity, insertInto: privateMOC)
+            managedObject.setValuesForKeys(dict as! [String : Any])
+            do {
+                try privateMOC.save()
+            }
+            catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+        }
     }
     
     func load()-> Array<Any>{
@@ -131,25 +141,52 @@ class CoreDataManager: NSObject {
         let managedContext = appDelegate.persistentContainer.viewContext
         let privateMOC = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         privateMOC.parent = managedContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        fetchRequest.returnsObjectsAsFaults = false
-        
-        do
-        {
-            let results = try privateMOC.fetch(fetchRequest)
-            for managedObject in results
-            {
-                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
-                privateMOC.delete(managedObjectData)
+        if(entityName == "AbilityEffect"){
+            for abilityEffect in Ability.AbilityEffects.AbilityEffectsArray{
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: abilityEffect)
+                fetchRequest.returnsObjectsAsFaults = false
+                
+                do
+                {
+                    let results = try privateMOC.fetch(fetchRequest)
+                    for managedObject in results
+                    {
+                        let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
+                        privateMOC.delete(managedObjectData)
+                    }
+                } catch let error as NSError {
+                    print("Delele all data in \(entityName) error : \(error) \(error.userInfo)")
+                }
+                
+                do {
+                    try privateMOC.save()
+                } catch let error as NSError {
+                    print("Error While Deleting All Entries for \(entityName): \(error.userInfo)")
+                }
+                
             }
-        } catch let error as NSError {
-            print("Delele all data in \(entityName) error : \(error) \(error.userInfo)")
         }
-        
-        do {
-            try privateMOC.save()
-        } catch let error as NSError {
-            print("Error While Deleting All Entries for \(entityName): \(error.userInfo)")
+        else{
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+            fetchRequest.returnsObjectsAsFaults = false
+            
+            do
+            {
+                let results = try privateMOC.fetch(fetchRequest)
+                for managedObject in results
+                {
+                    let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
+                    privateMOC.delete(managedObjectData)
+                }
+            } catch let error as NSError {
+                print("Delele all data in \(entityName) error : \(error) \(error.userInfo)")
+            }
+            
+            do {
+                try privateMOC.save()
+            } catch let error as NSError {
+                print("Error While Deleting All Entries for \(entityName): \(error.userInfo)")
+            }
         }
     }
     
@@ -157,9 +194,17 @@ class CoreDataManager: NSObject {
         //Remove the old entries
         self.deleteAllDataForEntity(entityName: entityName)
         
-        //Add new entries
-        for dict in dictArray{
-            self.save(dict: dict, entityName: entityName)
+        if (entityName == "AbilityEffect") {
+            for dict in dictArray{
+                if ((dict.object(forKey: "effectType")) != nil) {
+                    self.save(dict: dict, entityName: (dict.object(forKey: "effectType") as! String!))
+                }
+            }
+        }
+        else{
+            for dict in dictArray{
+                self.save(dict: dict, entityName: entityName)
+            }
         }
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
