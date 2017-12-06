@@ -41,7 +41,7 @@ class AbilityTableViewCell: UITableViewCell {
         lblAbilityDescription.text = ability.abilityDescription
         let apCost : Int = ability.value(forKey: "apCost") as! Int
         lblAbilityApCost.text = String(apCost)
-        let baseEffect : Int = ability.value(forKey: "baseEffect") as! Int
+        let baseEffect : Int = ability.value(forKey: "baseEffect") as? Int ?? 0
         lblAbilityBaseEffect.text = String(baseEffect)
         let ratioEffect : Float = ability.value(forKey: "ratioEffect") as! Float
         lblAbilityRatioEffect.text = String(ratioEffect)

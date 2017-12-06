@@ -12,8 +12,9 @@ import CoreData
 class AbilityEffectViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var abilityEffectTableView: UITableView!
+    @IBOutlet weak var pullButton: UIBarButtonItem!
+    @IBOutlet weak var pushButton: UIBarButtonItem!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Ability Effect List"
@@ -65,6 +66,8 @@ class AbilityEffectViewController: UIViewController,UITableViewDelegate,UITableV
             return
         }
         
+        self.pushButton.isEnabled = false
+        self.pullButton.isEnabled = false
         
         let url = URL(string: baseUrlString + getAbilityEffectUrlString)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
@@ -93,6 +96,8 @@ class AbilityEffectViewController: UIViewController,UITableViewDelegate,UITableV
                 alert.addAction(okAction)
                 self.present(alert,animated:false,completion:nil)
             }
+            self.pushButton.isEnabled = true
+            self.pullButton.isEnabled = true
         }
         task.resume()
     }
@@ -131,6 +136,9 @@ class AbilityEffectViewController: UIViewController,UITableViewDelegate,UITableV
             self.promptAuth()
             return
         }
+        
+        self.pushButton.isEnabled = false
+        self.pullButton.isEnabled = false
         
         for entityName in Ability.AbilityEffects.AbilityEffectsArray{
             guard let appDelegate =
@@ -184,6 +192,8 @@ class AbilityEffectViewController: UIViewController,UITableViewDelegate,UITableV
             self.present(alert,animated:false,completion:nil)
             
             print(response as Any)
+            self.pushButton.isEnabled = true
+            self.pullButton.isEnabled = true
         }
         
         task.resume()

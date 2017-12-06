@@ -48,9 +48,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     
     @IBAction func onPullButtonAction(_ sender: Any) {
-        
-        self.pullBtn.isEnabled = false
-        self.pushBtn.isEnabled = false
         var baseUrlString: String = ""
         var getItemUrlString: String = ""
         
@@ -72,6 +69,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             return
         }
         
+        self.pullBtn.isEnabled = false
+        self.pushBtn.isEnabled = false
         
         let url = URL(string: baseUrlString + getItemUrlString)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
@@ -108,10 +107,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     @IBAction func onPushButtonAction(_ sender: Any) {
-        
-        self.pushBtn.isEnabled = false
-        self.pullBtn.isEnabled = false
-        
         var postItemUrlString: String = ""
         var baseUrlString: String = ""
         var username: String = ""
@@ -134,6 +129,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             self.promptUrlFillInForString(urlString: "baseUrl")
             return
         }
+        
+        self.pushBtn.isEnabled = false
+        self.pullBtn.isEnabled = false
         
         if ((defaults.string(forKey: "username") != nil) || (defaults.string(forKey: "password") == nil)){
             username = defaults.string(forKey: "username")!
@@ -205,7 +203,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             
             self.pushBtn.isEnabled = true
             self.pullBtn.isEnabled = true
-            
         }
         
         task.resume()

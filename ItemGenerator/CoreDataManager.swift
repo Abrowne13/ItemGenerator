@@ -84,7 +84,8 @@ class CoreDataManager: NSObject {
             ability.setValue(dict.object(forKey: "apCost"), forKey: "apCost")
             ability.setValue(dict.object(forKey: "modifierType"), forKey: "modifierType")
             ability.setValue(dict.object(forKey: "targetType"), forKey: "targetType")
-            ability.setValue(dict.object(forKey: "attackEffects"), forKey: "attackEffects")
+            ability.setValue(dict.object(forKey: "targetEffects"), forKey: "targetEffects")
+            ability.setValue(dict.object(forKey: "casterEffects"), forKey: "casterEffects")
             ability.setValue(dict.object(forKey: "levelUnlock"), forKey: "levelUnlock")
             ability.setValue(dict.object(forKey: "baseEffect"), forKey: "baseEffect")
             ability.setValue(dict.object(forKey: "ratioEffect"), forKey: "ratioEffect")
@@ -214,5 +215,36 @@ class CoreDataManager: NSObject {
         } catch let error as NSError {
             print("Error While Saving All Entries for \(entityName): \(error.userInfo)")
         }
+    }
+    
+    func getAllAbilityEffectNames()->NSArray{
+        let abilityEffectNames = NSMutableArray()
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return NSArray()
+        }
+
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        let privateMOC = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        privateMOC.parent = managedContext
+        
+
+        
+        for abilityEffectEntity in Ability.AbilityEffects.AbilityEffectsArray{
+            //2
+            let fetchRequest =
+                NSFetchRequest<NSManagedObject>(entityName: abilityEffectEntity)
+            fetchRequest.resultType = .dictionaryResultType
+            fetchRequest.propertiesToFetch = ["name"];
+            //3
+            do {
+               let results = try privateMOC.fetch(fetchRequest as! NSFetchRequest<NSFetchRequestResult>)
+                abilityEffectNames.addObjects(from: results)
+            } catch let error as NSError {
+                print("Could not fetch. \(error), \(error.userInfo)")
+            }
+        }
+        return abilityEffectNames
     }
 }

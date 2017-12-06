@@ -147,7 +147,6 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
         let sortDescript : NSSortDescriptor = NSSortDescriptor.init(key: "name", ascending: true)
         let sortDescripts = [sortDescript]
         fetchRequest.sortDescriptors = sortDescripts
-        
         do {
             abilityEffects = try managedContext.fetch(fetchRequest)
             

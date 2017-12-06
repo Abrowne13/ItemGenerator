@@ -8,16 +8,21 @@
 
 import UIKit
 
-class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate {
+class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource {
     
     var ability: Ability!
     var abilityCellArray: NSMutableArray!
-    var attackEffects: NSArray!
+    var targetEffects: NSArray!
+    var casterEffects: NSArray!
     var effectPattern: NSArray!
     var damageAnimations: NSArray!
-    var isAttackEffectExpanded = false
+    var isTargetEffectExpanded = false
+    var isCasterEffectExpanded = false
     var isEffectPatternExpanded = false
     var isDTPExpanded = false;
+    var pickerViewData: NSMutableArray = []
+    var effectPickerView = UIPickerView()
+    var activeTextField: UITextField!
     let stringKeys = ["name","modifierType","abilityDescription","targetType"]
     let intKeys = ["abilityID","levelUnlock","apCost","baseEffect","range","radius"]
     let floatKeys = ["ratioEffect","animationTime"]
@@ -32,6 +37,10 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        self.loadPickerViewData()
+        effectPickerView.dataSource = self
+        effectPickerView.delegate = self
     }
     
     deinit {
@@ -40,7 +49,8 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        attackEffects = ability.attackEffects as? NSArray
+        targetEffects = ability.targetEffects as? NSArray
+        casterEffects = ability.casterEffects as? NSArray
         effectPattern = ability.effectPattern as? NSArray
         damageAnimations = ability.damageAtTimeForPercentage as? NSArray
         self.updateAbilityCellArray()
@@ -70,6 +80,12 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
                 tableCell.abilityDetailTextField.keyboardType = .decimalPad
             }
         }
+        else{
+            let subArray = cellDict?.object(forKey:"subArray") as! String?
+            if (subArray == "targetEffect" || subArray == "casterEffect") {
+                tableCell.abilityDetailTextField.inputView = effectPickerView
+            }
+        }
         var str1 = cellDict?.object(forKey: "titleName") as! String?
         var str2 = cellDict?.object(forKey: "titleValue") as! String?
         if (str1 == nil) {
@@ -86,9 +102,14 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellDict = abilityCellArray[indexPath.row]
         let expandbleString = (cellDict as! NSDictionary).object(forKey:"expandable") as! String?
-        let subArray = (cellDict as! NSDictionary).object(forKey:"subArray") as! String?
-        if (expandbleString == "attackEffect") {
-            isAttackEffectExpanded = !isAttackEffectExpanded
+        //let subArray = (cellDict as! NSDictionary).object(forKey:"subArray") as! String?
+        if (expandbleString == "targetEffect") {
+            isTargetEffectExpanded = !isTargetEffectExpanded
+            self.updateAbilityCellArray()
+            tableView.reloadData()
+        }
+        else if (expandbleString == "casterEffect") {
+            isCasterEffectExpanded = !isCasterEffectExpanded
             self.updateAbilityCellArray()
             tableView.reloadData()
         }
@@ -102,9 +123,9 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
             self.updateAbilityCellArray()
             tableView.reloadData()
         }
-        else if(subArray != nil){
+        //else if(subArray != nil){
             
-        }
+        //}
         else{
             let cell = tableView.cellForRow(at: indexPath) as! AbilityDetailTableViewCell
             if (cell.abilityDetailTextField.isHidden){
@@ -120,32 +141,70 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
                     cell.abilityDetailLabel.text = cell.abilityDetailTextField.placeholder
                 }
                 else{
-                    
                     let dict = self.abilityCellArray.object(at: indexPath.row) as! NSDictionary
-                    self.setTextForKey(text: cell.abilityDetailTextField.text!, key: dict.object(forKey: "abilityKey") as! String)
-                    self.updateAbilityCellArray()
-                    self.abilityDetailTableView.reloadData()
-                    cell.abilityDetailTextField.text = ""
+                    if(dict.object(forKey: "abilityKey") as? String != nil){
+                        self.setTextForKey(text: cell.abilityDetailTextField.text!, key: dict.object(forKey: "abilityKey") as! String)
+                        self.updateAbilityCellArray()
+                        self.abilityDetailTableView.reloadData()
+                        cell.abilityDetailTextField.text = ""
+                    }
+                    else{
+                        let subArray = (cellDict as! NSDictionary).object(forKey:"subArray") as! String?
+                        
+                        if (subArray == "targetEffect") {
+                            targetEffects = targetEffects.adding(cell.abilityDetailTextField.text!) as NSArray!
+                            ability.targetEffects = targetEffects
+                            let context = ability.managedObjectContext;
+                            do {
+                                try context?.save()
+                            }
+                            catch let error as NSError {
+                                print("Could not save. \(error), \(error.userInfo)")
+                            }
+                            self.updateAbilityCellArray()
+                            
+                        }
+                        else if (subArray == "casterEffect") {
+                            casterEffects = casterEffects.adding(cell.abilityDetailTextField.text!) as NSArray!
+                            ability.casterEffects = casterEffects
+                            let context = ability.managedObjectContext;
+                            do {
+                                try context?.save()
+                            }
+                            catch let error as NSError {
+                                print("Could not save. \(error), \(error.userInfo)")
+                            }
+                            self.updateAbilityCellArray()
+                            
+                        }
+                        else{
+                            
+                        }
+                    }
                 }
                 cell.abilityDetailTextField.resignFirstResponder()
             }
         }
     }
     
-    //May want to get rid of
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         let dict = abilityCellArray.object(at: indexPath.row) as! NSDictionary
-        return dict.allKeys.count == 1
+        let subArray = dict.object(forKey: "subArray") as? String
+        let type = dict.object(forKey: "type") as? String
+        if (subArray != nil && type == nil) {
+            return true
+        }
+        return false
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "Edit") { action, index in
-            let cell = tableView.cellForRow(at: indexPath) as! AbilityDetailTableViewCell
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
+            //let cell = tableView.cellForRow(at: indexPath) as! AbilityDetailTableViewCell
             
-            cell.abilityDetailLabel.isHidden = true
-            cell.abilityDetailTextField.isHidden = false
+            //cell.abilityDetailLabel.isHidden = true
+            //cell.abilityDetailTextField.isHidden = false
         }
-        deleteAction.backgroundColor = UIColor.blue
+        deleteAction.backgroundColor = UIColor.red
         
         return [deleteAction]
     }
@@ -167,19 +226,33 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         abilityCellArray.add(["titleName":"AP Cost: ","titleValue":String(ability.apCost),"abilityKey":"apCost"])
         abilityCellArray.add(["titleName":"Base Effect: ","titleValue":String(ability.baseEffect),"abilityKey":"baseEffect"])
         abilityCellArray.add(["titleName":"Ratio Effect: ","titleValue":String(ability.ratioEffect),"abilityKey":"ratioEffect"])
-        var attackEffectCountString = "0"
-        if(attackEffects != nil){
-            attackEffectCountString = String(attackEffects.count)
+        var targetEffectCountString = "0"
+        if(targetEffects != nil){
+            targetEffectCountString = String(targetEffects.count)
         }
         else{
-            attackEffects = NSArray()
+            targetEffects = NSArray()
         }
-        abilityCellArray.add(["titleName":"Attack Effects: ","titleValue":attackEffectCountString,"expandable":"attackEffect","abilityKey":"attackEffects"])
-        if (isAttackEffectExpanded){
-            for dict in attackEffects{
-                abilityCellArray.add(["titleName":(dict as! NSDictionary).object(forKey:"name")!,"subArray":"attackEffect"])
+        abilityCellArray.add(["titleName":"Target Effects: ","titleValue":targetEffectCountString,"expandable":"targetEffect","abilityKey":"targetEffects"])
+        if (isTargetEffectExpanded){
+            for string in targetEffects{
+                abilityCellArray.add(["titleName":string as! String,"subArray":"targetEffect"])
             }
-            abilityCellArray.add(["titleName":"Add Attack Effect","subArray":"attackEffect"])
+            abilityCellArray.add(["titleName":"Add Target Effect","subArray":"targetEffect","type":"default"])
+        }
+        var casterEffectCountString = "0"
+        if(casterEffects != nil){
+            casterEffectCountString = String(casterEffects.count)
+        }
+        else{
+            casterEffects = NSArray()
+        }
+        abilityCellArray.add(["titleName":"Caster Effects: ","titleValue":casterEffectCountString,"expandable":"casterEffect","abilityKey":"casterEffects"])
+        if (isCasterEffectExpanded){
+            for string in casterEffects{
+                abilityCellArray.add(["titleName":string as! String,"subArray":"casterEffect"])
+            }
+            abilityCellArray.add(["titleName":"Add Caster Effect","subArray":"casterEffect","type":"default"])
         }
         abilityCellArray.add(["titleName":"Range: ","titleValue":String(ability.range),"abilityKey":"range"])
         abilityCellArray.add(["titleName":"Radius: ","titleValue":String(ability.radius),"abilityKey":"radius"])
@@ -195,7 +268,7 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
             for dict in effectPattern{
                 abilityCellArray.add(["titleName":(dict as! NSDictionary).object(forKey:"coordinate")!,"subArray":"effectPattern"])
             }
-            abilityCellArray.add(["titleName":"Add Effect Pattern Postion","subArray":"effectPattern"])
+            abilityCellArray.add(["titleName":"Add Effect Pattern Postion","subArray":"effectPattern","type":"default"])
         }
         abilityCellArray.add(["titleName":"Animation Time: ","titleValue":String(ability.animationTime),"abilityKey":"animationTime"])
         var dtpCountString = "0"
@@ -210,13 +283,14 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
             for dict in damageAnimations{
                 abilityCellArray.add(["titleName":"Frame","titleValue":(dict as! NSDictionary).object(forKey:"stringValue")!,"subArray":"damageAnimation"])
             }
-            abilityCellArray.add(["titleName":"Add Percent Damage at Time","subArray":"damageAnimation"])
+            abilityCellArray.add(["titleName":"Add Percent Damage at Time","subArray":"damageAnimation","type":"default"])
         }
         abilityDetailTableView.reloadData()
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField){
         abilityDetailTableView.scrollToRow(at: [0,textField.tag], at: UITableViewScrollPosition.top, animated: true)
+        activeTextField = textField
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -227,7 +301,6 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
             cell.abilityDetailLabel.text = cell.abilityDetailTextField.placeholder
         }
         else{
-            
             let dict = self.abilityCellArray.object(at: textField.tag) as! NSDictionary
             self.setTextForKey(text: cell.abilityDetailTextField.text!, key: dict.object(forKey: "abilityKey") as! String)
             self.updateAbilityCellArray()
@@ -273,6 +346,34 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
+    
+    // MARK: UIPickerView Delegate Functions and Helper Functions
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerViewData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerViewData[row] as? String
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        activeTextField.text = pickerViewData[row] as? String
+    }
+    
+    
+    func loadPickerViewData(){
+        pickerViewData.removeAllObjects()
+        let nameDicts = CoreDataManager.sharedInstance.getAllAbilityEffectNames()
+        for name in nameDicts{
+            pickerViewData.add((name as! NSDictionary).value(forKey: "name") ?? "empty")
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

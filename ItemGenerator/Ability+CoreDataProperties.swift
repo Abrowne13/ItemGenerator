@@ -43,7 +43,7 @@ extension Ability {
         static var ActionReset = "ActionReset";
         static var ChainAbility = "ChainAbility";
         static var StatusEffect = "StatusEffect";
-        static var AbilityEffectsArray = [DefensePiercing,ResistPiercing,PerfectAim,KillingBlow,Uncounterable,PercentDamage,Critical,GlancingBlow,APDamage,LifeGain,LifeLoss,Purge,Cleanse,StealItem,StealMoney,StealStat,APGain,Knockback,Barrier,Interrupt,Guard,Protection,Invincibility,ActionReset,ChainAbility];
+        static var AbilityEffectsArray = [DefensePiercing,ResistPiercing,PerfectAim,KillingBlow,Uncounterable,PercentDamage,Critical,GlancingBlow,APDamage,LifeGain,LifeLoss,Purge,Cleanse,StealItem,StealMoney,StealStat,APGain,Knockback,Barrier,Interrupt,Guard,Protection,Invincibility,ActionReset,ChainAbility,StatusEffect];
     }
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Ability> {
@@ -53,13 +53,14 @@ extension Ability {
     @NSManaged public var name: String?
     @NSManaged public var abilityDescription: String?
     @NSManaged public var abilityID: Int16
+    @NSManaged public var casterEffects: NSObject?
     @NSManaged public var range: Int16
     @NSManaged public var effectPattern: NSObject?
     @NSManaged public var radius: Int16
     @NSManaged public var apCost: Int16
     @NSManaged public var modifierType: String?
     @NSManaged public var targetType: String?
-    @NSManaged public var attackEffects: NSObject?
+    @NSManaged public var targetEffects: NSObject?
     @NSManaged public var levelUnlock: Int16
     @NSManaged public var baseEffect: Int16
     @NSManaged public var ratioEffect: Float
