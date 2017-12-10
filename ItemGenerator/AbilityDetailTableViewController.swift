@@ -105,21 +105,25 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         //let subArray = (cellDict as! NSDictionary).object(forKey:"subArray") as! String?
         if (expandbleString == "targetEffect") {
             isTargetEffectExpanded = !isTargetEffectExpanded
+            self.collapseSubArrayCellsForSubarray(subArray: "targetEffect")
             self.updateAbilityCellArray()
             tableView.reloadData()
         }
         else if (expandbleString == "casterEffect") {
             isCasterEffectExpanded = !isCasterEffectExpanded
+            self.collapseSubArrayCellsForSubarray(subArray: "casterEffect")
             self.updateAbilityCellArray()
             tableView.reloadData()
         }
         else if (expandbleString == "effectPattern") {
             isEffectPatternExpanded = !isEffectPatternExpanded
+            self.collapseSubArrayCellsForSubarray(subArray: "effectPattern")
             self.updateAbilityCellArray()
             tableView.reloadData()
         }
         else if (expandbleString == "damageAnimation") {
             isDTPExpanded = !isDTPExpanded
+            self.collapseSubArrayCellsForSubarray(subArray: "damageAnimation")
             self.updateAbilityCellArray()
             tableView.reloadData()
         }
@@ -344,6 +348,21 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         }
         catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    //Still does not solve all the UI bugs, just makes them fixable.
+    func collapseSubArrayCellsForSubarray(subArray: String){
+        for i in 0..<abilityCellArray.count{
+            let dict = abilityCellArray[i] as! NSDictionary
+            let subArrayValue = dict.object(forKey:"subArray") as? String
+            if(subArrayValue != nil && subArrayValue == subArray){
+               let cell = abilityDetailTableView.cellForRow(at: [0,i]) as? AbilityDetailTableViewCell
+                if (cell != nil){
+                    cell?.abilityDetailTextField.isHidden = true
+                    cell?.abilityDetailLabel.isHidden = false
+                }
+            }
         }
     }
     
