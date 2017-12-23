@@ -26,10 +26,11 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     let stringKeys = ["name","modifierType","abilityDescription","targetType"]
     let intKeys = ["abilityID","levelUnlock","apCost","baseEffect","range","radius"]
     let floatKeys = ["ratioEffect","animationTime"]
+    let twoTextFieldKeys = ["damageAtTimeForPercentage","effectPattern"]
     @IBOutlet weak var abilityDetailTableView: UITableView!
     @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -55,7 +56,7 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         damageAnimations = ability.damageAtTimeForPercentage as? NSArray
         self.updateAbilityCellArray()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -66,43 +67,60 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tableCell : AbilityDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "abilityDetailCell") as! AbilityDetailTableViewCell
         let cellDict = abilityCellArray.object(at: indexPath.row) as? NSDictionary
         let abilityKey = cellDict?.object(forKey: "abilityKey") as! String?
-        
-        tableCell.abilityDetailTextField.delegate = self
-        tableCell.abilityDetailTextField.tag = indexPath.row
-        if(abilityKey != nil){
-            if(intKeys.contains(abilityKey!)){
-                tableCell.abilityDetailTextField.keyboardType = .numberPad
+        let subArray = cellDict?.object(forKey:"subArray") as! String?
+        let checkString = abilityKey ?? subArray!
+        if (twoTextFieldKeys.contains(checkString)) {
+            let tableCell : AbilityDetailTwoEntryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "abilityDetailTwoEntryCell") as! AbilityDetailTwoEntryTableViewCell
+            tableCell.abilityDetailLeftTextField.tag = indexPath.row
+            tableCell.abilityDetailRightTextField.tag = indexPath.row
+            let str1 = cellDict?.object(forKey: "titleName") as? String ?? ""
+            let str2 = cellDict?.object(forKey: "titleValue") as? String ?? ""
+            tableCell.abilityDetailLabel?.text = str1 + str2
+            let type = cellDict?.object(forKey: "type") as? String ?? ""
+            if(subArray != nil && type != "default"){
+                tableCell.accessoryType = .disclosureIndicator
             }
-            else if(floatKeys.contains(abilityKey!)){
-                tableCell.abilityDetailTextField.keyboardType = .decimalPad
+            else{
+                tableCell.accessoryType = .none
             }
+            return tableCell
         }
         else{
-            let subArray = cellDict?.object(forKey:"subArray") as! String?
-            if (subArray == "targetEffect" || subArray == "casterEffect") {
-                tableCell.abilityDetailTextField.inputView = effectPickerView
+            let tableCell : AbilityDetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "abilityDetailCell") as! AbilityDetailTableViewCell
+            tableCell.abilityDetailTextField.delegate = self
+            tableCell.abilityDetailTextField.tag = indexPath.row
+            if(abilityKey != nil){
+                if(intKeys.contains(abilityKey!)){
+                    tableCell.abilityDetailTextField.keyboardType = .numberPad
+                }
+                else if(floatKeys.contains(abilityKey!)){
+                    tableCell.abilityDetailTextField.keyboardType = .decimalPad
+                }
             }
+            else{
+                if (subArray == "targetEffect" || subArray == "casterEffect") {
+                    tableCell.abilityDetailTextField.inputView = effectPickerView
+                    let type = cellDict?.object(forKey: "type") as? String ?? ""
+                    if(type != "default"){
+                        tableCell.accessoryType = .disclosureIndicator
+                    }
+                    else{
+                        tableCell.accessoryType = .none
+                    }
+                }
+            }
+            let str1 = cellDict?.object(forKey: "titleName") as? String ?? ""
+            let str2 = cellDict?.object(forKey: "titleValue") as? String ?? ""
+            tableCell.abilityDetailLabel?.text = str1 + str2
+            return tableCell
         }
-        var str1 = cellDict?.object(forKey: "titleName") as! String?
-        var str2 = cellDict?.object(forKey: "titleValue") as! String?
-        if (str1 == nil) {
-            str1 = ""
-        }
-        if (str2 == nil) {
-            str2 = ""
-        }
-        tableCell.abilityDetailLabel?.text = str1! + str2!
-        
-        return tableCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellDict = abilityCellArray[indexPath.row]
         let expandbleString = (cellDict as! NSDictionary).object(forKey:"expandable") as! String?
-        //let subArray = (cellDict as! NSDictionary).object(forKey:"subArray") as! String?
         if (expandbleString == "targetEffect") {
             isTargetEffectExpanded = !isTargetEffectExpanded
             self.collapseSubArrayCellsForSubarray(subArray: "targetEffect")
@@ -121,68 +139,121 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
             self.updateAbilityCellArray()
             tableView.reloadData()
         }
-        else if (expandbleString == "damageAnimation") {
+        else if (expandbleString == "damageAtTimeForPercentage") {
             isDTPExpanded = !isDTPExpanded
-            self.collapseSubArrayCellsForSubarray(subArray: "damageAnimation")
+            self.collapseSubArrayCellsForSubarray(subArray: "damageAtTimeForPercentage")
             self.updateAbilityCellArray()
             tableView.reloadData()
         }
-        //else if(subArray != nil){
-            
-        //}
         else{
-            let cell = tableView.cellForRow(at: indexPath) as! AbilityDetailTableViewCell
-            if (cell.abilityDetailTextField.isHidden){
-                cell.abilityDetailLabel.isHidden = true
-                cell.abilityDetailTextField.placeholder = cell.abilityDetailLabel.text
-                cell.abilityDetailTextField.isHidden = false
-                cell.abilityDetailTextField.becomeFirstResponder()
-            }
-            else{
-                cell.abilityDetailLabel.isHidden = false
-                cell.abilityDetailTextField.isHidden = true
-                if (cell.abilityDetailTextField.text == "") {
-                    cell.abilityDetailLabel.text = cell.abilityDetailTextField.placeholder
+            let subArray = (cellDict as! NSDictionary).object(forKey:"subArray") as! String? ?? ""
+            if(twoTextFieldKeys.contains(subArray)){
+                let cell = tableView.cellForRow(at: indexPath) as! AbilityDetailTwoEntryTableViewCell
+                if (cell.abilityDetailLeftTextField.isHidden) {
+                    if(subArray == "effectPattern"){
+                        cell.abilityDetailLeftTextField.placeholder = "x"
+                        cell.abilityDetailRightTextField.placeholder = "y"
+                    }
+                    else if (subArray == "damageAtTimeForPercentage"){
+                        cell.abilityDetailLeftTextField.placeholder = "damageAtTime"
+                        cell.abilityDetailRightTextField.placeholder = "forPercentage"
+                    }
+                    cell.abilityDetailLabel.isHidden = true
+                    cell.abilityDetailLeftTextField.isHidden = false
+                    cell.abilityDetailRightTextField.isHidden = false
+                    cell.abilityDetailLeftTextField.becomeFirstResponder()
                 }
                 else{
-                    let dict = self.abilityCellArray.object(at: indexPath.row) as! NSDictionary
-                    if(dict.object(forKey: "abilityKey") as? String != nil){
-                        self.setTextForKey(text: cell.abilityDetailTextField.text!, key: dict.object(forKey: "abilityKey") as! String)
+                    let cellTwoEntry = tableView.cellForRow(at: indexPath) as! AbilityDetailTwoEntryTableViewCell
+                    if (subArray == "effectPattern"){
+                        let pattern = NSMutableDictionary()
+                        pattern.setValue(["x":Int(cellTwoEntry.abilityDetailLeftTextField.text!),"y":Int(cellTwoEntry.abilityDetailRightTextField.text!)], forKey: "coordinate")
+                        effectPattern = effectPattern.adding(pattern) as NSArray!
+                        ability.effectPattern = effectPattern
+                        let context = ability.managedObjectContext;
+                        do {
+                            try context?.save()
+                        }
+                        catch let error as NSError {
+                            print("Could not save. \(error), \(error.userInfo)")
+                        }
                         self.updateAbilityCellArray()
-                        self.abilityDetailTableView.reloadData()
-                        cell.abilityDetailTextField.text = ""
+                    }
+                    else if (subArray == "damageAtTimeForPercentage"){
+                        let pattern = NSMutableDictionary()
+                        pattern.setValue(["damageAtTime":Float(cellTwoEntry.abilityDetailLeftTextField.text!),"forPercentage":Float(cellTwoEntry.abilityDetailRightTextField.text!)], forKey: "damageAtTimeForPercentage")
+                        damageAnimations = damageAnimations.adding(pattern) as NSArray!
+                        ability.damageAtTimeForPercentage = damageAnimations
+                        let context = ability.managedObjectContext;
+                        do {
+                            try context?.save()
+                        }
+                        catch let error as NSError {
+                            print("Could not save. \(error), \(error.userInfo)")
+                        }
+                        self.updateAbilityCellArray()
+                    }
+                    cell.abilityDetailLabel.isHidden = false
+                    cell.abilityDetailLeftTextField.isHidden = true
+                    cell.abilityDetailRightTextField.isHidden = true
+                    cell.abilityDetailLeftTextField.resignFirstResponder()
+                    cell.abilityDetailRightTextField.resignFirstResponder()
+                }
+            }
+            else{
+                let cell = tableView.cellForRow(at: indexPath) as! AbilityDetailTableViewCell
+                if (cell.abilityDetailTextField.isHidden){
+                    cell.abilityDetailLabel.isHidden = true
+                    cell.abilityDetailTextField.placeholder = cell.abilityDetailLabel.text
+                    cell.abilityDetailTextField.isHidden = false
+                    cell.abilityDetailTextField.becomeFirstResponder()
+                }
+                else{
+                    cell.abilityDetailLabel.isHidden = false
+                    cell.abilityDetailTextField.isHidden = true
+                    if (cell.abilityDetailTextField.text == "") {
+                        cell.abilityDetailLabel.text = cell.abilityDetailTextField.placeholder
                     }
                     else{
-                        let subArray = (cellDict as! NSDictionary).object(forKey:"subArray") as! String?
-                        
-                        if (subArray == "targetEffect") {
-                            targetEffects = targetEffects.adding(cell.abilityDetailTextField.text!) as NSArray!
-                            ability.targetEffects = targetEffects
-                            let context = ability.managedObjectContext;
-                            do {
-                                try context?.save()
-                            }
-                            catch let error as NSError {
-                                print("Could not save. \(error), \(error.userInfo)")
-                            }
+                        let dict = self.abilityCellArray.object(at: indexPath.row) as! NSDictionary
+                        if(dict.object(forKey: "abilityKey") as? String != nil){
+                            self.setTextForKey(text: cell.abilityDetailTextField.text!, key: dict.object(forKey: "abilityKey") as! String)
                             self.updateAbilityCellArray()
-                            
-                        }
-                        else if (subArray == "casterEffect") {
-                            casterEffects = casterEffects.adding(cell.abilityDetailTextField.text!) as NSArray!
-                            ability.casterEffects = casterEffects
-                            let context = ability.managedObjectContext;
-                            do {
-                                try context?.save()
-                            }
-                            catch let error as NSError {
-                                print("Could not save. \(error), \(error.userInfo)")
-                            }
-                            self.updateAbilityCellArray()
-                            
+                            self.abilityDetailTableView.reloadData()
+                            cell.abilityDetailTextField.text = ""
                         }
                         else{
+                            let subArray = (cellDict as! NSDictionary).object(forKey:"subArray") as! String?
                             
+                            if (subArray == "targetEffect") {
+                                targetEffects = targetEffects.adding(cell.abilityDetailTextField.text!) as NSArray!
+                                ability.targetEffects = targetEffects
+                                let context = ability.managedObjectContext;
+                                do {
+                                    try context?.save()
+                                }
+                                catch let error as NSError {
+                                    print("Could not save. \(error), \(error.userInfo)")
+                                }
+                                self.updateAbilityCellArray()
+                                
+                            }
+                            else if (subArray == "casterEffect") {
+                                casterEffects = casterEffects.adding(cell.abilityDetailTextField.text!) as NSArray!
+                                ability.casterEffects = casterEffects
+                                let context = ability.managedObjectContext;
+                                do {
+                                    try context?.save()
+                                }
+                                catch let error as NSError {
+                                    print("Could not save. \(error), \(error.userInfo)")
+                                }
+                                self.updateAbilityCellArray()
+                                
+                            }
+                            else{
+                                
+                            }
                         }
                     }
                 }
@@ -203,17 +274,93 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
-            //let cell = tableView.cellForRow(at: indexPath) as! AbilityDetailTableViewCell
-            
-            //cell.abilityDetailLabel.isHidden = true
-            //cell.abilityDetailTextField.isHidden = false
+            let cellDict = self.abilityCellArray.object(at: indexPath.row) as! NSDictionary
+            let subArray = cellDict.object(forKey: "subArray") as! String
+            if (subArray == "targetEffect"){
+                for abilityEffectString in self.targetEffects{
+                    if (abilityEffectString as! String == cellDict.object(forKey: "titleName") as! String){
+                        let effectsArray = NSMutableArray.init(array: self.targetEffects)
+                        effectsArray.remove(abilityEffectString)
+                        self.targetEffects = effectsArray
+                        self.ability.targetEffects = self.targetEffects
+                        let context = self.ability.managedObjectContext;
+                        do {
+                            try context?.save()
+                        }
+                        catch let error as NSError {
+                            print("Could not save. \(error), \(error.userInfo)")
+                        }
+                    }
+                }
+            }
+            else if (subArray == "casterEffect"){
+                for abilityEffectString in self.casterEffects{
+                    if (abilityEffectString as! String == cellDict.object(forKey: "titleName") as! String){
+                        let effectsArray = NSMutableArray.init(array: self.casterEffects)
+                        effectsArray.remove(abilityEffectString)
+                        self.casterEffects = effectsArray
+                        self.ability.casterEffects = self.casterEffects
+                        let context = self.ability.managedObjectContext;
+                        do {
+                            try context?.save()
+                        }
+                        catch let error as NSError {
+                            print("Could not save. \(error), \(error.userInfo)")
+                        }
+                    }
+                }
+            }
+            else if (subArray == "effectPattern"){
+                for coordinate in self.effectPattern{
+                    let coordDict = (coordinate as! NSMutableDictionary).object(forKey: "coordinate")
+                    let x = ((coordDict as? NSDictionary)?.object(forKey:"x") as? Int) ?? 0
+                    let y = ((coordDict as? NSDictionary)?.object(forKey:"y") as? Int) ?? 0
+                    let coordString = "\(String(x)),\(y)"
+                    if (coordString == cellDict.object(forKey: "titleName") as! String){
+                        let coordinateArray = NSMutableArray.init(array: self.effectPattern)
+                        coordinateArray.remove(coordinate)
+                        self.effectPattern = coordinateArray
+                        self.ability.effectPattern = self.effectPattern
+                        let context = self.ability.managedObjectContext;
+                        do {
+                            try context?.save()
+                        }
+                        catch let error as NSError {
+                            print("Could not save. \(error), \(error.userInfo)")
+                        }
+                    }
+                }
+            }
+            //Need to pull damageAtTimeForPercentage from self.damageAnimations format it and compare it to titleName
+            else if (subArray == "damageAtTimeForPercentage"){
+                for datfp in self.damageAnimations{
+                    let datfpDict = (datfp as! NSDictionary).object(forKey:"damageAtTimeForPercentage") as! NSDictionary!
+                    let time = (datfpDict?.object(forKey:"damageAtTime") as? Float) ?? 0
+                    let percentage = (datfpDict?.object(forKey:"forPercentage") as? Float) ?? 0
+                    let datfpString = "\(String(time)),\(String(percentage))"
+                    if (datfpString == cellDict.object(forKey:
+                        "titleName") as! String){
+                        let damageAniArray = NSMutableArray.init(array: self.damageAnimations)
+                        damageAniArray.remove(datfp)
+                        self.damageAnimations = damageAniArray
+                        self.ability.damageAtTimeForPercentage = self.damageAnimations
+                        let context = self.ability.managedObjectContext;
+                        do {
+                            try context?.save()
+                        }
+                        catch let error as NSError {
+                            print("Could not save. \(error), \(error.userInfo)")
+                        }
+                    }
+                }
+            }
+            self.updateAbilityCellArray()
         }
         deleteAction.backgroundColor = UIColor.red
-        
         return [deleteAction]
     }
-
-
+    
+    
     func updateAbilityCellArray(){
         if(abilityCellArray != nil){
             abilityCellArray.removeAllObjects()
@@ -270,7 +417,10 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         abilityCellArray.add(["titleName":"EffectPatterns: ","titleValue":effectPatternCountString,"expandable":"effectPattern","abilityKey":"effectPattern"])
         if (isEffectPatternExpanded){
             for dict in effectPattern{
-                abilityCellArray.add(["titleName":(dict as! NSDictionary).object(forKey:"coordinate")!,"subArray":"effectPattern"])
+                let coordinate = (dict as! NSDictionary).object(forKey:"coordinate") as! NSDictionary!
+                let x = (coordinate?.object(forKey:"x") as? Int) ?? 0
+                let y = (coordinate?.object(forKey:"y") as? Int) ?? 0
+                abilityCellArray.add(["titleName":"\(String(x)),\(y)","subArray":"effectPattern"])
             }
             abilityCellArray.add(["titleName":"Add Effect Pattern Postion","subArray":"effectPattern","type":"default"])
         }
@@ -282,12 +432,15 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         else{
             damageAnimations = NSArray()
         }
-        abilityCellArray.add(["titleName":"Damage at Time for Percentage: ","titleValue":dtpCountString,"expandable":"damageAnimation","abilityKey":"damageAnimation"])
+        abilityCellArray.add(["titleName":"Damage at Time for Percentage: ","titleValue":dtpCountString,"expandable":"damageAtTimeForPercentage","abilityKey":"damageAtTimeForPercentage"])
         if (isDTPExpanded){
             for dict in damageAnimations{
-                abilityCellArray.add(["titleName":"Frame","titleValue":(dict as! NSDictionary).object(forKey:"stringValue")!,"subArray":"damageAnimation"])
+                let datfp = (dict as! NSDictionary).object(forKey:"damageAtTimeForPercentage") as! NSDictionary!
+                let time = (datfp?.object(forKey:"damageAtTime") as? Float) ?? 0
+                let percentage = (datfp?.object(forKey:"forPercentage") as? Float) ?? 0
+                abilityCellArray.add(["titleName":"\(String(time)),\(String(percentage))","subArray":"damageAtTimeForPercentage"])
             }
-            abilityCellArray.add(["titleName":"Add Percent Damage at Time","subArray":"damageAnimation","type":"default"])
+            abilityCellArray.add(["titleName":"Add Percent Damage at Time","subArray":"damageAtTimeForPercentage","type":"default"])
         }
         abilityDetailTableView.reloadData()
     }
@@ -298,25 +451,71 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let cell = abilityDetailTableView.cellForRow(at: [0,textField.tag]) as! AbilityDetailTableViewCell
-        cell.abilityDetailLabel.isHidden = false
-        cell.abilityDetailTextField.isHidden = true
-        if (cell.abilityDetailTextField.text == "") {
-            cell.abilityDetailLabel.text = cell.abilityDetailTextField.placeholder
+        let cellDict = self.abilityCellArray.object(at: textField.tag) as! NSDictionary
+        let abilityKey = cellDict.object(forKey: "abilityKey") as! String?
+        let subArray = cellDict.object(forKey:"subArray") as! String?
+        let checkString = abilityKey ?? subArray!
+        if (twoTextFieldKeys.contains(checkString)) {
+            let cell = abilityDetailTableView.cellForRow(at: [0,textField.tag]) as! AbilityDetailTwoEntryTableViewCell
+            if (textField.text != ""){
+                if (cell.abilityDetailLeftTextField.text != "" && cell.abilityDetailLeftTextField.text != "") {
+                    if (subArray == "effectPattern"){
+                        let effectPatterns = ability.effectPattern as! NSMutableArray
+                        let pattern = NSMutableDictionary()
+                    pattern.setValue(["x":Int(cell.abilityDetailLeftTextField.text!),"y":Int(cell.abilityDetailRightTextField.text!)], forKey: "coordinate")
+                        effectPatterns.add(pattern)
+                        ability.effectPattern = effectPatterns
+                        let context = ability.managedObjectContext;
+                        do {
+                            try context?.save()
+                        }
+                        catch let error as NSError {
+                            print("Could not save. \(error), \(error.userInfo)")
+                        }
+                    }
+                    else if (subArray == "damageAtTimeForPercentage"){
+                        let animationArray = ability.damageAtTimeForPercentage as! NSMutableArray
+                        let pattern = NSMutableDictionary()
+                        pattern.setValue(["damageAtTime":Float(cell.abilityDetailLeftTextField.text!),"forPercentage":Float(cell.abilityDetailRightTextField.text!)], forKey: "damageAtTimeForPercentage")
+                        animationArray.add(pattern)
+                        ability.damageAtTimeForPercentage = animationArray
+                        let context = ability.managedObjectContext;
+                        do {
+                            try context?.save()
+                        }
+                        catch let error as NSError {
+                            print("Could not save. \(error), \(error.userInfo)")
+                        }
+                    }
+                }
+                
+            }
+            cell.abilityDetailLabel.isHidden = false
+            cell.abilityDetailLeftTextField.isHidden = true
+            cell.abilityDetailRightTextField.isHidden = true
+            textField.resignFirstResponder()
+            return true
         }
         else{
-            let dict = self.abilityCellArray.object(at: textField.tag) as! NSDictionary
-            self.setTextForKey(text: cell.abilityDetailTextField.text!, key: dict.object(forKey: "abilityKey") as! String)
-            self.updateAbilityCellArray()
-            self.abilityDetailTableView.reloadData()
-            cell.abilityDetailTextField.text = ""
+            let cell = abilityDetailTableView.cellForRow(at: [0,textField.tag]) as! AbilityDetailTableViewCell
+            cell.abilityDetailLabel.isHidden = false
+            cell.abilityDetailTextField.isHidden = true
+            if (cell.abilityDetailTextField.text == "") {
+                cell.abilityDetailLabel.text = cell.abilityDetailTextField.placeholder
+            }
+            else{
+                self.setTextForKey(text: cell.abilityDetailTextField.text!, key: cellDict.object(forKey: "abilityKey") as! String)
+                self.updateAbilityCellArray()
+                self.abilityDetailTableView.reloadData()
+                cell.abilityDetailTextField.text = ""
+            }
         }
         textField.resignFirstResponder()
         return true
     }
     
     func keyboardWillShow(sender: NSNotification) {
-        let contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 150, right: 0)
+        let contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 250, right: 0)
         abilityDetailTableView.contentInset = contentInset
         abilityDetailTableView.scrollIndicatorInsets = contentInset
     }
@@ -326,7 +525,7 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         abilityDetailTableView.contentInset = contentInset
         abilityDetailTableView.scrollIndicatorInsets = contentInset
     }
-
+    
     
     func setTextForKey(text: String, key: String){
         if(stringKeys.contains(key)){
@@ -357,7 +556,7 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
             let dict = abilityCellArray[i] as! NSDictionary
             let subArrayValue = dict.object(forKey:"subArray") as? String
             if(subArrayValue != nil && subArrayValue == subArray){
-               let cell = abilityDetailTableView.cellForRow(at: [0,i]) as? AbilityDetailTableViewCell
+                let cell = abilityDetailTableView.cellForRow(at: [0,i]) as? AbilityDetailTableViewCell
                 if (cell != nil){
                     cell?.abilityDetailTextField.isHidden = true
                     cell?.abilityDetailLabel.isHidden = false
@@ -394,13 +593,13 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
