@@ -36,19 +36,19 @@ class AbilityTableViewCell: UITableViewCell {
     
     func setLabelsWithAbility(){
         lblAbilityName.text = ability.name
-        let abilityNo : Int = ability.value(forKey: "abilityID") as! Int
+        let abilityNo : Int = ability.value(forKey: "abilityID") as? Int ?? 0
         lblAbilityID.text = String(abilityNo)
         lblAbilityDescription.text = ability.abilityDescription
-        let apCost : Int = ability.value(forKey: "apCost") as! Int
+        let apCost : Int = ability.value(forKey: "apCost") as? Int ?? 0
         lblAbilityApCost.text = String(apCost)
         let baseEffect : Int = ability.value(forKey: "baseEffect") as? Int ?? 0
         lblAbilityBaseEffect.text = String(baseEffect)
-        let ratioEffect : Float = ability.value(forKey: "ratioEffect") as! Float
+        let ratioEffect : Float = ability.value(forKey: "ratioEffect") as? Float ?? 0
         lblAbilityRatioEffect.text = String(ratioEffect)
         lblAbilityTargetType.text = ability.targetType
-        let range : Int = ability.value(forKey: "range") as! Int
+        let range : Int = ability.value(forKey: "range") as? Int ?? 0
         lblAbilityRange.text = String(range)
-        let radius : Int = ability.value(forKey: "radius") as! Int
+        let radius : Int = ability.value(forKey: "radius") as? Int ?? 0
         lblAbilityRadius.text = String(radius)
     }
 
