@@ -41,6 +41,7 @@ class AbilityEffectViewController: UIViewController,UITableViewDelegate,UITableV
         let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "AbilityEffectDetail") as! AbilityEffectDetailViewController
         detailVC.abilityEffectName = Ability.AbilityEffects.AbilityEffectsArray[indexPath.row]
         self.navigationController?.pushViewController(detailVC, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     

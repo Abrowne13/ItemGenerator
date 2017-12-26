@@ -119,7 +119,7 @@
     <entity name="Knockback" representedClassName="Knockback" syncable="YES">
         <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="numberOfSpace" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="numberOfSpaces" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="LifeGain" representedClassName="LifeGain" syncable="YES">
@@ -173,6 +173,7 @@
         <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="statusEffectName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="strength" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="StealItem" representedClassName="StealItem" syncable="YES">
@@ -224,10 +225,10 @@
         <element name="Protection" positionX="-99" positionY="288" width="128" height="120"/>
         <element name="Purge" positionX="-117" positionY="270" width="128" height="90"/>
         <element name="ResistPiercing" positionX="-144" positionY="243" width="128" height="120"/>
+        <element name="StatusEffect" positionX="-153" positionY="234" width="128" height="135"/>
         <element name="StealItem" positionX="-99" positionY="288" width="128" height="90"/>
         <element name="StealMoney" positionX="-153" positionY="234" width="128" height="120"/>
         <element name="StealStat" positionX="-144" positionY="243" width="128" height="135"/>
         <element name="Uncounterable" positionX="-117" positionY="270" width="128" height="90"/>
-        <element name="StatusEffect" positionX="-153" positionY="234" width="128" height="120"/>
     </elements>
 </model>

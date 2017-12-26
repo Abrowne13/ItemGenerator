@@ -262,7 +262,7 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
             }
         }
         else{
-            return value as! String
+            return value as? String ?? ""
         }
     }
     
