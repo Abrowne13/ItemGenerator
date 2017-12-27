@@ -57,12 +57,12 @@ extension Ability {
     @NSManaged public var range: Int16
     @NSManaged public var effectPattern: NSObject?
     @NSManaged public var radius: Int16
-    @NSManaged public var apCost: Int16
+    @NSManaged public var apCost: Int32
     @NSManaged public var modifierType: String?
     @NSManaged public var targetType: String?
     @NSManaged public var targetEffects: NSObject?
     @NSManaged public var levelUnlock: Int16
-    @NSManaged public var baseEffect: Int16
+    @NSManaged public var baseEffect: Int32
     @NSManaged public var ratioEffect: Float
     @NSManaged public var animationTime: Float
     @NSManaged public var damageAtTimeForPercentage: NSObject?

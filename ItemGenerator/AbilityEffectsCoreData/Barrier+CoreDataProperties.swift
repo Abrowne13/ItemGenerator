@@ -17,7 +17,7 @@ extension Barrier {
     }
 
     @NSManaged public var procRate: Float
-    @NSManaged public var amountBarred: Int16
+    @NSManaged public var amountBarred: Int32
     @NSManaged public var statBarred: String?
     @NSManaged public var turnDuration: Int16
     @NSManaged public var name: String

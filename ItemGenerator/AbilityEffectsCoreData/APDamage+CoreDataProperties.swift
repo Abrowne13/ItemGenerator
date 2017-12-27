@@ -17,7 +17,7 @@ extension APDamage {
     }
 
     @NSManaged public var procRate: Float
-    @NSManaged public var amountDamage: Int16
+    @NSManaged public var amountDamage: Int32
     @NSManaged public var percentDamage: Float
     @NSManaged public var name: String
     @NSManaged public var effectType: String?

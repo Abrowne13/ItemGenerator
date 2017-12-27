@@ -17,7 +17,7 @@ extension LifeLoss {
     }
 
     @NSManaged public var procRate: Float
-    @NSManaged public var amountLoss: Int16
+    @NSManaged public var amountLoss: Int32
     @NSManaged public var percentLoss: Float
     @NSManaged public var amountPerDamage: Float
     @NSManaged public var name: String

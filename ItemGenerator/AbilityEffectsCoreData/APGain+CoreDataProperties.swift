@@ -17,7 +17,7 @@ extension APGain {
     }
 
     @NSManaged public var procRate: Float
-    @NSManaged public var amountGain: Int16
+    @NSManaged public var amountGain: Int32
     @NSManaged public var percentGain: Float
     @NSManaged public var amountPerDamage: Float
     @NSManaged public var name: String

@@ -17,7 +17,7 @@ extension StealMoney {
     }
 
     @NSManaged public var procRate: Float
-    @NSManaged public var amountStolen: Int16
+    @NSManaged public var amountStolen: Int32
     @NSManaged public var amountPerDamage: Float
     @NSManaged public var name: String
     @NSManaged public var effectType: String?
