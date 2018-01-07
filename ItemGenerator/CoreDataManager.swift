@@ -236,7 +236,7 @@ class CoreDataManager: NSObject {
             let fetchRequest =
                 NSFetchRequest<NSManagedObject>(entityName: abilityEffectEntity)
             fetchRequest.resultType = .dictionaryResultType
-            fetchRequest.propertiesToFetch = ["name"];
+            fetchRequest.propertiesToFetch = ["name","effectType"];
             //3
             do {
                let results = try privateMOC.fetch(fetchRequest as! NSFetchRequest<NSFetchRequestResult>)

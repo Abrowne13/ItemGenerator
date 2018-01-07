@@ -304,7 +304,7 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
                             let typeString = cellDict.object(forKey: "type") as? String ?? ""
                             if (subArray == "targetEffect") {
                                 if(typeString == "default"){
-                                    targetEffects = targetEffects.adding(cell.abilityDetailTextField.text!) as NSArray!
+                                    targetEffects = targetEffects.adding(self.getAbilityEffectDictFromName(effectName:  cell.abilityDetailTextField.text!)) as NSArray!
                                     ability.targetEffects = targetEffects
                                     let context = ability.managedObjectContext;
                                     do {
@@ -317,11 +317,12 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
                                 else{
                                     let currentAbilityEffect = cellDict.object(forKey: "titleName") as! String
                                     if(currentAbilityEffect != cell.abilityDetailTextField.text){
-                                        for abilityEffectTitles in targetEffects {
+                                        for dict in targetEffects {
+                                            let abilityEffectTitles = (dict as! NSDictionary).object(forKey: "name")
                                             if (abilityEffectTitles as! String == currentAbilityEffect){
                                                 let abilityEffectArray = NSMutableArray(array: targetEffects)
-                                                let index = abilityEffectArray.index(of: currentAbilityEffect)
-                                                abilityEffectArray[index] = cell.abilityDetailTextField.text!
+                                                let index = abilityEffectArray.index(of: self.getAbilityEffectDictFromName(effectName: currentAbilityEffect))
+                                                abilityEffectArray[index] = self.getAbilityEffectDictFromName(effectName:  cell.abilityDetailTextField.text!)
                                                 targetEffects = abilityEffectArray
                                                 ability.targetEffects = targetEffects
                                                 let context = ability.managedObjectContext;
@@ -340,7 +341,7 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
                             }
                             else if (subArray == "casterEffect") {
                                 if(typeString == "default"){
-                                    casterEffects = casterEffects.adding(cell.abilityDetailTextField.text!) as NSArray!
+                                    casterEffects = casterEffects.adding(self.getAbilityEffectDictFromName(effectName:  cell.abilityDetailTextField.text!)) as NSArray!
                                     ability.casterEffects = casterEffects
                                     let context = ability.managedObjectContext;
                                     do {
@@ -352,13 +353,14 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
                                 }
                                 //Need to check if the user actually updated value!!
                                 else{
-                                    let currentAbilityEffect = cellDict.object(forKey: "titleName") as! String // != cell.textfield.text
+                                    let currentAbilityEffect = cellDict.object(forKey: "titleName") as! String
                                     if(currentAbilityEffect != cell.abilityDetailTextField.text){
-                                        for abilityEffectTitles in casterEffects {
+                                        for dict in targetEffects {
+                                            let abilityEffectTitles = (dict as! NSDictionary).object(forKey: "name")
                                             if (abilityEffectTitles as! String == currentAbilityEffect){
                                                 let abilityEffectArray = NSMutableArray(array: casterEffects)
-                                                let index = abilityEffectArray.index(of: currentAbilityEffect)
-                                                abilityEffectArray[index] = cell.abilityDetailTextField.text!
+                                                let index = abilityEffectArray.index(of: self.getAbilityEffectDictFromName(effectName: currentAbilityEffect))
+                                                abilityEffectArray[index] = self.getAbilityEffectDictFromName(effectName:  cell.abilityDetailTextField.text!)
                                                 casterEffects = abilityEffectArray
                                                 ability.casterEffects = casterEffects
                                                 let context = ability.managedObjectContext;
@@ -401,10 +403,11 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
             let cellDict = self.abilityCellArray.object(at: indexPath.row) as! NSDictionary
             let subArray = cellDict.object(forKey: "subArray") as! String
             if (subArray == "targetEffect"){
-                for abilityEffectString in self.targetEffects{
+                for dict in self.targetEffects{
+                    let abilityEffectString = (dict as! NSDictionary).object(forKey: "name")
                     if (abilityEffectString as! String == cellDict.object(forKey: "titleName") as! String){
                         let effectsArray = NSMutableArray.init(array: self.targetEffects)
-                        effectsArray.remove(abilityEffectString)
+                        effectsArray.remove(dict)
                         self.targetEffects = effectsArray
                         self.ability.targetEffects = self.targetEffects
                         let context = self.ability.managedObjectContext;
@@ -418,10 +421,11 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
                 }
             }
             else if (subArray == "casterEffect"){
-                for abilityEffectString in self.casterEffects{
+                for dict in self.targetEffects{
+                    let abilityEffectString = (dict as! NSDictionary).object(forKey: "name")
                     if (abilityEffectString as! String == cellDict.object(forKey: "titleName") as! String){
                         let effectsArray = NSMutableArray.init(array: self.casterEffects)
-                        effectsArray.remove(abilityEffectString)
+                        effectsArray.remove(dict)
                         self.casterEffects = effectsArray
                         self.ability.casterEffects = self.casterEffects
                         let context = self.ability.managedObjectContext;
@@ -510,7 +514,8 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         }
         abilityCellArray.add(["titleName":"Target Effects: ","titleValue":targetEffectCountString,"expandable":"targetEffect","abilityKey":"targetEffects"])
         if (isTargetEffectExpanded){
-            for string in targetEffects{
+            for dict in targetEffects{
+                let string = (dict as! NSDictionary).object(forKey: "name")
                 abilityCellArray.add(["titleName":string as! String,"subArray":"targetEffect"])
             }
             abilityCellArray.add(["titleName":"Add Target Effect","subArray":"targetEffect","type":"default"])
@@ -524,7 +529,8 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         }
         abilityCellArray.add(["titleName":"Caster Effects: ","titleValue":casterEffectCountString,"expandable":"casterEffect","abilityKey":"casterEffects"])
         if (isCasterEffectExpanded){
-            for string in casterEffects{
+            for dict in targetEffects{
+                let string = (dict as! NSDictionary).object(forKey: "name")
                 abilityCellArray.add(["titleName":string as! String,"subArray":"casterEffect"])
             }
             abilityCellArray.add(["titleName":"Add Caster Effect","subArray":"casterEffect","type":"default"])
@@ -568,6 +574,8 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         }
         abilityDetailTableView.reloadData()
     }
+    
+    // MARK: UITextfield Delegate Functions and Helper Functions
     
     func textFieldDidBeginEditing(_ textField: UITextField){
         abilityDetailTableView.scrollToRow(at: [0,textField.tag], at: UITableViewScrollPosition.top, animated: true)
@@ -674,7 +682,6 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         }
     }
     
-    //Still does not solve all the UI bugs, just makes them fixable.
     func collapseSubArrayCellsForSubarray(subArray: String){
         for i in 0..<abilityCellArray.count{
             let dict = abilityCellArray[i] as! NSDictionary
@@ -700,20 +707,29 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerViewData[row] as? String
+        let abilityEffectPair = pickerViewData[row] as! NSDictionary
+        return abilityEffectPair.object(forKey: "name") as? String
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        activeTextField.text = pickerViewData[row] as? String
+        let abilityEffectPair = pickerViewData[row] as! NSDictionary
+        activeTextField.text = abilityEffectPair.object(forKey: "name") as? String
     }
     
     
     func loadPickerViewData(){
         pickerViewData.removeAllObjects()
         let nameDicts = CoreDataManager.sharedInstance.getAllAbilityEffectNames()
-        for name in nameDicts{
-            pickerViewData.add((name as! NSDictionary).value(forKey: "name") ?? "empty")
+        pickerViewData = NSMutableArray(array: nameDicts)
+    }
+    
+    func getAbilityEffectDictFromName(effectName: String) -> NSDictionary {
+        for dict in pickerViewData {
+            if ((dict as! NSDictionary).object(forKey: "name") as! String == effectName){
+                return dict as! NSDictionary
+            }
         }
+        return NSDictionary()
     }
     
     /*
