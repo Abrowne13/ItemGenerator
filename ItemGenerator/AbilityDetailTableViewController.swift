@@ -355,7 +355,7 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
                                 else{
                                     let currentAbilityEffect = cellDict.object(forKey: "titleName") as! String
                                     if(currentAbilityEffect != cell.abilityDetailTextField.text){
-                                        for dict in targetEffects {
+                                        for dict in casterEffects {
                                             let abilityEffectTitles = (dict as! NSDictionary).object(forKey: "name")
                                             if (abilityEffectTitles as! String == currentAbilityEffect){
                                                 let abilityEffectArray = NSMutableArray(array: casterEffects)
@@ -421,7 +421,7 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
                 }
             }
             else if (subArray == "casterEffect"){
-                for dict in self.targetEffects{
+                for dict in self.casterEffects{
                     let abilityEffectString = (dict as! NSDictionary).object(forKey: "name")
                     if (abilityEffectString as! String == cellDict.object(forKey: "titleName") as! String){
                         let effectsArray = NSMutableArray.init(array: self.casterEffects)
@@ -529,7 +529,7 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         }
         abilityCellArray.add(["titleName":"Caster Effects: ","titleValue":casterEffectCountString,"expandable":"casterEffect","abilityKey":"casterEffects"])
         if (isCasterEffectExpanded){
-            for dict in targetEffects{
+            for dict in casterEffects{
                 let string = (dict as! NSDictionary).object(forKey: "name")
                 abilityCellArray.add(["titleName":string as! String,"subArray":"casterEffect"])
             }
