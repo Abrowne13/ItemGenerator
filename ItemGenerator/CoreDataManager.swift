@@ -30,7 +30,6 @@ class CoreDataManager: NSObject {
         }
     }
     
-    //Need to write this for abilityEffects!!!
     func save(dict: NSDictionary, entityName: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
             else {

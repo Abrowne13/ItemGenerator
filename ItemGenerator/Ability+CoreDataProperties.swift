@@ -18,32 +18,36 @@ extension Ability {
         static var ResistPiercing = "ResistPiercing"; //Amount pierced/Percentage pierced
         static var PerfectAim = "PerfectAim"; //
         static var KillingBlow = "KillingBlow"; //
-        static var Uncounterable = "Uncounterable"; //
         //Damage Modifiers
         static var PercentDamage = "PercentDamage"; //Percentage
         static var Critical = "Critical"; // Damage percentage
         static var GlancingBlow = "GlancingBlow"; //Damge percentage
+        static var Survive = "Survive"; //Duration
+        static var Guard = "Guard"
+        static var Protection = "Protection"; // Damage type, duration
+        static var Invincibility = "Invincibility"; //Duration
+        static var PerfectDodge = "PerfectDodge";  //Duration
+        static var Barrier = "Barrier"; // Strength, duration, damageType?
+        static var Interrupt = "Interrupt"; //interruptingAbility
         //After Effects
         static var APDamage = "APDamage"; // Amount
         static var LifeGain = "LifeGain"; // Amount/Amount per Damage/Percent per Damage
         static var LifeLoss = "LifeLoss"; // Amount/Percentage
         static var Purge = "Purge"; //      //Removes buffs debuffs (barrier, protection, invincibility, vulnerability)
+        static var Uncounterable = "Uncounterable"; //
         static var Cleanse = "Cleanse"; //      //Remove status effects
         static var StealItem = "StealItem"; //
         static var StealMoney = "StealMoney"; // Amount/Amount per Damage/Percentage per target
         static var StealStat = "StealStat"; // Stat, Amount/Amount per Damage/Percentage per target
         static var APGain = "APGain"; // Amount/Amount per Damage/Percentage per target
-        static var Knockback = "Knockback"; // Number of spaces
-        static var Barrier = "Barrier"; // Strength, duration, damageType?
-        static var Interrupt = "Interrupt"; //
-        static var Guard = "Guard"
-        static var Protection = "Protection"; // Damage type, duration
-        static var Invincibility = "Invincibility"; //Duration
+        static var Knockback = "Knockback"; // Number of spaces, effectPattern
+        static var Movement = "Movement"; // radius, effectPattern
+        static var BlockSpace = "BlockSpace"; // duration, effectPattern
         //Should be a status effect//static var Vulnerabilities = "Vulnerabilities"; // Damage type, duration
         static var ActionReset = "ActionReset";
-        static var ChainAbility = "ChainAbility";
+        static var ChainAbility = "ChainAbility"; //chainingAbility
         static var StatusEffect = "StatusEffect";
-        static var AbilityEffectsArray = [DefensePiercing,ResistPiercing,PerfectAim,KillingBlow,Uncounterable,PercentDamage,Critical,GlancingBlow,APDamage,LifeGain,LifeLoss,Purge,Cleanse,StealItem,StealMoney,StealStat,APGain,Knockback,Barrier,Interrupt,Guard,Protection,Invincibility,ActionReset,ChainAbility,StatusEffect];
+        static var AbilityEffectsArray = [DefensePiercing,ResistPiercing,PerfectAim,KillingBlow,Uncounterable,PercentDamage,Critical,GlancingBlow,APDamage,LifeGain,LifeLoss,Purge,Cleanse,StealItem,StealMoney,StealStat,APGain,Knockback,Movement,BlockSpace,Barrier,Interrupt,Guard,Protection,Invincibility,PerfectDodge,Survive,ActionReset,ChainAbility,StatusEffect];
     }
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Ability> {
