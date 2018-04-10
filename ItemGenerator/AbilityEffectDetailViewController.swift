@@ -87,7 +87,7 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
             else{
                 let type = values[i] as! NSAttributeType
                 let keyBoardType:UIKeyboardType
-                if(type == NSAttributeType.integer16AttributeType){
+                if(type == NSAttributeType.integer16AttributeType || type == NSAttributeType.integer32AttributeType){
                     keyBoardType = .numberPad
                 }
                 else if(type == NSAttributeType.floatAttributeType){
