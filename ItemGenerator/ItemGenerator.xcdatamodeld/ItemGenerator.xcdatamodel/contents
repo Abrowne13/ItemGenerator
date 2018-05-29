@@ -5,7 +5,8 @@
         <attribute name="abilityID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="animationTime" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="apCost" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="baseEffect" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="applyEffects" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="baseValue" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="casterEffects" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="damageAtTimeForPercentage" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="effectPattern" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -14,7 +15,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="radius" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="range" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="ratioEffect" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="ratioValue" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="targetEffects" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="targetType" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -167,10 +168,10 @@
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="PerfectDodge" representedClassName="PerfectDodge" syncable="YES" codeGenerationType="class">
-        <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="turnDuration" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Protection" representedClassName="Protection" syncable="YES">
         <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
@@ -231,7 +232,7 @@
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Ability" positionX="-54" positionY="108" width="128" height="285"/>
+        <element name="Ability" positionX="-54" positionY="108" width="128" height="300"/>
         <element name="ActionReset" positionX="-135" positionY="252" width="128" height="90"/>
         <element name="APDamage" positionX="-144" positionY="243" width="128" height="120"/>
         <element name="APGain" positionX="-135" positionY="252" width="128" height="135"/>

@@ -17,8 +17,8 @@ class AbilityDetailViewController: UIViewController {
     @IBOutlet weak var lblAbilityModifierType: UILabel!
     @IBOutlet weak var lblAbilityAPCost: UILabel!
     @IBOutlet weak var lblAbilityTargetType: UILabel!
-    @IBOutlet weak var lblAbilityBaseEffect: UILabel!
-    @IBOutlet weak var lblAbilityRatioEffect: UILabel!
+    @IBOutlet weak var lblAbilityBaseValue: UILabel!
+    @IBOutlet weak var lblAbilityRatioValue: UILabel!
     @IBOutlet weak var lblAbilityRange: UILabel!
     @IBOutlet weak var lblAbilityRadius: UILabel!
     @IBOutlet weak var lblAbilityLevelUnlock: UILabel!
@@ -43,8 +43,8 @@ class AbilityDetailViewController: UIViewController {
         lblAbilityModifierType.text = ability.modifierType
         lblAbilityAPCost.text = String(ability.apCost)
         lblAbilityTargetType.text = ability.targetType
-        lblAbilityBaseEffect.text = String(ability.baseEffect)
-        lblAbilityRatioEffect.text = String(ability.ratioEffect)
+        lblAbilityBaseValue.text = String(ability.baseValue)
+        lblAbilityRatioValue.text = String(ability.ratioValue)
         lblAbilityRange.text = String(ability.range)
         lblAbilityRadius.text = String(ability.radius)
         lblAbilityLevelUnlock.text = String(ability.levelUnlock)

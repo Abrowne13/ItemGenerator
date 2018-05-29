@@ -16,8 +16,8 @@ class AbilityTableViewCell: UITableViewCell {
     @IBOutlet weak var lblAbilityDescription: UILabel!
     @IBOutlet weak var lblAbilityID: UILabel!
     @IBOutlet weak var lblAbilityApCost: UILabel!
-    @IBOutlet weak var lblAbilityBaseEffect: UILabel!
-    @IBOutlet weak var lblAbilityRatioEffect: UILabel!
+    @IBOutlet weak var lblAbilityBaseValue: UILabel!
+    @IBOutlet weak var lblAbilityRatioValue: UILabel!
     @IBOutlet weak var lblAbilityTargetType: UILabel!
     @IBOutlet weak var lblAbilityRange: UILabel!
     @IBOutlet weak var lblAbilityRadius: UILabel!
@@ -41,10 +41,10 @@ class AbilityTableViewCell: UITableViewCell {
         lblAbilityDescription.text = ability.abilityDescription
         let apCost : Int = ability.value(forKey: "apCost") as? Int ?? 0
         lblAbilityApCost.text = String(apCost)
-        let baseEffect : Int = ability.value(forKey: "baseEffect") as? Int ?? 0
-        lblAbilityBaseEffect.text = String(baseEffect)
-        let ratioEffect : Float = ability.value(forKey: "ratioEffect") as? Float ?? 0
-        lblAbilityRatioEffect.text = String(ratioEffect)
+        let baseValue : Int = ability.value(forKey: "baseValue") as? Int ?? 0
+        lblAbilityBaseValue.text = String(baseValue)
+        let ratioValue : Float = ability.value(forKey: "ratioValue") as? Float ?? 0
+        lblAbilityRatioValue.text = String(ratioValue)
         lblAbilityTargetType.text = ability.targetType
         let range : Int = ability.value(forKey: "range") as? Int ?? 0
         lblAbilityRange.text = String(range)

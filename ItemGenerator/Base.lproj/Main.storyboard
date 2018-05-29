@@ -151,7 +151,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jcW-ba-0Gk" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="550"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item No:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Giu-26-OkX">
                                                 <rect key="frame" x="23" y="83" width="65" height="31"/>
@@ -425,7 +425,7 @@
                                             <constraint firstItem="ocR-el-2eu" firstAttribute="top" secondItem="0iR-Dh-tTI" secondAttribute="bottom" constant="9" id="Dsa-i8-Og2"/>
                                             <constraint firstItem="tC7-Q3-edh" firstAttribute="top" secondItem="fFV-e2-20v" secondAttribute="bottom" constant="8" symbolic="YES" id="Eyu-tu-VhE"/>
                                             <constraint firstItem="0tz-Mh-dfc" firstAttribute="leading" secondItem="Giu-26-OkX" secondAttribute="trailing" constant="8" id="Fax-7v-ef1"/>
-                                            <constraint firstAttribute="bottom" secondItem="t6S-Uh-f7x" secondAttribute="bottom" constant="126" id="FbP-Sy-rja"/>
+                                            <constraint firstAttribute="bottom" secondItem="t6S-Uh-f7x" secondAttribute="bottom" constant="73" id="FbP-Sy-rja"/>
                                             <constraint firstItem="fJU-VR-4Yk" firstAttribute="trailing" secondItem="AOT-A2-4BD" secondAttribute="trailing" id="I18-v3-Qi8"/>
                                             <constraint firstItem="0tz-Mh-dfc" firstAttribute="top" secondItem="ZsL-gz-P3S" secondAttribute="bottom" constant="8" id="IPi-Zw-Bl6"/>
                                             <constraint firstItem="ZsL-gz-P3S" firstAttribute="top" secondItem="jcW-ba-0Gk" secondAttribute="top" constant="46" id="JA9-54-9aK"/>
@@ -437,14 +437,13 @@
                                             <constraint firstItem="xgg-2M-kDz" firstAttribute="leading" secondItem="C22-ea-Z5G" secondAttribute="trailing" constant="10" id="Pi2-5N-RTi"/>
                                             <constraint firstItem="gsE-F7-lw7" firstAttribute="top" secondItem="FZq-rM-hjc" secondAttribute="top" id="PmV-UK-go5"/>
                                             <constraint firstItem="fJU-VR-4Yk" firstAttribute="trailing" secondItem="1Xx-dS-5LP" secondAttribute="trailing" id="QM9-oZ-dB2"/>
-                                            <constraint firstAttribute="height" constant="603" id="RV5-81-sLS"/>
                                             <constraint firstItem="0Dd-dz-pXR" firstAttribute="top" secondItem="qhV-ac-7Uo" secondAttribute="bottom" constant="8" symbolic="YES" id="S4Y-kp-qh1"/>
                                             <constraint firstItem="tC7-Q3-edh" firstAttribute="leading" secondItem="Meg-xs-LLl" secondAttribute="leading" id="SF9-Kq-wqQ"/>
                                             <constraint firstItem="fJU-VR-4Yk" firstAttribute="top" secondItem="VFc-lN-0Xe" secondAttribute="bottom" constant="8" symbolic="YES" id="TI6-yj-Og7"/>
                                             <constraint firstItem="ivS-6v-CRL" firstAttribute="leading" secondItem="fJU-VR-4Yk" secondAttribute="trailing" constant="19" id="Ult-va-Dbl"/>
                                             <constraint firstItem="tC7-Q3-edh" firstAttribute="leading" secondItem="ivS-6v-CRL" secondAttribute="trailing" constant="10" id="W0c-oF-ox6"/>
                                             <constraint firstItem="hp3-gP-HIu" firstAttribute="leading" secondItem="Giu-26-OkX" secondAttribute="leading" id="WFX-a8-1jz"/>
-                                            <constraint firstAttribute="bottom" secondItem="fJU-VR-4Yk" secondAttribute="bottom" constant="222" id="Wqi-dU-QYD"/>
+                                            <constraint firstAttribute="bottom" secondItem="fJU-VR-4Yk" secondAttribute="bottom" constant="169" id="Wqi-dU-QYD"/>
                                             <constraint firstItem="gsE-F7-lw7" firstAttribute="centerY" secondItem="FZq-rM-hjc" secondAttribute="centerY" id="a7Q-f4-9gr"/>
                                             <constraint firstAttribute="trailing" secondItem="0tz-Mh-dfc" secondAttribute="trailing" constant="182" id="aKV-6c-EVT"/>
                                             <constraint firstItem="gsE-F7-lw7" firstAttribute="top" secondItem="0tz-Mh-dfc" secondAttribute="bottom" constant="8" symbolic="YES" id="aKV-Yw-ibo"/>
@@ -482,7 +481,7 @@
                                 <constraints>
                                     <constraint firstItem="jcW-ba-0Gk" firstAttribute="leading" secondItem="Rdc-PV-ShP" secondAttribute="leading" id="4iA-eO-yeM"/>
                                     <constraint firstItem="jcW-ba-0Gk" firstAttribute="width" secondItem="Rdc-PV-ShP" secondAttribute="width" id="PXw-eF-0On"/>
-                                    <constraint firstAttribute="bottom" secondItem="jcW-ba-0Gk" secondAttribute="bottom" constant="200" id="RCb-Yg-u8K"/>
+                                    <constraint firstAttribute="bottom" secondItem="jcW-ba-0Gk" secondAttribute="bottom" constant="4" id="RCb-Yg-u8K"/>
                                     <constraint firstAttribute="trailing" secondItem="jcW-ba-0Gk" secondAttribute="trailing" id="TS7-Rm-N30"/>
                                     <constraint firstItem="jcW-ba-0Gk" firstAttribute="top" secondItem="Rdc-PV-ShP" secondAttribute="top" id="yJ9-sQ-Qkj"/>
                                 </constraints>
@@ -504,6 +503,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="containerViewBottomConstraint" destination="RCb-Yg-u8K" id="G3l-Mh-9ut"/>
+                        <outlet property="scrollView" destination="Rdc-PV-ShP" id="aoM-Ha-04j"/>
                         <outlet property="textFldType" destination="gsE-F7-lw7" id="nho-WG-L5V"/>
                     </connections>
                 </viewController>
@@ -1233,13 +1234,13 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="lblAbilityApCost" destination="ewA-Bd-eUQ" id="l8V-RU-oxm"/>
-                                            <outlet property="lblAbilityBaseEffect" destination="U9j-DV-1Wc" id="vaB-vU-iZl"/>
+                                            <outlet property="lblAbilityBaseValue" destination="U9j-DV-1Wc" id="ClL-dK-IrE"/>
                                             <outlet property="lblAbilityDescription" destination="ubg-5g-UgY" id="AOf-w5-N7P"/>
                                             <outlet property="lblAbilityID" destination="JHX-e0-Rsf" id="5VI-8V-BVm"/>
                                             <outlet property="lblAbilityName" destination="fWc-FO-kzg" id="lSL-AV-E8Q"/>
                                             <outlet property="lblAbilityRadius" destination="gLJ-ZJ-EoI" id="HHB-QA-yV1"/>
                                             <outlet property="lblAbilityRange" destination="WBw-Ir-dqW" id="9Dx-fD-oAE"/>
-                                            <outlet property="lblAbilityRatioEffect" destination="MfY-5X-Rl3" id="elp-xS-Tdr"/>
+                                            <outlet property="lblAbilityRatioValue" destination="MfY-5X-Rl3" id="s1S-KL-8st"/>
                                             <outlet property="lblAbilityTargetType" destination="kqe-FC-Gnn" id="KbP-Ji-J3X"/>
                                             <outlet property="viewAbilityColor" destination="vvn-JE-fUD" id="qe1-Oo-uxe"/>
                                         </connections>
@@ -1354,7 +1355,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Base Effect: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g99-gS-d5N">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Base Value: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g99-gS-d5N">
                                 <rect key="frame" x="16" y="205" width="97" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1382,7 +1383,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ratio Effect:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLj-mS-47d">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ratio Value:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLj-mS-47d">
                                 <rect key="frame" x="201" y="205" width="94" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1507,7 +1508,7 @@
                     <connections>
                         <outlet property="lblAbilityAPCost" destination="dKg-ed-Ixa" id="uda-N7-zjB"/>
                         <outlet property="lblAbilityAnimationTime" destination="ceb-6L-Ktj" id="pbL-9d-uAb"/>
-                        <outlet property="lblAbilityBaseEffect" destination="LcU-pa-aJX" id="5TZ-Q3-r3t"/>
+                        <outlet property="lblAbilityBaseValue" destination="LcU-pa-aJX" id="dUl-Rf-aZy"/>
                         <outlet property="lblAbilityDescription" destination="OOd-fc-Bsf" id="FK5-Tz-s5w"/>
                         <outlet property="lblAbilityID" destination="cqK-bO-cph" id="JgX-7X-QOc"/>
                         <outlet property="lblAbilityLevelUnlock" destination="zMh-DF-hsk" id="A36-gX-Gjc"/>
@@ -1515,7 +1516,7 @@
                         <outlet property="lblAbilityName" destination="2qE-Pk-QZe" id="Yh6-Xh-cdr"/>
                         <outlet property="lblAbilityRadius" destination="MCW-nJ-oDk" id="X92-SQ-rBj"/>
                         <outlet property="lblAbilityRange" destination="orE-51-7rr" id="FCH-td-dS0"/>
-                        <outlet property="lblAbilityRatioEffect" destination="fAC-fX-kQ0" id="cEF-Ds-OKG"/>
+                        <outlet property="lblAbilityRatioValue" destination="fAC-fX-kQ0" id="ggm-EG-NBs"/>
                         <outlet property="lblAbilityTargetType" destination="Ead-yi-ZZ7" id="0Ay-Rm-lza"/>
                     </connections>
                 </viewController>
@@ -1744,8 +1745,8 @@
                                                     <outlet property="delegate" destination="mqa-EW-djC" id="HY8-Ov-wMe"/>
                                                 </connections>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Base Effect:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Kd-jj-aJl">
-                                                <rect key="frame" x="26" y="322" width="92" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Base Value:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Kd-jj-aJl">
+                                                <rect key="frame" x="27" y="322" width="89" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1759,8 +1760,8 @@
                                                     <outlet property="delegate" destination="mqa-EW-djC" id="vVG-YV-B1a"/>
                                                 </connections>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ratio Effect:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3oi-iw-li0">
-                                                <rect key="frame" x="140" y="322" width="94" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ratio Value:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3oi-iw-li0">
+                                                <rect key="frame" x="144" y="322" width="90" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1849,7 +1850,6 @@
                                             <constraint firstItem="In3-Uf-hRB" firstAttribute="top" secondItem="TkP-7z-121" secondAttribute="top" constant="44" id="5tH-3N-CwA"/>
                                             <constraint firstItem="In3-Uf-hRB" firstAttribute="leading" secondItem="2uu-Gx-2V2" secondAttribute="leading" id="6FT-tO-dub"/>
                                             <constraint firstItem="NY7-uc-vwu" firstAttribute="leading" secondItem="OeZ-HB-JCe" secondAttribute="trailing" constant="32" id="6cR-II-AZ3"/>
-                                            <constraint firstAttribute="height" constant="603" id="6fa-cG-38Z"/>
                                             <constraint firstItem="UDS-Tj-qhh" firstAttribute="leading" secondItem="2uu-Gx-2V2" secondAttribute="trailing" constant="19" id="9qM-GE-OCJ"/>
                                             <constraint firstItem="In3-Uf-hRB" firstAttribute="leading" secondItem="Pao-FU-OqG" secondAttribute="leading" id="AJj-Jf-mu6"/>
                                             <constraint firstItem="UDS-Tj-qhh" firstAttribute="top" secondItem="AEc-uQ-6Zq" secondAttribute="bottom" constant="9" id="Aux-GL-OLn"/>
@@ -1913,7 +1913,7 @@
                                     <constraint firstItem="TkP-7z-121" firstAttribute="width" secondItem="mY9-PA-kF6" secondAttribute="width" id="Iz0-BM-Oj1"/>
                                     <constraint firstItem="TkP-7z-121" firstAttribute="top" secondItem="mY9-PA-kF6" secondAttribute="top" id="L9s-Po-E2Y"/>
                                     <constraint firstAttribute="trailing" secondItem="TkP-7z-121" secondAttribute="trailing" id="o14-cq-usf"/>
-                                    <constraint firstAttribute="bottom" secondItem="TkP-7z-121" secondAttribute="bottom" constant="44" id="qSH-dl-xNg"/>
+                                    <constraint firstAttribute="bottom" secondItem="TkP-7z-121" secondAttribute="bottom" id="qSH-dl-xNg"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -1933,6 +1933,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="containerViewBottomConstraint" destination="qSH-dl-xNg" id="chP-Qs-tYW"/>
                         <outlet property="textFldType" destination="lQV-bs-1Rh" id="6Xh-FF-D8D"/>
                     </connections>
                 </viewController>

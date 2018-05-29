@@ -11,6 +11,10 @@ import CoreData
 
 class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    
+    @IBOutlet weak var containerViewBottomConstraint: NSLayoutConstraint!
     var editMode: Bool = false
     var editItem: Item!
     var index: Int = -1
@@ -78,12 +82,28 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         tapBackground.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(tapBackground)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         let pickerType : UIPickerView = UIPickerView()
         pickerType.dataSource = self
         pickerType.delegate = self
         
         itemTypes = ["Accessory","Consumable","Fist","Gun","Knife","Shield","Staff","Sword","Tome","Wand"]
         textFldType.inputView = pickerType
+        
+    }
+    
+    func keyBoardWillShow(notification: NSNotification){
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            self.containerViewBottomConstraint.constant = keyboardSize.height
+            
+        }
+    }
+    
+    func keyBoardWillHide(_ sender: Any){
+        self.containerViewBottomConstraint.constant = 0
     }
     
     func dismissKeyboard(_ sender:Any)
@@ -215,7 +235,9 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         self.textFldType.text = itemTypes[row]
     }
     
-    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.scrollView.setContentOffset(CGPoint(x:0,y:textField.center.y - 216), animated: true)
+    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         print("Textfield: ", textField.tag)

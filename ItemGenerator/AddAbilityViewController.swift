@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 
 class AddAbilityViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+    @IBOutlet weak var containerViewBottomConstraint: NSLayoutConstraint!
+    
     
     var editMode: Bool = false
     var editAbility: Ability!
@@ -25,8 +27,8 @@ class AddAbilityViewController: UIViewController, UITextFieldDelegate, UIPickerV
     var targetType: String = ""
     var apCost: Int = 0
     var levelUnlock: Int = 0
-    var baseEffect: Int = 0
-    var ratioEffect: Float = 0
+    var baseValue: Int = 0
+    var ratioValue: Float = 0
     var range: Int = 0
     var radius: Int = 0
     var aniTime: Float = 0
@@ -173,8 +175,8 @@ class AddAbilityViewController: UIViewController, UITextFieldDelegate, UIPickerV
             ability.setValue(targetType, forKey: "targetType")
             ability.setValue(apCost, forKey: "apCost")
             ability.setValue(levelUnlock, forKey: "levelUnlock")
-            ability.setValue(baseEffect, forKey: "baseEffect")
-            ability.setValue(ratioEffect, forKey: "ratioEffect")
+            ability.setValue(baseValue, forKey: "baseValue")
+            ability.setValue(ratioValue, forKey: "ratioValue")
             ability.setValue(range, forKey: "range")
             ability.setValue(radius, forKey: "radius")
             ability.setValue(aniTime, forKey: "animationTime")
@@ -253,17 +255,17 @@ class AddAbilityViewController: UIViewController, UITextFieldDelegate, UIPickerV
             break
         case 8:
             guard let tempStr: String = textField.text, textField.text != "" else{
-                baseEffect = 0
+                baseValue = 0
                 break
             }
-            baseEffect = Int(tempStr)!
+            baseValue = Int(tempStr)!
             break
         case 9:
             guard let tempStr: String = textField.text, textField.text != "" else{
-                ratioEffect = 0
+                ratioValue = 0
                 break
             }
-            ratioEffect = Float(tempStr)!
+            ratioValue = Float(tempStr)!
             break
         case 10:
             guard let tempStr: String = textField.text, textField.text != "" else{
@@ -386,16 +388,16 @@ class AddAbilityViewController: UIViewController, UITextFieldDelegate, UIPickerV
             case 8:
                 let textField:UITextField = self.view.viewWithTag(i) as! UITextField!
                 
-                baseEffect = Int(editAbility.baseEffect)
-                textField.text = String(editAbility.baseEffect)
+                baseValue = Int(editAbility.baseValue)
+                textField.text = String(editAbility.baseValue)
                 
                 break
                 
             case 9:
                 let textField:UITextField = self.view.viewWithTag(i) as! UITextField!
                 
-                ratioEffect = Float(editAbility.ratioEffect)
-                textField.text = String(editAbility.ratioEffect)
+                ratioValue = Float(editAbility.ratioValue)
+                textField.text = String(editAbility.ratioValue)
                 
                 break
                

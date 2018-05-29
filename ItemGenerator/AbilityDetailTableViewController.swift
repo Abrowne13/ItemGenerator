@@ -24,8 +24,8 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     var effectPickerView = UIPickerView()
     var activeTextField: UITextField!
     let stringKeys = ["name","modifierType","abilityDescription","targetType"]
-    let intKeys = ["abilityID","levelUnlock","apCost","baseEffect","range","radius"]
-    let floatKeys = ["ratioEffect","animationTime"]
+    let intKeys = ["abilityID","levelUnlock","apCost","baseValue","range","radius"]
+    let floatKeys = ["ratioValue","animationTime"]
     let twoTextFieldKeys = ["damageAtTimeForPercentage","effectPattern"]
     @IBOutlet weak var abilityDetailTableView: UITableView!
     @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
@@ -503,8 +503,8 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         abilityCellArray.add(["titleName":"Target Type: ","titleValue":ability.targetType!,"abilityKey":"targetType"])
         abilityCellArray.add(["titleName":"Level Unlock: ","titleValue":String(ability.levelUnlock),"abilityKey":"levelUnlock"])
         abilityCellArray.add(["titleName":"AP Cost: ","titleValue":String(ability.apCost),"abilityKey":"apCost"])
-        abilityCellArray.add(["titleName":"Base Effect: ","titleValue":String(ability.baseEffect),"abilityKey":"baseEffect"])
-        abilityCellArray.add(["titleName":"Ratio Effect: ","titleValue":String(ability.ratioEffect),"abilityKey":"ratioEffect"])
+        abilityCellArray.add(["titleName":"Base Value: ","titleValue":String(ability.baseValue),"abilityKey":"baseValue"])
+        abilityCellArray.add(["titleName":"Ratio Value: ","titleValue":String(ability.ratioValue),"abilityKey":"ratioValue"])
         var targetEffectCountString = "0"
         if(targetEffects != nil){
             targetEffectCountString = String(targetEffects.count)

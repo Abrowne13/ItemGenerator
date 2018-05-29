@@ -66,8 +66,8 @@ extension Ability {
     @NSManaged public var targetType: String?
     @NSManaged public var targetEffects: NSObject?
     @NSManaged public var levelUnlock: Int16
-    @NSManaged public var baseEffect: Int32
-    @NSManaged public var ratioEffect: Float
+    @NSManaged public var baseValue: Int32
+    @NSManaged public var ratioValue: Float
     @NSManaged public var animationTime: Float
     @NSManaged public var damageAtTimeForPercentage: NSObject?
 
