@@ -14,10 +14,12 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     var abilityCellArray: NSMutableArray!
     var targetEffects: NSArray!
     var casterEffects: NSArray!
+    var applyEffects: NSArray!
     var effectPattern: NSArray!
     var damageAnimations: NSArray!
     var isTargetEffectExpanded = false
     var isCasterEffectExpanded = false
+    var isApplyEffectExpanded = false
     var isEffectPatternExpanded = false
     var isDTPExpanded = false;
     var pickerViewData: NSMutableArray = []
@@ -52,6 +54,7 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         super.viewWillAppear(animated)
         targetEffects = ability.targetEffects as? NSArray
         casterEffects = ability.casterEffects as? NSArray
+        applyEffects = ability.applyEffects as? NSArray
         effectPattern = ability.effectPattern as? NSArray
         damageAnimations = ability.damageAtTimeForPercentage as? NSArray
         self.updateAbilityCellArray()
@@ -111,7 +114,7 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
                 }
             }
             else{
-                if (subArray == "targetEffect" || subArray == "casterEffect") {
+                if (subArray == "targetEffect" || subArray == "casterEffect" || subArray == "applyEffect") {
                     tableCell.abilityDetailTextField.inputView = effectPickerView
                 }
             }
@@ -143,6 +146,13 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         else if (expandbleString == "casterEffect") {
             isCasterEffectExpanded = !isCasterEffectExpanded
             self.collapseSubArrayCellsForSubarray(subArray: "casterEffect")
+            tableView.deselectRow(at: tableView.indexPathForSelectedRow!, animated: false)
+            self.updateAbilityCellArray()
+            tableView.reloadData()
+        }
+        else if (expandbleString == "applyEffect") {
+            isApplyEffectExpanded = !isApplyEffectExpanded
+            self.collapseSubArrayCellsForSubarray(subArray: "applyEffect")
             tableView.deselectRow(at: tableView.indexPathForSelectedRow!, animated: false)
             self.updateAbilityCellArray()
             tableView.reloadData()
@@ -377,6 +387,44 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
                                 self.updateAbilityCellArray()
                                 tableView.reloadData()
                             }
+                            else if (subArray == "applyEffect") {
+                                if(typeString == "default"){
+                                    applyEffects = applyEffects.adding(self.getAbilityEffectDictFromName(effectName:  cell.abilityDetailTextField.text!)) as NSArray!
+                                    ability.applyEffects = applyEffects
+                                    let context = ability.managedObjectContext;
+                                    do {
+                                        try context?.save()
+                                    }
+                                    catch let error as NSError {
+                                        print("Could not save. \(error), \(error.userInfo)")
+                                    }
+                                }
+                                    //Need to check if the user actually updated value!!
+                                else{
+                                    let currentAbilityEffect = cellDict.object(forKey: "titleName") as! String
+                                    if(currentAbilityEffect != cell.abilityDetailTextField.text){
+                                        for dict in applyEffects {
+                                            let abilityEffectTitles = (dict as! NSDictionary).object(forKey: "name")
+                                            if (abilityEffectTitles as! String == currentAbilityEffect){
+                                                let abilityEffectArray = NSMutableArray(array: applyEffects)
+                                                let index = abilityEffectArray.index(of: self.getAbilityEffectDictFromName(effectName: currentAbilityEffect))
+                                                abilityEffectArray[index] = self.getAbilityEffectDictFromName(effectName:  cell.abilityDetailTextField.text!)
+                                                applyEffects = abilityEffectArray
+                                                ability.applyEffects = applyEffects
+                                                let context = ability.managedObjectContext;
+                                                do {
+                                                    try context?.save()
+                                                }
+                                                catch let error as NSError {
+                                                    print("Could not save. \(error), \(error.userInfo)")
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                self.updateAbilityCellArray()
+                                tableView.reloadData()
+                            }
                             else{
                                 
                             }
@@ -428,6 +476,24 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
                         effectsArray.remove(dict)
                         self.casterEffects = effectsArray
                         self.ability.casterEffects = self.casterEffects
+                        let context = self.ability.managedObjectContext;
+                        do {
+                            try context?.save()
+                        }
+                        catch let error as NSError {
+                            print("Could not save. \(error), \(error.userInfo)")
+                        }
+                    }
+                }
+            }
+            else if (subArray == "applyEffect"){
+                for dict in self.applyEffects{
+                    let abilityEffectString = (dict as! NSDictionary).object(forKey: "name")
+                    if (abilityEffectString as! String == cellDict.object(forKey: "titleName") as! String){
+                        let effectsArray = NSMutableArray.init(array: self.applyEffects)
+                        effectsArray.remove(dict)
+                        self.applyEffects = effectsArray
+                        self.ability.applyEffects = self.applyEffects
                         let context = self.ability.managedObjectContext;
                         do {
                             try context?.save()
@@ -534,6 +600,21 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
                 abilityCellArray.add(["titleName":string as! String,"subArray":"casterEffect"])
             }
             abilityCellArray.add(["titleName":"Add Caster Effect","subArray":"casterEffect","type":"default"])
+        }
+        var applyEffectCountString = "0"
+        if(applyEffects != nil){
+            applyEffectCountString = String(applyEffects.count)
+        }
+        else{
+            applyEffects = NSArray()
+        }
+        abilityCellArray.add(["titleName":"Apply Effects: ","titleValue":applyEffectCountString,"expandable":"applyEffect","abilityKey":"applyEffects"])
+        if (isApplyEffectExpanded){
+            for dict in applyEffects{
+                let string = (dict as! NSDictionary).object(forKey: "name")
+                abilityCellArray.add(["titleName":string as! String,"subArray":"applyEffect"])
+            }
+            abilityCellArray.add(["titleName":"Add Apply Effect","subArray":"applyEffect","type":"default"])
         }
         abilityCellArray.add(["titleName":"Range: ","titleValue":String(ability.range),"abilityKey":"range"])
         abilityCellArray.add(["titleName":"Radius: ","titleValue":String(ability.radius),"abilityKey":"radius"])

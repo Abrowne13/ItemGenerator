@@ -85,6 +85,7 @@ class CoreDataManager: NSObject {
             ability.setValue(dict.object(forKey: "targetType"), forKey: "targetType")
             ability.setValue(dict.object(forKey: "targetEffects"), forKey: "targetEffects")
             ability.setValue(dict.object(forKey: "casterEffects"), forKey: "casterEffects")
+            ability.setValue(dict.object(forKey: "applyEffects"), forKey: "applyEffects")
             ability.setValue(dict.object(forKey: "levelUnlock"), forKey: "levelUnlock")
             ability.setValue(dict.object(forKey: "baseValue"), forKey: "baseValue")
             ability.setValue(dict.object(forKey: "ratioValue"), forKey: "ratioValue")
