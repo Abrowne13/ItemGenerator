@@ -195,7 +195,7 @@
     <entity name="StatusEffect" representedClassName="StatusEffect" syncable="YES" codeGenerationType="class">
         <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="effectType" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isBuff" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isDebuff" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="procRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="statusEffectName" optional="YES" attributeType="String" syncable="YES"/>
