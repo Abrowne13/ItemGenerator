@@ -24,6 +24,11 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
     @IBOutlet weak var attribute5TextField: UITextField!
     @IBOutlet weak var attribute6Label: UILabel!
     @IBOutlet weak var attribute6TextField: UITextField!
+    @IBOutlet weak var attribute3Switch: UISwitch!
+    @IBOutlet weak var attribute4Switch: UISwitch!
+    @IBOutlet weak var attribute5Switch: UISwitch!
+    @IBOutlet weak var attribute6Switch: UISwitch!
+    
     
     //If you ever want to play with the bottom contraint for the contentView
     @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
@@ -55,6 +60,10 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
     
     override func viewWillAppear(_ animated: Bool) {
         self.title = abilityEffectName
+        attribute3Switch.isHidden = true
+        attribute4Switch.isHidden = true
+        attribute5Switch.isHidden = true
+        attribute6Switch.isHidden = true
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
             else {
@@ -93,40 +102,66 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
                 else if(type == NSAttributeType.floatAttributeType){
                     keyBoardType = .decimalPad
                 }
+                else if(type == NSAttributeType.booleanAttributeType){
+                    keyBoardType = .twitter //#programmerThings actually used to toggle the UI switch as an input.
+                }
                 else{
                     keyBoardType = .default
                 }
-                
                 if(attribute3Label.text == "Label"){
                     attribute3Label.text = title
                     attribute3Label.isHidden = false
-                    attribute3TextField.isHidden = false
-                    attribute3TextField.keyboardType = keyBoardType
-                    attribute3TextField.tag = i
+                    if(keyBoardType == .twitter){
+                        attribute3Switch.isHidden = false
+                        attribute3Switch.tag = i
+                    }
+                    else{
+                        attribute3TextField.isHidden = false
+                        attribute3TextField.keyboardType = keyBoardType
+                        attribute3TextField.tag = i
+                    }
                     continue
                 }
                 if(attribute4Label.text == "Label"){
                     attribute4Label.text = title
                     attribute4Label.isHidden = false
-                    attribute4TextField.isHidden = false
-                    attribute4TextField.keyboardType = keyBoardType
-                    attribute4TextField.tag = i
+                    if(keyBoardType == .twitter){
+                        attribute4Switch.isHidden = false
+                        attribute4Switch.tag = i
+                    }
+                    else{
+                        attribute4TextField.isHidden = false
+                        attribute4TextField.keyboardType = keyBoardType
+                        attribute4TextField.tag = i
+                    }
                     continue
                 }
                 if(attribute5Label.text == "Label"){
                     attribute5Label.text = title
                     attribute5Label.isHidden = false
-                    attribute5TextField.isHidden = false
-                    attribute5TextField.keyboardType = keyBoardType
-                    attribute5TextField.tag = i
+                    if(keyBoardType == .twitter){
+                        attribute5Switch.isHidden = false
+                        attribute5Switch.tag = i
+                    }
+                    else{
+                        attribute5TextField.isHidden = false
+                        attribute5TextField.keyboardType = keyBoardType
+                        attribute5TextField.tag = i
+                    }
                     continue
                 }
                 if(attribute6Label.text == "Label"){
                     attribute6Label.text = title
                     attribute6Label.isHidden = false
-                    attribute6TextField.isHidden = false
-                    attribute6TextField.keyboardType = keyBoardType
-                    attribute6TextField.tag = i
+                    if(keyBoardType == .twitter){
+                        attribute6Switch.isHidden = false
+                        attribute6Switch.tag = i
+                    }
+                    else{
+                        attribute6TextField.isHidden = false
+                        attribute6TextField.keyboardType = keyBoardType
+                        attribute6TextField.tag = i
+                    }
                     continue
                 }
             }
@@ -234,17 +269,41 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
                     procTextField.text = proc?.description
                 }
                 else{
-                    if (key == attribute3Label.text && !attribute3TextField.isHidden) {
-                        attribute3TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
+                    if (key == attribute3Label.text) {
+                        if (!attribute3TextField.isHidden){
+                            attribute3TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
+                        }
+                        else if (!attribute3Switch.isHidden){
+                            attribute3Switch.isOn = setEffect.value(forKey: key) != nil ? attribute3Switch.isOn : false
+                        }
+                        
                     }
-                    else if (key == attribute4Label.text && !attribute4TextField.isHidden) {
-                        attribute4TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
+                    else if (key == attribute4Label.text) {
+                        if (!attribute4TextField.isHidden){
+                            attribute4TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
+                        }
+                        else if (!attribute4Switch.isHidden){
+                            attribute4Switch.isOn = setEffect.value(forKey: key) != nil ? attribute4Switch.isOn : false
+                        }
+                        
                     }
-                    else if (key == attribute5Label.text && !attribute5TextField.isHidden) {
-                        attribute5TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
+                    else if (key == attribute5Label.text) {
+                        if (!attribute5TextField.isHidden){
+                            attribute5TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
+                        }
+                        else if (!attribute5Switch.isHidden){
+                            attribute5Switch.isOn = setEffect.value(forKey: key) != nil ? setEffect.value(forKey: key) as! Bool! : false
+                        }
+                        
                     }
-                    else if (key == attribute6Label.text && !attribute6TextField.isHidden) {
-                        attribute6TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
+                    else if (key == attribute6Label.text) {
+                        if (!attribute6TextField.isHidden){
+                            attribute6TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
+                        }
+                        else if (!attribute6Switch.isHidden){
+                            attribute6Switch.isOn = setEffect.value(forKey: key) != nil ? attribute6Switch.isOn : false
+                        }
+                        
                     }
                 }
             }
@@ -282,6 +341,30 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
             attribute6TextField.text = ""
         }
     }
+    
+    //MARK: UIButton functions
+    
+    @IBAction func onSwitch3ValueChange(_ sender: Any) {
+        let key = keys[attribute3Switch.tag] as! String
+        self.abilityEffect.setValue(attribute3Switch.isOn, forKey:key)
+    }
+    
+    @IBAction func onSwitch4ValueChange(_ sender: Any) {
+        let key = keys[attribute4Switch.tag] as! String
+        self.abilityEffect.setValue(attribute4Switch.isOn, forKey:key)
+    }
+    
+    @IBAction func onSwitch5ValueChange(_ sender: Any) {
+        let key = keys[attribute5Switch.tag] as! String
+        self.abilityEffect.setValue(attribute5Switch.isOn, forKey:key)
+        print(self.abilityEffect.value(forKey: key) ?? "nil")
+    }
+    
+    @IBAction func onSwitch6ValueChange(_ sender: Any) {
+        let key = keys[attribute6Switch.tag] as! String
+        self.abilityEffect.setValue(attribute6Switch.isOn, forKey:key)
+    }
+    
     
     //MARK: Save function and ect.
     

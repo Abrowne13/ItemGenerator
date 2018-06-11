@@ -910,6 +910,34 @@
                                                     <outlet property="delegate" destination="yQM-NO-Ate" id="7u0-Z1-XqW"/>
                                                 </connections>
                                             </textField>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7T8-m1-YE7">
+                                                <rect key="frame" x="139" y="368" width="51" height="31"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="onSwitch3ValueChange:" destination="yQM-NO-Ate" eventType="valueChanged" id="Lr0-Hb-s7P"/>
+                                                </connections>
+                                            </switch>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XEJ-81-Z9i">
+                                                <rect key="frame" x="255" y="368" width="51" height="31"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="onSwitch4ValueChange:" destination="yQM-NO-Ate" eventType="valueChanged" id="ZDb-WO-Oq4"/>
+                                                </connections>
+                                            </switch>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uHD-FV-RRb">
+                                                <rect key="frame" x="8" y="445" width="51" height="31"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="onSwitch5ValueChange:" destination="yQM-NO-Ate" eventType="valueChanged" id="FQ0-9O-HST"/>
+                                                </connections>
+                                            </switch>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0g8-Xg-SME">
+                                                <rect key="frame" x="139" y="445" width="51" height="31"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="onSwitch6ValueChange:" destination="yQM-NO-Ate" eventType="valueChanged" id="OXG-gn-2wU"/>
+                                                </connections>
+                                            </switch>
                                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1u2-ti-Zjt">
                                                 <rect key="frame" x="255" y="369" width="97" height="30"/>
                                                 <nil key="textColor"/>
@@ -1072,12 +1100,16 @@
                     <connections>
                         <outlet property="abilityEffectDetailPicker" destination="qSi-MF-A6r" id="76g-W4-h6y"/>
                         <outlet property="attribute3Label" destination="D83-cw-TDG" id="WBX-zY-Bpa"/>
+                        <outlet property="attribute3Switch" destination="7T8-m1-YE7" id="aHO-iq-ik3"/>
                         <outlet property="attribute3TextField" destination="T1b-te-kfo" id="ykO-P7-ZEg"/>
                         <outlet property="attribute4Label" destination="bOz-dW-lAo" id="Jpk-qx-07D"/>
+                        <outlet property="attribute4Switch" destination="XEJ-81-Z9i" id="qcS-UN-E1n"/>
                         <outlet property="attribute4TextField" destination="1u2-ti-Zjt" id="tbo-4i-ab6"/>
                         <outlet property="attribute5Label" destination="Gle-6h-0kw" id="IIG-KZ-WwE"/>
+                        <outlet property="attribute5Switch" destination="uHD-FV-RRb" id="X5E-e4-Lsc"/>
                         <outlet property="attribute5TextField" destination="5zn-21-dLD" id="iBL-Fv-8gY"/>
                         <outlet property="attribute6Label" destination="vNa-Qv-Ts4" id="b8O-vN-Su2"/>
+                        <outlet property="attribute6Switch" destination="0g8-Xg-SME" id="Tv8-WQ-x8C"/>
                         <outlet property="attribute6TextField" destination="fdQ-kj-GQE" id="6jF-Md-yRt"/>
                         <outlet property="contentViewBottomConstraint" destination="Ifg-F3-11x" id="Gtb-3Q-DUK"/>
                         <outlet property="nameTextField" destination="FqC-6s-b28" id="xyq-cc-B0M"/>
