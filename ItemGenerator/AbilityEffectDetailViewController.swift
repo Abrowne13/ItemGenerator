@@ -24,10 +24,18 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
     @IBOutlet weak var attribute5TextField: UITextField!
     @IBOutlet weak var attribute6Label: UILabel!
     @IBOutlet weak var attribute6TextField: UITextField!
+    @IBOutlet weak var attribute7Label: UILabel!
+    @IBOutlet weak var attribute7TextField: UITextField!
+    @IBOutlet weak var attribute8Label: UILabel!
+    @IBOutlet weak var attribute8TextField: UITextField!
+    
     @IBOutlet weak var attribute3Switch: UISwitch!
     @IBOutlet weak var attribute4Switch: UISwitch!
     @IBOutlet weak var attribute5Switch: UISwitch!
     @IBOutlet weak var attribute6Switch: UISwitch!
+    @IBOutlet weak var attribute7Switch: UISwitch!
+    @IBOutlet weak var attribute8Switch: UISwitch!
+    
     
     
     //If you ever want to play with the bottom contraint for the contentView
@@ -54,6 +62,8 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
         self.attribute4TextField.tag = 4
         self.attribute5TextField.tag = 5
         self.attribute6TextField.tag = 6
+        self.attribute7TextField.tag = 7
+        self.attribute8TextField.tag = 8
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         self.view.addGestureRecognizer(tapGesture)
     }
@@ -64,6 +74,8 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
         attribute4Switch.isHidden = true
         attribute5Switch.isHidden = true
         attribute6Switch.isHidden = true
+        attribute7Switch.isHidden = true
+        attribute8Switch.isHidden = true
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
             else {
