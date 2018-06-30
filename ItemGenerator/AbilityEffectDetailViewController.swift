@@ -70,12 +70,6 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
     
     override func viewWillAppear(_ animated: Bool) {
         self.title = abilityEffectName
-        attribute3Switch.isHidden = true
-        attribute4Switch.isHidden = true
-        attribute5Switch.isHidden = true
-        attribute6Switch.isHidden = true
-        attribute7Switch.isHidden = true
-        attribute8Switch.isHidden = true
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
             else {
