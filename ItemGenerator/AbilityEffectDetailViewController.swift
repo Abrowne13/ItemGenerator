@@ -170,6 +170,34 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
                     }
                     continue
                 }
+                if(attribute7Label.text == "Label"){
+                    attribute7Label.text = title
+                    attribute7Label.isHidden = false
+                    if(keyBoardType == .twitter){
+                        attribute7Switch.isHidden = false
+                        attribute7Switch.tag = i
+                    }
+                    else{
+                        attribute7TextField.isHidden = false
+                        attribute7TextField.keyboardType = keyBoardType
+                        attribute7TextField.tag = i
+                    }
+                    continue
+                }
+                if(attribute8Label.text == "Label"){
+                    attribute8Label.text = title
+                    attribute8Label.isHidden = false
+                    if(keyBoardType == .twitter){
+                        attribute8Switch.isHidden = false
+                        attribute8Switch.tag = i
+                    }
+                    else{
+                        attribute8TextField.isHidden = false
+                        attribute8TextField.keyboardType = keyBoardType
+                        attribute8TextField.tag = i
+                    }
+                    continue
+                }
             }
         }
         self.loadPickerViewData()
@@ -311,6 +339,24 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
                         }
                         
                     }
+                    else if (key == attribute7Label.text) {
+                        if (!attribute7TextField.isHidden){
+                            attribute7TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
+                        }
+                        else if (!attribute7Switch.isHidden){
+                            attribute7Switch.isOn = setEffect.value(forKey: key) != nil ? attribute7Switch.isOn : false
+                        }
+                        
+                    }
+                    else if (key == attribute8Label.text) {
+                        if (!attribute8TextField.isHidden){
+                            attribute8TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
+                        }
+                        else if (!attribute8Switch.isHidden){
+                            attribute8Switch.isOn = setEffect.value(forKey: key) != nil ? attribute8Switch.isOn : false
+                        }
+                        
+                    }
                 }
             }
         }
@@ -346,6 +392,12 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
         if (!attribute6TextField.isHidden) {
             attribute6TextField.text = ""
         }
+        if (!attribute7TextField.isHidden) {
+            attribute7TextField.text = ""
+        }
+        if (!attribute8TextField.isHidden) {
+            attribute8TextField.text = ""
+        }
     }
     
     //MARK: UIButton functions
@@ -369,6 +421,17 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
     @IBAction func onSwitch6ValueChange(_ sender: Any) {
         let key = keys[attribute6Switch.tag] as! String
         self.abilityEffect.setValue(attribute6Switch.isOn, forKey:key)
+    }
+    
+    @IBAction func onSwitch7ValueChange(_ sender: Any) {
+        let key = keys[attribute7Switch.tag] as! String
+        self.abilityEffect.setValue(attribute7Switch.isOn, forKey:key)
+    }
+    
+    
+    @IBAction func onSwitch8ValueChange(_ sender: Any) {
+        let key = keys[attribute8Switch.tag] as! String
+        self.abilityEffect.setValue(attribute8Switch.isOn, forKey:key)
     }
     
     
