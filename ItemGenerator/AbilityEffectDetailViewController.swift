@@ -66,6 +66,14 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
         self.attribute8TextField.tag = 8
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         self.view.addGestureRecognizer(tapGesture)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -260,6 +268,14 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
     
     
     //MARK: TextField Functions
+    
+    func keyboardWillShow(sender: NSNotification) {
+        self.abilityEffectDetailPicker.isUserInteractionEnabled = false
+    }
+    
+    func keyboardWillHide(sender: NSNotification) {
+        self.abilityEffectDetailPicker.isUserInteractionEnabled = true
+    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         let key = keys[textField.tag] as! String
