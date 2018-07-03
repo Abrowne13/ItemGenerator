@@ -324,7 +324,7 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
                             attribute3TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
                         }
                         else if (!attribute3Switch.isHidden){
-                            attribute3Switch.isOn = setEffect.value(forKey: key) != nil ? attribute3Switch.isOn : false
+                            attribute3Switch.isOn = setEffect.value(forKey: key) != nil ? setEffect.value(forKey: key) as! Bool : false
                         }
                         
                     }
@@ -333,7 +333,7 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
                             attribute4TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
                         }
                         else if (!attribute4Switch.isHidden){
-                            attribute4Switch.isOn = setEffect.value(forKey: key) != nil ? attribute4Switch.isOn : false
+                            attribute4Switch.isOn = setEffect.value(forKey: key) != nil ? setEffect.value(forKey: key) as! Bool : false
                         }
                         
                     }
@@ -351,7 +351,7 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
                             attribute6TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
                         }
                         else if (!attribute6Switch.isHidden){
-                            attribute6Switch.isOn = setEffect.value(forKey: key) != nil ? attribute6Switch.isOn : false
+                            attribute6Switch.isOn = setEffect.value(forKey: key) != nil ? setEffect.value(forKey: key) as! Bool : false
                         }
                         
                     }
@@ -360,7 +360,7 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
                             attribute7TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
                         }
                         else if (!attribute7Switch.isHidden){
-                            attribute7Switch.isOn = setEffect.value(forKey: key) != nil ? attribute7Switch.isOn : false
+                            attribute7Switch.isOn = setEffect.value(forKey: key) != nil ? setEffect.value(forKey: key) as! Bool : false
                         }
                         
                     }
@@ -369,7 +369,7 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
                             attribute8TextField.text = self.stringFromManagedObjectWithKey(managedObject: setEffect, key: key)
                         }
                         else if (!attribute8Switch.isHidden){
-                            attribute8Switch.isOn = setEffect.value(forKey: key) != nil ? attribute8Switch.isOn : false
+                            attribute8Switch.isOn = setEffect.value(forKey: key) != nil ? setEffect.value(forKey: key) as! Bool : false
                         }
                         
                     }
