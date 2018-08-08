@@ -151,6 +151,7 @@ class AbilityEffectViewController: UIViewController,UITableViewDelegate,UITableV
                 appDelegate.persistentContainer.viewContext
             let fetchRequest2 = NSFetchRequest<NSDictionary>(entityName: entityName)
             fetchRequest2.resultType = NSFetchRequestResultType.dictionaryResultType
+            fetchRequest2.returnsObjectsAsFaults = false
             
             //3
             do {

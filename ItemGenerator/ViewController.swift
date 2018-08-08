@@ -153,6 +153,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         let sortDescript : NSSortDescriptor = NSSortDescriptor.init(key: "itemNo", ascending: true)
         let sortDescripts = [sortDescript]
         let fetchRequest2 = NSFetchRequest<NSDictionary>(entityName: "Item")
+        fetchRequest2.returnsObjectsAsFaults = false
         fetchRequest2.sortDescriptors = sortDescripts
         fetchRequest2.resultType = NSFetchRequestResultType.dictionaryResultType
         
@@ -294,6 +295,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         let fetchRequest =
             NSFetchRequest<NSManagedObject>(entityName: "Item")
+        fetchRequest.returnsObjectsAsFaults = false
         
         //2
         fetchRequest.predicate = predicate
@@ -375,6 +377,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             }
             
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Item")
+            fetchRequest.returnsObjectsAsFaults = false
             
             do {
                 self.itemList = try managedContext.fetch(fetchRequest) as! [Item]

@@ -70,14 +70,7 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.title = abilityEffectName
+        
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
             else {
@@ -85,7 +78,7 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
         }
         managedContext = appDelegate.persistentContainer.viewContext
         entity = NSEntityDescription.entity(forEntityName: abilityEffectName,
-                                                in: managedContext)!
+                                            in: managedContext)!
         let attributes = entity.attributesByName
         let values:NSMutableArray = []
         for attribute in attributes{
@@ -210,6 +203,17 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
         }
         self.loadPickerViewData()
         self.setSelectedRow(row: 0)
+
+        
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.title = abilityEffectName
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -221,6 +225,7 @@ class AbilityEffectDetailViewController: UIViewController,UIPickerViewDelegate,U
     
     func loadPickerViewData(){
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: abilityEffectName)
+        fetchRequest.returnsObjectsAsFaults = false
         let sortDescript : NSSortDescriptor = NSSortDescriptor.init(key: "name", ascending: true)
         let sortDescripts = [sortDescript]
         fetchRequest.sortDescriptors = sortDescripts

@@ -21,6 +21,7 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     var isCasterEffectExpanded = false
     var isApplyEffectExpanded = false
     var isEffectPatternExpanded = false
+    var hasLoaded = false
     var isDTPExpanded = false;
     var pickerViewData: NSMutableArray = []
     var effectPickerView = UIPickerView()
@@ -44,6 +45,9 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         self.loadPickerViewData()
         effectPickerView.dataSource = self
         effectPickerView.delegate = self
+        
+        
+        
     }
     
     deinit {
@@ -57,7 +61,11 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         applyEffects = ability.applyEffects as? NSArray
         effectPattern = ability.effectPattern as? NSArray
         damageAnimations = ability.damageAtTimeForPercentage as? NSArray
-        self.updateAbilityCellArray()
+        
+        if (!hasLoaded){
+            self.updateAbilityCellArray()
+            hasLoaded = true
+        }
     }
     
     override func didReceiveMemoryWarning() {

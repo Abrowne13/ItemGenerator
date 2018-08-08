@@ -44,6 +44,8 @@ class AbilityListViewController: UIViewController,UITableViewDataSource,UITableV
         
         definesPresentationContext = true
         tableAbilityList.tableHeaderView = searchController.searchBar
+        //!! May not refresh as often as it should, possibly implement a delegate call for this when an ability is made 
+        
     }
     
     
@@ -153,6 +155,7 @@ class AbilityListViewController: UIViewController,UITableViewDataSource,UITableV
         let sortDescript : NSSortDescriptor = NSSortDescriptor.init(key: "abilityID", ascending: true)
         let sortDescripts = [sortDescript]
         let fetchRequest2 = NSFetchRequest<NSDictionary>(entityName: "Ability")
+        fetchRequest2.returnsObjectsAsFaults = false
         fetchRequest2.sortDescriptors = sortDescripts
         fetchRequest2.resultType = NSFetchRequestResultType.dictionaryResultType
         
@@ -215,7 +218,6 @@ class AbilityListViewController: UIViewController,UITableViewDataSource,UITableV
             UIApplication.shared.delegate as? AppDelegate else {
                 return
         }
-        
         let managedContext =
             appDelegate.persistentContainer.viewContext
         
@@ -280,6 +282,7 @@ class AbilityListViewController: UIViewController,UITableViewDataSource,UITableV
         
         let fetchRequest =
             NSFetchRequest<NSManagedObject>(entityName: "Ability")
+        fetchRequest.returnsObjectsAsFaults = false
         
         //2
         fetchRequest.predicate = predicate
@@ -314,7 +317,8 @@ class AbilityListViewController: UIViewController,UITableViewDataSource,UITableV
         */
         
         let abilityDetail : AbilityDetailTableViewController = self.storyboard!.instantiateViewController(withIdentifier:"abilityDetailTableView") as! AbilityDetailTableViewController
-        abilityDetail.ability = abilityList[indexPath.row] as? Ability
+        let selectedAbility = abilityList[indexPath.row] as! Ability
+        abilityDetail.ability = selectedAbility
         self.navigationController!.pushViewController(abilityDetail, animated: true)
         
     }
@@ -363,7 +367,7 @@ class AbilityListViewController: UIViewController,UITableViewDataSource,UITableV
             }
             
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Ability")
-            
+            fetchRequest.returnsObjectsAsFaults = false
             do {
                 self.abilityList = try managedContext.fetch(fetchRequest) as! [Ability]
             } catch let error as NSError {

@@ -51,6 +51,7 @@ class AddAbilityViewController: UIViewController, UITextFieldDelegate, UIPickerV
         //2
         let fetchRequest =
             NSFetchRequest<NSManagedObject>(entityName: "Ability")
+        fetchRequest.returnsObjectsAsFaults = false
         
         //3
         do {

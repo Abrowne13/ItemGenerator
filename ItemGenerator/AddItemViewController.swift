@@ -53,6 +53,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         //2
         let fetchRequest =
             NSFetchRequest<NSManagedObject>(entityName: "Item")
+        fetchRequest.returnsObjectsAsFaults = false
         
         //3
         do {

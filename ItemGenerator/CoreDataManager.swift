@@ -125,6 +125,7 @@ class CoreDataManager: NSObject {
         //2
         let fetchRequest =
             NSFetchRequest<NSManagedObject>(entityName: "Item")
+        fetchRequest.returnsObjectsAsFaults = false
         
         //3
         do {
@@ -235,6 +236,7 @@ class CoreDataManager: NSObject {
             //2
             let fetchRequest =
                 NSFetchRequest<NSManagedObject>(entityName: abilityEffectEntity)
+            fetchRequest.returnsObjectsAsFaults = false
             fetchRequest.resultType = .dictionaryResultType
             fetchRequest.propertiesToFetch = ["name","effectType"];
             //3
