@@ -1196,7 +1196,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u9Q-V7-V33" id="zOB-uf-Ctr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="123.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AP Cost:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ye-m7-ZD4">
@@ -1648,10 +1648,18 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="N0P-ik-Qcq">
+                                                    <rect key="frame" x="312" y="7" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="valueChanged:" destination="gN5-pO-4xO" eventType="valueChanged" id="tND-y1-HLt"/>
+                                                    </connections>
+                                                </switch>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="abilityDetailLabel" destination="Lbv-Ch-F2e" id="cyC-06-0UM"/>
+                                            <outlet property="abilityDetailSwitch" destination="N0P-ik-Qcq" id="roG-ah-zgO"/>
                                             <outlet property="abilityDetailTextField" destination="5Mx-kk-EsQ" id="MAe-7Y-e1t"/>
                                         </connections>
                                     </tableViewCell>

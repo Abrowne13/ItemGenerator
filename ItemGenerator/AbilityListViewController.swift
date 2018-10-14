@@ -44,8 +44,6 @@ class AbilityListViewController: UIViewController,UITableViewDataSource,UITableV
         
         definesPresentationContext = true
         tableAbilityList.tableHeaderView = searchController.searchBar
-        //!! May not refresh as often as it should, possibly implement a delegate call for this when an ability is made 
-        
     }
     
     

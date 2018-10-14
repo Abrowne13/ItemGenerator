@@ -57,6 +57,7 @@ extension Ability {
     @NSManaged public var name: String?
     @NSManaged public var abilityDescription: String?
     @NSManaged public var abilityID: Int16
+    @NSManaged public var isHealing: Bool
     @NSManaged public var applyEffects: NSObject?
     @NSManaged public var casterEffects: NSObject?
     @NSManaged public var range: Int16

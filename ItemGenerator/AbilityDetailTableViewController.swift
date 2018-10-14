@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource {
+class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,AbilityDetailSwitchDelegate {
     
     var ability: Ability!
     var abilityCellArray: NSMutableArray!
@@ -30,6 +30,7 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     let intKeys = ["abilityID","levelUnlock","apCost","baseValue","range","radius"]
     let floatKeys = ["ratioValue","animationTime"]
     let twoTextFieldKeys = ["damageAtTimeForPercentage","effectPattern"]
+    let switchKeys = ["healing"];
     @IBOutlet weak var abilityDetailTableView: UITableView!
     @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
     
@@ -120,6 +121,12 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
                 else if(floatKeys.contains(abilityKey!)){
                     tableCell.abilityDetailTextField.keyboardType = .decimalPad
                 }
+                else if (switchKeys.contains(abilityKey!)){
+                    tableCell.abilityDetailSwitch.isHidden = false
+                    let switchValue = cellDict?.value(forKey:"titleValue") as? Bool
+                    tableCell.abilityDetailSwitch.setOn(switchValue!, animated: false)
+                    tableCell.delegate = self
+                }
             }
             else{
                 if (subArray == "targetEffect" || subArray == "casterEffect" || subArray == "applyEffect") {
@@ -143,6 +150,10 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellDict = abilityCellArray[indexPath.row] as! NSDictionary
         let expandbleString = cellDict.object(forKey:"expandable") as! String?
+        let switchKey = cellDict.object(forKey: "abilityKey")as! String?
+        if(switchKeys.contains(switchKey!)){
+            return
+        }
         if (expandbleString == "targetEffect") {
             isTargetEffectExpanded = !isTargetEffectExpanded
             self.view.endEditing(true)
@@ -369,7 +380,6 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
                                         print("Could not save. \(error), \(error.userInfo)")
                                     }
                                 }
-                                //Need to check if the user actually updated value!!
                                 else{
                                     let currentAbilityEffect = cellDict.object(forKey: "titleName") as! String
                                     if(currentAbilityEffect != cell.abilityDetailTextField.text){
@@ -407,7 +417,6 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
                                         print("Could not save. \(error), \(error.userInfo)")
                                     }
                                 }
-                                    //Need to check if the user actually updated value!!
                                 else{
                                     let currentAbilityEffect = cellDict.object(forKey: "titleName") as! String
                                     if(currentAbilityEffect != cell.abilityDetailTextField.text){
@@ -574,6 +583,7 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
         abilityCellArray.add(["titleName":"Ability ID: ","titleValue":String(ability.abilityID),"abilityKey":"abilityID"])
         abilityCellArray.add(["titleName":"Modifier Type: ","titleValue":ability.modifierType!,"abilityKey":"modifierType"])
         abilityCellArray.add(["titleName":"Ability Description: ","titleValue":ability.abilityDescription!,"abilityKey":"abilityDescription"])
+        abilityCellArray.add(["titleName":"Healing: ","titleValue":ability.isHealing,"abilityKey":"healing"])
         abilityCellArray.add(["titleName":"Target Type: ","titleValue":ability.targetType!,"abilityKey":"targetType"])
         abilityCellArray.add(["titleName":"Level Unlock: ","titleValue":String(ability.levelUnlock),"abilityKey":"levelUnlock"])
         abilityCellArray.add(["titleName":"AP Cost: ","titleValue":String(ability.apCost),"abilityKey":"apCost"])
@@ -819,6 +829,17 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
             }
         }
         return NSDictionary()
+    }
+    
+    func didToggleSwitch(_ sender: AbilityDetailTableViewCell){
+        ability.setValue(true, forKey:"isHealing")
+        let context = ability.managedObjectContext;
+        do {
+            try context?.save()
+        }
+        catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
     
     /*

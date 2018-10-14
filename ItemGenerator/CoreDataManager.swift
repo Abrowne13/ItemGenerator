@@ -77,6 +77,7 @@ class CoreDataManager: NSObject {
             ability.setValue(dict.object(forKey: "name"), forKey: "name")
             ability.setValue(dict.object(forKey: "abilityID"), forKey: "abilityID")
             ability.setValue(dict.object(forKey: "abilityDescription"), forKey: "abilityDescription")
+            ability.setValue(dict.object(forKey: "isHealing"), forKey: "isHealing")
             ability.setValue(dict.object(forKey: "range"), forKey: "range")
             ability.setValue(dict.object(forKey: "effectPattern"), forKey: "effectPattern")
             ability.setValue(dict.object(forKey: "radius"), forKey: "radius")
