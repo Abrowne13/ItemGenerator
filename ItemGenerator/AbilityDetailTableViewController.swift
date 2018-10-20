@@ -150,8 +150,8 @@ class AbilityDetailTableViewController: UIViewController,UITableViewDataSource,U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellDict = abilityCellArray[indexPath.row] as! NSDictionary
         let expandbleString = cellDict.object(forKey:"expandable") as! String?
-        let switchKey = cellDict.object(forKey: "abilityKey")as! String?
-        if(switchKeys.contains(switchKey!)){
+        let switchKey = cellDict.object(forKey: "abilityKey")as? String ?? ""
+        if(switchKeys.contains(switchKey)){
             return
         }
         if (expandbleString == "targetEffect") {
